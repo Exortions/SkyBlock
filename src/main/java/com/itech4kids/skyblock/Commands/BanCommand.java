@@ -25,16 +25,17 @@ public class BanCommand implements CommandExecutor {
                 return true;
             } else if (args.length == 2) {
                 Player target = Bukkit.getPlayer(args[0]);
-                String reason = args[1];
+                String old_reason = args[1];
+                String new_reason = old_reason.replace('_', ' ');
                 if (player.getServer().getOnlinePlayers().contains(target)) {
-                    if (!(reason.equals("null"))) {
+                    if (!(new_reason.equals("null"))) {
                         try {
                             Config.setBanned(target, true);
-                            Config.setBanReason(target, reason);
+                            Config.setBanReason(target, new_reason);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    } else if (reason.equals("null")) {
+                    } else if (new_reason.equals("null")) {
                         try {
                             Config.setBanned(target, true);
                             Config.setBanReason(target, "None provided.");
