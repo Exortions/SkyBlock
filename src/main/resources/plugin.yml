@@ -1,6 +1,6 @@
 version: 1.0
 name: RemakeHypixelSkyblock
-Authors: [OptimusChen, Itchs]
+Authors: [OptimusChan, Itchs]
 main: com.itech4kids.skyblock.Main
 commands:
   sbmenu:
@@ -21,19 +21,44 @@ commands:
   todolist:
     description: Opens the todo list menu.
     aliases: [todo]
-  spawnskyblocknpc:
-    description: Spawns a Skyblock NPC.
-  minermerchant:
-    description: Opens the miner merchant's GUI.
-  helmetcategory:
-    description: Opens the helmet category in the item browser.
-  chestplatecategory:
-    description: Opens the chestplate category in the item browser.
-  leggingscategory:
-    description: Opens the leggings category in the item browser.
-  bootscategory:
-    description: Opens the boots category in the item browser.
-  item:
-    description: Gives user a custom item.
+  trade:
+    description: TRADE TRADE TRADE TRADE
+  skill:
+    description: Set your skill to an integer
+  sreforge:
+    description: Adds a reforge to an item
+    aliases: [sref]
+  pets:
+    description: TEST PETS
+  recombobulate:
+    description: Increases the rarity of an item by 1
+    aliases: [recomb]
+  rarity:
+    description: Change the rarity of an item
+  warp:
+    description: Teleports you to your desired destination
   collections:
-    description: Opens collections menu.
+    description: WIP
+  item:
+    description: WIP
+  helmetcategory:
+    description: WIP
+  chestplatecategory:
+    description: WIP
+  leggingscategory:
+    description: WIP
+  bootscategory:
+    description: WIP
+  materialscategory:
+  visit:
+    description: Visit other players islands
+  launchpad:
+    description: WIP
+  wipe:
+    description: Wipe a player for cheating
+  mobspawn:
+    aliases: [ms]
+    description: Setup mob spawn locations
+  ban:
+  kick:
+  location:

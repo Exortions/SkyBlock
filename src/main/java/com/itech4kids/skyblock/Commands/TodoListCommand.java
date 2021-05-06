@@ -1,7 +1,7 @@
 package com.itech4kids.skyblock.Commands;
 
 import com.itech4kids.skyblock.Main;
-import com.itech4kids.skyblock.Objects.Items.ItemHandler;
+import com.itech4kids.skyblock.Objects.Items.Item;
 import com.itech4kids.skyblock.Objects.SkyblockPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -19,7 +19,7 @@ import java.util.List;
 
 public class TodoListCommand implements CommandExecutor {
 
-    private ItemHandler item;
+    private Item item;
 
     public boolean finishedSwords = false;
     public boolean finishedArmor = false;
@@ -54,8 +54,8 @@ public class TodoListCommand implements CommandExecutor {
         finishedLore.add("This task is");
         finishedLore.add("complete!");
 
-        ItemStack swordsNotDone = item.createBasicItem(Material.STAINED_CLAY, ChatColor.RED + "Swords - Not Finished", notFinishedLore, (short) 14, false, 1);
-        ItemStack swordsDone = item.createBasicItem(Material.STAINED_CLAY, ChatColor.GREEN + "Swords - Finished", finishedLore, (short) 13, false, 1);
+        ItemStack swordsNotDone = item.createBasicItem(Material.STAINED_CLAY, ChatColor.RED + "Swords - Not Finished", notFinishedLore, (short) 14, false);
+        ItemStack swordsDone = item.createBasicItem(Material.STAINED_CLAY, ChatColor.GREEN + "Swords - Finished", finishedLore, (short) 13, false);
 
         if(finishedSwords == false){
             menu.setItem(21, swordsNotDone);

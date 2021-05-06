@@ -1,21 +1,20 @@
 package com.itech4kids.skyblock.Objects;
 
-import com.itech4kids.skyblock.Main;
-import com.itech4kids.skyblock.Objects.Items.SkyblockItem;
 import com.itech4kids.skyblock.Util.Config;
-import net.minecraft.server.v1_8_R3.IChatBaseComponent;
-import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerListHeaderFooter;
-import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.SkullType;
+import org.bukkit.block.Block;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class SkyblockPlayer {
 
@@ -23,20 +22,67 @@ public class SkyblockPlayer {
     private HashMap<SkyblockStats, Integer> stats;
     private HashMap<String, Inventory> inventories;
     public Inventory lastInventory;
+
+    public ArmorStand activePet;
+
+    public boolean convertPetToItem;
     public boolean ferocityCooldown;
+    public boolean aoteSpeed;
+    public Block brokenBlock;
+    public String padName;
+
+    public ItemStack itemInHand;
+    public ItemStack lastPickedUp;
+    public ItemStack oldItemInHand;
+
+    public HashMap<String, Integer> cooldowns;
+
+    public ArrayList<Player> tradedPlayers;
+    public boolean tradeAccepted;
+
+    public ArrayList<SkyblockLocation> locations;
+    public SkyblockLocation location;
 
     public SkyblockPlayer(Player player){
         this.player = player;
-//        new BukkitRunnable() {
-//            @Override
-//            public void run () {
-                stats = new HashMap<SkyblockStats, Integer>();
-                inventories = new HashMap<String, Inventory>();
-                loadDefaultStats();
-                lastInventory = player.getInventory();
-                ferocityCooldown = false;
-//            }
-//        }.runTaskLater(Main.getMain(), 1);
+        tradedPlayers = new ArrayList<>();
+        aoteSpeed = false;
+        tradeAccepted = false;
+        activePet = null;
+        convertPetToItem = false;
+        this.lastPickedUp = null;
+        cooldowns = new HashMap<>();
+
+        padName = "";
+        brokenBlock = null;
+
+        locations = new ArrayList<>();
+        location = null;
+
+        ItemStack item = new ItemStack(Material.SKULL_ITEM, 1, (byte) SkullType.PLAYER.ordinal());
+        ItemMeta itemMeta = item.getItemMeta();
+        List<String> lore = new ArrayList<>();
+        itemMeta.setDisplayName(ChatColor.DARK_GRAY + "[Lvl 0] None");
+        lore.add("T3ST");
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+
+        itemInHand = item;
+
+        oldItemInHand = item;
+
+        stats = new HashMap<SkyblockStats, Integer>();
+        inventories = new HashMap<String, Inventory>();
+        loadDefaultStats();
+        loadCooldowns();
+        lastInventory = player.getInventory();
+        ferocityCooldown = false;
+    }
+
+    private void loadCooldowns(){
+        setCooldown("ember_rod", 0);
+        setCooldown("iron_punch", 0);
+        setCooldown("grappling_hook", 0);
     }
 
     private void loadDefaultStats(){
@@ -59,19 +105,18 @@ public class SkyblockPlayer {
         setStat(SkyblockStats.MINING_FORTUNE, Config.getPlayerStatLvl(this.player, SkyblockStats.MINING_FORTUNE));
         setStat(SkyblockStats.FARMING_FORTUNE, Config.getPlayerStatLvl(this.player, SkyblockStats.FARMING_FORTUNE));
         setStat(SkyblockStats.FORAGING_FORTUNE, Config.getPlayerStatLvl(this.player, SkyblockStats.FORAGING_FORTUNE));
-        setStat(SkyblockStats.ATTACK_DAMAGE, Config.getPlayerStatLvl(this.player, SkyblockStats.ATTACK_DAMAGE));
+        setStat(SkyblockStats.DAMAGE, Config.getPlayerStatLvl(this.player, SkyblockStats.DAMAGE));
         setStat(SkyblockStats.ATTACK_SPEED, Config.getPlayerStatLvl(this.player, SkyblockStats.ATTACK_SPEED));
         setStat(SkyblockStats.MINING_SPEED, Config.getPlayerStatLvl(this.player, SkyblockStats.MINING_SPEED));
     }
 
     public void saveStats() throws IOException {
-        Config.setStat(player, SkyblockStats.HEALTH, getStat(SkyblockStats.HEALTH));
-        Config.setStat(player, SkyblockStats.HEALTH, getStat(SkyblockStats.HEALTH));
+        Config.setStat(player, SkyblockStats.HEALTH, getStat(SkyblockStats.MAX_HEALTH));
         Config.setStat(player, SkyblockStats.MAX_HEALTH, getStat(SkyblockStats.MAX_HEALTH));
         Config.setStat(player, SkyblockStats.DEFENSE, getStat(SkyblockStats.DEFENSE));
         Config.setStat(player, SkyblockStats.SPEED, getStat(SkyblockStats.SPEED));
         Config.setStat(player, SkyblockStats.STRENGTH, getStat(SkyblockStats.STRENGTH));
-        Config.setStat(player, SkyblockStats.MANA, getStat(SkyblockStats.MANA));
+        Config.setStat(player, SkyblockStats.MANA, getStat(SkyblockStats.MAX_MANA));
         Config.setStat(player, SkyblockStats.MAX_MANA, getStat(SkyblockStats.MAX_MANA));
         Config.setStat(player, SkyblockStats.CRIT_CHANCE, getStat(SkyblockStats.CRIT_CHANCE));
         Config.setStat(player, SkyblockStats.CRIT_DAMAGE, getStat(SkyblockStats.CRIT_DAMAGE));
@@ -85,7 +130,7 @@ public class SkyblockPlayer {
         Config.setStat(player, SkyblockStats.MINING_FORTUNE, getStat(SkyblockStats.MINING_FORTUNE));
         Config.setStat(player, SkyblockStats.FARMING_FORTUNE, getStat(SkyblockStats.FARMING_FORTUNE));
         Config.setStat(player, SkyblockStats.FORAGING_FORTUNE, getStat(SkyblockStats.FORAGING_FORTUNE));
-        Config.setStat(player, SkyblockStats.ATTACK_DAMAGE, getStat(SkyblockStats.ATTACK_DAMAGE));
+        Config.setStat(player, SkyblockStats.DAMAGE, getStat(SkyblockStats.DAMAGE));
         Config.setStat(player, SkyblockStats.ATTACK_SPEED, getStat(SkyblockStats.ATTACK_SPEED));
         Config.setStat(player, SkyblockStats.MINING_SPEED, getStat(SkyblockStats.MINING_SPEED));
     }
@@ -99,6 +144,14 @@ public class SkyblockPlayer {
     }
 
     public Integer getStat(SkyblockStats statName){return stats.get(statName);}
+
+    public void setCooldown(String s, int i){
+        cooldowns.put(s, i);
+    }
+
+    public Integer getCooldown(String s){
+        return cooldowns.get(s);
+    }
 
     public void setInventory(String s, Inventory i){
         if (inventories.containsKey(s)){

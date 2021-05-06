@@ -3,21 +3,23 @@ package com.itech4kids.skyblock.Objects.Items;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.itech4kids.skyblock.Enums.ReforgeTypes;
+import com.itech4kids.skyblock.Util.ItemUtil;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.SkullType;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
+import org.bukkit.event.world.StructureGrowEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import javax.security.auth.callback.CallbackHandler;
 import java.lang.reflect.Field;
 import java.util.*;
 
@@ -47,6 +49,12 @@ public class ItemHandler {
     public static ItemStack scorpion_foil;
     public static ItemStack thick_scorpion_foil;
     public static ItemStack zombie_sword;
+    public static ItemStack ornate_zombie_sword;
+    public static ItemStack end_stone_sword;
+    public static ItemStack recluse_fang;
+    public static ItemStack reaper_falchion;
+    public static ItemStack pooch_sword;
+    public static ItemStack edibleMace;
 
     // Armor
     public static ItemStack superior_dragon_helmet;
@@ -67,6 +75,94 @@ public class ItemHandler {
     // Misc
     public static ItemStack grappling_hook;
 
+    //Material/Minerals
+    public static Map<String, ItemStack> materialMap;
+    //Farming
+    public static ItemStack enchanted_bread;
+    public static ItemStack enchanted_hay_bale;
+    public static ItemStack enchanted_carrot;
+    public static ItemStack enchanted_carrot_on_a_stick;
+    public static ItemStack enchanted_golden_carrot;
+    public static ItemStack enchanted_potato;
+    public static ItemStack enchanted_baked_potato;
+    public static ItemStack enchanted_pumpkin;
+    public static ItemStack enchanted_melon;
+    public static ItemStack enchanted_glistering_melon;
+    public static ItemStack enchanted_melon_block;
+    public static ItemStack enchanted_red_mushroom;
+    public static ItemStack enchanted_brown_mushroom;
+    public static ItemStack enchanted_red_mushroom_block;
+    public static ItemStack enchanted_brown_mushroom_block;
+    public static ItemStack enchanted_cocoa_beans;
+    public static ItemStack enchanted_cookie;
+    public static ItemStack enchanted_cactus_green;
+    public static ItemStack enchanted_cactus;
+    public static ItemStack enchanted_sugar;
+    public static ItemStack enchanted_paper;
+    public static ItemStack enchanted_sugar_cane;
+    public static ItemStack enchanted_leather;
+    public static ItemStack enchanted_raw_beef;
+    public static ItemStack enchanted_pork;
+    public static ItemStack enchanted_grilled_pork;
+    public static ItemStack enchanted_raw_chicken;
+    public static ItemStack enchanted_egg;
+    public static ItemStack enchanted_cake;
+    public static ItemStack enchanted_super_egg;
+    public static ItemStack enchanted_feather;
+    public static ItemStack enchanted_mutton;
+    public static ItemStack enchanted_cooked_mutton;
+    public static ItemStack enchanted_raw_rabbit;
+    public static ItemStack enchanted_rabbit_foot;
+    public static ItemStack enchanted_rabbit_hide;
+    public static ItemStack enchanted_nether_wart;
+
+    //Mining
+    public static ItemStack enchanted_cobblestone;
+    public static ItemStack enchanted_coal;
+    public static ItemStack enchanted_coal_block;
+    public static ItemStack enchanted_iron;
+    public static ItemStack enchanted_iron_block;
+    public static ItemStack enchanted_gold;
+    public static ItemStack enchanted_gold_block;
+    public static ItemStack enchanted_diamond;
+    public static ItemStack enchanted_diamond_block;
+    public static ItemStack enchanted_lapis;
+    public static ItemStack enchanted_lapis_block;
+    public static ItemStack enchanted_emerald;
+    public static ItemStack enchanted_emerald_block;
+    public static ItemStack enchanted_redstone;
+    public static ItemStack enchanted_redstone_block;
+    public static ItemStack enchanted_quartz;
+    public static ItemStack enchanted_quartz_block;
+    public static ItemStack enchanted_obsidian;
+    public static ItemStack enchanted_glowstone;
+    public static ItemStack enchanted_glowstone_block;
+    public static ItemStack enchanted_flint;
+    public static ItemStack enchanted_ice;
+    public static ItemStack enchanted_packed_ice;
+    public static ItemStack enchanted_sand;
+    public static ItemStack enchanted_endstone;
+    public static ItemStack enchanted_snow_block;
+
+    //Combat
+    public static ItemStack enchanted_rotten_flesh;
+    public static ItemStack enchanted_bone;
+    public static ItemStack enchanted_bone_block;
+    public static ItemStack enchanted_string;
+    public static ItemStack enchanted_spider_eye;
+    public static ItemStack enchanted_gunpowder;
+    public static ItemStack enchanted_firework;
+    public static ItemStack enchanted_ender_pearl;
+    public static ItemStack enchanted_ghast_tear;
+    public static ItemStack enchanted_slime_ball;
+    public static ItemStack enchanted_blaze_powder;
+    public static ItemStack enchanted_blaze_rod;
+    public static ItemStack enchanted_magma_ball;
+
+    //Foraging
+
+    //Fishing
+
     // Other
     public static ItemStack skyblock_menu;
 
@@ -77,7 +173,7 @@ public class ItemHandler {
         initTools();
         initFishing();
         initMisc();
-
+        initMaterials();
     }
 
     public static void initArmor(){
@@ -113,7 +209,7 @@ public class ItemHandler {
         mushroomSuitAbilityDesc.add(ChatColor.GRAY + "stats of the armor pieces are");
         mushroomSuitAbilityDesc.add(ChatColor.DARK_GREEN + "tripled" + ChatColor.GRAY + ".");
 
-        superior_dragon_helmet = createArmorHead("a4qop", ChatColor.GOLD + "Superior Dragon Helmet", null, 1, "LEGENDARY HELMET", true, 0, 10, 2, 10, 0, 90, 130, 3, 25, true, "Superior Blood", superiorFSBDesc);
+        superior_dragon_helmet = createArmorHead("Orthyx", ChatColor.GOLD + "Superior Dragon Helmet", null, 1, "LEGENDARY HELMET", true, 0, 10, 2, 10, 0, 90, 130, 3, 25, true, "Superior Blood", superiorFSBDesc);
         superior_dragon_chestplate = createArmorPiece(Material.LEATHER_CHESTPLATE, ChatColor.GOLD + "Superior Dragon Chestplate", Color.fromRGB(242, 223, 17), ReforgeTypes.NO_REFORGE, (short) 4, "LEGENDARY CHESTPLATE", 1, null, false, true, "Superior Blood", superiorFSBDesc, 0, 10, 2, 10, 0, 150, 190, 3, 25, true);
         superior_dragon_leggings = createArmorPiece(Material.LEATHER_LEGGINGS, ChatColor.GOLD + "Superior Dragon Leggings", Color.fromRGB(242, 223, 17), ReforgeTypes.NO_REFORGE, (short) 4, "LEGENDARY LEGGINGS", 1, null, false, true, "Superior Blood", superiorFSBDesc, 0, 10, 2, 10, 0, 130, 170, 3, 25, true);
         superior_dragon_boots = createArmorPiece(Material.LEATHER_BOOTS, ChatColor.GOLD + "Superior Dragon Boots", Color.fromRGB(242, 93, 24), ReforgeTypes.NO_REFORGE, (short) 1, "LEGENDARY BOOTS", 1, null, false, true, "Superior Blood", superiorFSBDesc, 0, 10, 2, 10, 0, 80, 110, 3, 25, true);
@@ -152,6 +248,89 @@ public class ItemHandler {
 
     }
 
+    public static void initMaterials(){
+        materialMap = new HashMap<>();
+
+        enchanted_baked_potato = createMaterialItem(Material.BAKED_POTATO, (short) 0, true, ChatColor.GREEN + "UNCOMMON", false, "Baked Potato");
+        enchanted_blaze_powder = createMaterialItem(Material.BLAZE_POWDER, (short) 0, true, ChatColor.GREEN + "UNCOMMON", true, "Blaze Powder");
+        enchanted_blaze_rod = createMaterialItem(Material.BLAZE_ROD, (short) 0, true, ChatColor.GREEN + "UNCOMMON", true, "Blaze Rod");
+        enchanted_bone = createMaterialItem(Material.BONE, (short) 0, true, ChatColor.WHITE + "COMMON", false, "Bone");
+        enchanted_bone_block = createMaterialItem(Material.QUARTZ_BLOCK, (short) 0, true, ChatColor.BLUE + "RARE", false, "Bone Block");
+        enchanted_bread = createMaterialItem(Material.BREAD, (short) 0, true, ChatColor.GREEN + "UNCOMMON", false, "Bread");
+        enchanted_brown_mushroom = createMaterialItem(Material.BROWN_MUSHROOM, (short) 0, true, ChatColor.WHITE + "COMMON", false, "Brown Mushroom");
+        enchanted_brown_mushroom_block = createMaterialItem(Material.HUGE_MUSHROOM_2, (short) 0, true, ChatColor.WHITE + "COMMON", false, "Brown Mushroom Block");
+        enchanted_cactus = createMaterialItem(Material.INK_SACK, (short) 2, true, ChatColor.GREEN + "UNCOMMON", true, "Cactus");
+        enchanted_cactus_green = createMaterialItem(Material.CACTUS, (short) 0, true, ChatColor.BLUE + "RARE", true, "Cactus Green");
+        enchanted_cake = createMaterialItem(Material.CAKE, 0, true, ChatColor.GREEN + "UNCOMMON", true, "Cake");
+        enchanted_carrot = createMaterialItem(Material.CARROT, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Carrot");
+        enchanted_carrot_on_a_stick = createMaterialItem(Material.CARROT_STICK, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Carrot on a Stick");
+        enchanted_coal = createMaterialItem(Material.COAL, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Coal");
+        enchanted_coal_block = createMaterialItem(Material.COAL_BLOCK, 0, true, ChatColor.BLUE + "RARE", false, "Coal Block");
+        enchanted_cobblestone = createMaterialItem(Material.COBBLESTONE, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Cobblestone");
+        enchanted_cocoa_beans = createMaterialItem(Material.COCOA, 0, true, ChatColor.GREEN + "UNCOMMON", true, "Cocoa Beans");
+        enchanted_cooked_mutton = createMaterialItem(Material.COOKED_MUTTON, 0, true, ChatColor.BLUE + "RARE", true, "Cooked Mutton");
+        enchanted_cookie = createMaterialItem(Material.COOKIE, 0, true, ChatColor.BLUE + "RARE", true, "Cookie");
+        enchanted_diamond = createMaterialItem(Material.DIAMOND, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Diamond");
+        enchanted_diamond_block = createMaterialItem(Material.DIAMOND_BLOCK, 0, true, ChatColor.BLUE + "RARE", false, "Diamond Block");
+        enchanted_egg = createMaterialItem(Material.EGG, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Egg");
+        enchanted_emerald = createMaterialItem(Material.EMERALD, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Emerald");
+        enchanted_emerald_block = createMaterialItem(Material.EMERALD_BLOCK, 0, true, ChatColor.BLUE + "RARE", false, "Emerald Block");
+        enchanted_ender_pearl = createMaterialItem(Material.ENDER_PEARL, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Ender Pearl");
+        enchanted_endstone = createMaterialItem(Material.ENDER_STONE, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Endstone");
+        enchanted_feather = createMaterialItem(Material.FEATHER, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Feather");
+        enchanted_flint = createMaterialItem(Material.FLINT, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Flint");
+        enchanted_ghast_tear = createMaterialItem(Material.GHAST_TEAR, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Ghast Tear");
+        enchanted_glistering_melon = createMaterialItem(Material.SPECKLED_MELON, 0, true, ChatColor.GREEN + "UNCOMMON", true, "Glistering Melon");
+        enchanted_glowstone = createMaterialItem(Material.GLOWSTONE_DUST, 0, true, ChatColor.GREEN + "UNCOMMON", true, "Glowstone Dust");
+        enchanted_glowstone_block = createMaterialItem(Material.GLOWSTONE, 0, true, ChatColor.BLUE + "RARE", true, "Glowstone");
+        enchanted_gold = createMaterialItem(Material.GOLD_INGOT, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Gold Ingot");
+        enchanted_gold_block = createMaterialItem(Material.GOLD_BLOCK, 0, true, ChatColor.BLUE + "RARE", false, "Gold Block");
+        enchanted_golden_carrot = createMaterialItem(Material.GOLDEN_CARROT, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Golden Carrot");
+        enchanted_grilled_pork = createMaterialItem(Material.GRILLED_PORK, 0, true, ChatColor.BLUE + "RARE", false, "Grilled Pork");
+        enchanted_gunpowder = createMaterialItem(Material.SULPHUR, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Gunpowder");
+        enchanted_firework = createMaterialItem(Material.FIREWORK, 0, true, ChatColor.BLUE + "RARE", false, "Firework");
+        enchanted_hay_bale = createMaterialItem(Material.HAY_BLOCK, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Hay Bale");
+        enchanted_ice = createMaterialItem(Material.ICE, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Ice");
+        enchanted_iron = createMaterialItem(Material.IRON_INGOT, 0, true, ChatColor.GREEN + "UNCOMMON", false, "Iron Ingot");
+        /*
+        enchanted_iron_block;
+        enchanted_lapis;
+        enchanted_lapis_block;
+        enchanted_leather;
+        enchanted_magma_ball;
+        enchanted_melon;
+        enchanted_melon_block;
+        enchanted_nether_wart;
+        enchanted_obsidian;
+        enchanted_packed_ice;
+        enchanted_paper;
+        enchanted_pork;
+        enchanted_potato;
+        enchanted_pumpkin;
+        enchanted_quartz;
+        enchanted_quartz_block;
+        enchanted_rabbit_foot;
+        enchanted_mutton;
+        enchanted_rabbit_hide;
+        enchanted_raw_beef;
+        enchanted_raw_chicken;
+        enchanted_raw_rabbit;
+        enchanted_red_mushroom;
+        enchanted_red_mushroom_block;
+        enchanted_redstone;
+        enchanted_redstone_block;
+        enchanted_rotten_flesh;
+        enchanted_sand;
+        enchanted_slime_ball;
+        enchanted_snow_block;
+        enchanted_spider_eye;
+        enchanted_sugar;
+        enchanted_sugar_cane;
+        enchanted_super_egg;
+        enchanted_string;
+         */
+    }
+
     public static void initMisc(){
         Map<String, ItemStack> miscMap = new HashMap<String, ItemStack>();
 
@@ -159,7 +338,7 @@ public class ItemHandler {
         grapplingHookDesc.add(ChatColor.GRAY + "Travel around in style using");
         grapplingHookDesc.add(ChatColor.GRAY + "this Grappling Hook.");
         grapplingHookDesc.add("");
-        grapplingHookDesc.add(ChatColor.GREEN + "" + ChatColor.BOLD + "COMMON");
+        grapplingHookDesc.add(ChatColor.GREEN + "" + ChatColor.BOLD + "UNCOMMON");
 
         grappling_hook = createBasicItem(Material.FISHING_ROD, ChatColor.GREEN + "Grappling Hook", grapplingHookDesc, (short) 0, false, 1);
         skyblock_menu = createSkyblockMenu();
@@ -282,6 +461,17 @@ public class ItemHandler {
         ornateZombieSwordAbilityDesc.add(ChatColor.GRAY + "for " + ChatColor.RED + "48❤" + ChatColor.GRAY + ".");
         ornateZombieSwordAbilityDesc.add(ChatColor.DARK_GRAY + "Mana Cost: " + ChatColor.DARK_AQUA + "70");
         ornateZombieSwordAbilityDesc.add(ChatColor.DARK_GRAY + "Charges: " + ChatColor.YELLOW + "5 " + ChatColor.DARK_GRAY + "/ " + ChatColor.GREEN + "15s");
+        List<String> end_stone_swordAbilityDesc = new ArrayList<>();
+        end_stone_swordAbilityDesc.add(ChatColor.GRAY + "Consumes all of your remaining mana");
+        end_stone_swordAbilityDesc.add(ChatColor.GRAY + "to grant Damage Resistance for");
+        end_stone_swordAbilityDesc.add(ChatColor.GREEN + "5 " + ChatColor.GRAY + "seconds and extra damage");
+        end_stone_swordAbilityDesc.add(ChatColor.GRAY + "on your next hit (within 5");
+        end_stone_swordAbilityDesc.add(ChatColor.GRAY + "seconds) depending on how");
+        end_stone_swordAbilityDesc.add(ChatColor.GRAY + "much mana was consumed!");
+        List<String> recluse_fangAbilityDesc = new ArrayList<>();;
+        List<String> reaper_falchionLore = new ArrayList<>();
+        List<String> pooch_SwordLore = new ArrayList<>();
+        List<String> edible_MaceAbliityDesc = new ArrayList<>();
 
         aspect_of_the_jerry = createInGameItem(Material.WOOD_SWORD, ChatColor.WHITE + "Aspect of the Jerry", ReforgeTypes.NO_REFORGE, 1, null, false, true, "Parley", Collections.singletonList(ChatColor.GRAY + "Channel your inner Jerry."), "RIGHT CLICK", 0, "5s", "COMMON SWORD", 1, 0, 0, 0, 0, 0, 0,0,true);
         fancy_sword = createInGameItem(Material.GOLD_SWORD, ChatColor.WHITE + "Fancy Sword", ReforgeTypes.NO_REFORGE, 1, fancySwordDescription, true, false, "", null, "", 0, "", "COMMON SWORD", 20, 0, 0, 0, 0, 0, 0,0,true);
@@ -306,6 +496,12 @@ public class ItemHandler {
         scorpion_foil = createInGameItem(Material.WOOD_SWORD, ChatColor.DARK_PURPLE + "Scorpion Foil", ReforgeTypes.NO_REFORGE, 1, scorpionFoilDesc, false, true, "Heartstopper", scorpionFoilAbilityDesc, "", 0, "", "EPIC SWORD", 100, 100, 0, 0 ,0 , 0, 0, 0, true);
         thick_scorpion_foil = createInGameItem(Material.WOOD_SWORD, ChatColor.GOLD + "Thick Scorpion Foil", ReforgeTypes.NO_REFORGE, 1, scorpionFoilDesc, false, true, "Heartstopper", scorpionFoilAbilityDesc, "", 0, "", "LEGENDARY SWORD", 100, 200, 0, 0 ,0 ,0 ,0,0, true);
         zombie_sword = createInGameItem(Material.IRON_SWORD, ChatColor.BLUE + "Zombie Sword", ReforgeTypes.NO_REFORGE, 1, null, false, true, "Instant Heal", zombieSwordAbilityDesc, "RIGHT CLICK", 0, "", "RARE SWORD", 100, 50, 0, 0, 0, 50, 0, 0, true);
+        ornate_zombie_sword = createInGameItem(Material.GOLD_SWORD, ChatColor.DARK_PURPLE + "Ornate Zombie Sword", ReforgeTypes.NO_REFORGE, 1, null, false, true, "Instant Heal", ornateZombieSwordAbilityDesc, "RIGHT CLICK", 70, "", "EPIC SWORD", 110, 60, 0, 0, 0, 50, 0, 0, true);
+        end_stone_sword = createInGameItem(Material.GOLD_SWORD, ChatColor.LIGHT_PURPLE + "End Stone Sword", ReforgeTypes.NO_REFORGE, 1, null, false, true, "Extreme Focus", end_stone_swordAbilityDesc, "RIGHT CLICK", 0, "", "EPIC SWORD", 120, 80, 0, 0, 0, 0, 0, 0, true);
+        //recluse_fang = createInGameItem(Material.IRON_SWORD, ChatColor.BLUE + "Recluse Fang", ReforgeTypes.NO_REFORGE, 1, null, false, true, "Squash Em'", ItemUtil.addLoreMessage("§7Squash §eSpiders §7to accumulate §c❁Strength §7against them. §c+1 §c❁Strength§7 per §a40 §7squashed".replaceAll(" ", " "), recluse_fangAbilityDesc), "", 0, "", "RARE SWORD", 120, 30, 0, 20, 0, 0, 0, 0, true);
+        //reaper_falchion = createInGameItem(Material.DIAMOND_SWORD, ChatColor.DARK_PURPLE + "Reaper Falchion", ReforgeTypes.NO_REFORGE, 1, ItemUtil.addLoreMessage("§7Heal §c10❤ HP§7 per hit. §7Deal §a+200% damage to Zombies. §7Receive §a20% less damage from Zombies when held.", reaper_falchionLore), false, false, "", null, "", 0, "", "EPIC SWORD", 120, 100, 0, 0, 0, 200, 0, 0, true);
+        //pooch_sword = createInGameItem(Material.GOLD_SWORD, ChatColor.GOLD + "Pooch Sword", ReforgeTypes.NO_REFORGE, 1, ItemUtil.addLoreMessage("§7Deal §c+1 §7Damage per §c50 §cmax ❤§7. Receive §a-20% §7damage from wolves. Gain §c+150❁ Strength §7against wolves.".replaceAll(" ", " "), pooch_SwordLore), false, false, "", null, "", 0, "", "LEGENDARY SWORD", 120, 20, 0, 0, 0, 0, 5, 0, true);
+        //edibleMace = createInGameItem(Material.MUTTON, ChatColor.BLUE + "Edible Mace", ReforgeTypes.NO_REFORGE, 1, null, false, true, "ME SMASH HEAD", ItemUtil.addLoreMessage("§7Your next attack deals double damage and §7weakens animals, making them deal §7-35% damage for §a30 §7seconds." + "\n §8Debuff §8doesn't stack.", edible_MaceAbliityDesc), "RIGHT CLICK", 100, "", "RARE SWORD", 125, 25, 0, 0, 0, 0, 0, 0, true);
 
         swordMap.put("aspect_of_the_jerry", aspect_of_the_jerry);
         swordMap.put("fancy_sword", fancy_sword);
@@ -330,6 +526,12 @@ public class ItemHandler {
         swordMap.put("scorpion_foil", scorpion_foil);
         swordMap.put("thick_scorpion_foil", thick_scorpion_foil);
         swordMap.put("zombie_sword", zombie_sword);
+        swordMap.put("ornate_zombie_sword", ornate_zombie_sword);
+        swordMap.put("end_stone_sword", end_stone_sword);
+        swordMap.put("recluse_fang", recluse_fang);
+        swordMap.put("reaper_falchion", reaper_falchion);
+        swordMap.put("pooch_sword", pooch_sword);
+        swordMap.put("edible_mace", edibleMace);
     }
 
     public static ItemStack createBasicItem(Material mat, String name, List<String> lore, short data, boolean enchantmentGlint, int amount){
@@ -342,6 +544,8 @@ public class ItemHandler {
             meta.addEnchant(Enchantment.LUCK, 1, false);
             meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         }
+        meta.spigot().setUnbreakable(true);
+        meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         item.setItemMeta(meta);
         return item;
@@ -355,6 +559,9 @@ public class ItemHandler {
         meta.setLore(lore);
         item.setItemMeta(meta);
         IDtoSkull(item, ID);
+        meta.spigot().setUnbreakable(true);
+        meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+        setMaxStackSize(CraftItemStack.asNMSCopy(item).getItem(), maxStackSize);
         return item;
     }
 
@@ -438,7 +645,9 @@ public class ItemHandler {
                 lore.add("" + ChatColor.WHITE + ChatColor.BOLD + rarity.toUpperCase());
             }
         }
-
+        meta.spigot().setUnbreakable(true);
+        meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+        meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
         meta.setLore(lore);
         meta.setDisplayName(itemName);
         meta.setOwner(headName);
@@ -518,7 +727,8 @@ public class ItemHandler {
             meta.addEnchant(Enchantment.LUCK, 1, false);
             meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         }
-
+        meta.spigot().setUnbreakable(true);
+        meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
         meta.setLore(lore);
         meta.setDisplayName(name);
         item.setItemMeta(meta);
@@ -604,7 +814,49 @@ public class ItemHandler {
         }
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+        meta.spigot().setUnbreakable(true);
+        meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
         item.setItemMeta(meta);
+        return item;
+    }
+
+    public static ItemStack createMaterialItem(Material material, short durability, boolean enchGlint, String rarity, boolean brewingIngredient, String name){
+        ItemStack item = new ItemStack(material);
+        ItemMeta meta = item.getItemMeta();
+        List<String> lore = new ArrayList<>();
+        item.setDurability(durability);
+        if (enchGlint){
+            meta.addEnchant(Enchantment.LURE, 1, true);
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
+        if (brewingIngredient){
+            lore.add(ChatColor.DARK_GRAY + "Brewing Ingredient");
+        }
+        meta.setDisplayName(ChatColor.getLastColors(rarity) + "Enchanted " + name);
+        lore.add(ChatColor.getLastColors(rarity) + ChatColor.BOLD + ChatColor.stripColor(rarity));
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+        materialMap.put(ChatColor.stripColor(item.getItemMeta().getDisplayName()), item);
+        return item;
+    }
+
+    public static ItemStack createMaterialItem(Material material, int durability, boolean enchGlint, String rarity, boolean brewingIngredient, String name){
+        ItemStack item = new ItemStack(material);
+        ItemMeta meta = item.getItemMeta();
+        List<String> lore = new ArrayList<>();
+        item.setDurability((short) durability);
+        if (enchGlint){
+            meta.addEnchant(Enchantment.LURE, 1, true);
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
+        if (brewingIngredient){
+            lore.add(ChatColor.DARK_GRAY + "Brewing Ingredient");
+        }
+        meta.setDisplayName(ChatColor.getLastColors(rarity) + "Enchanted " + name);
+        lore.add(ChatColor.getLastColors(rarity) + ChatColor.BOLD + ChatColor.stripColor(rarity));
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+        materialMap.put(ChatColor.stripColor(item.getItemMeta().getDisplayName()), item);
         return item;
     }
 
@@ -618,7 +870,6 @@ public class ItemHandler {
         } else if(direction == "previous"){
             meta.setDisplayName(ChatColor.GREEN + "Previous Page");
         }
-        meta.setLore(lore);
         item.setItemMeta(meta);
         return item;
     }
@@ -629,7 +880,6 @@ public class ItemHandler {
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.GRAY + "To " + newPage);
         meta.setDisplayName(ChatColor.GREEN + "Go Back");
-        meta.setLore(lore);
         item.setItemMeta(meta);
         return item;
     }
@@ -690,51 +940,23 @@ public class ItemHandler {
         return menu;
     }
 
-    public static String IntegerToRomanNumeral(int input) {
-        if (input < 1 || input > 3999)
-            return "Invalid Roman Number Value";
-        String s = "";
-        while (input >= 1000) {
-            s += "M";
-            input -= 1000;
+    public static ItemStack createCoin(int amount){
+        ItemStack coin = new ItemStack(Material.SKULL_ITEM, 1, (byte) SkullType.PLAYER.ordinal());
+        ItemMeta coinMeta = coin.getItemMeta();
+
+        if (amount <= 5){
+            coinMeta.setDisplayName(ChatColor.GOLD + "coin_iron_" + amount);
+            IDtoSkull(coin, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzhhNDY1MGVlM2I3NDU5NDExMjQyNjAwNDI0NmRmNTMxZTJjNjhiNmNhNDdjYWI4ZmUyMzIzYjk3OTBhMWE1ZSJ9fX0=");
+        }else if (amount >= 10 && amount <= 50){
+            coinMeta.setDisplayName(ChatColor.GOLD + "coin_gold_" + amount);
+            IDtoSkull(coin, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGZhMDg3ZWI3NmU3Njg3YTgxZTRlZjgxYTdlNjc3MjY0OTk5MGY2MTY3Y2ViMGY3NTBhNGM1ZGViNmM0ZmJhZCJ9fX0=");
+        }else if (amount >= 51){
+            coinMeta.setDisplayName(ChatColor.GOLD + "coin_diamond_" + amount);
+            IDtoSkull(coin, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2RlZTYyMWViODJiMGRhYjQxNjYzMzBkMWRhMDI3YmEyYWMxMzI0NmE0YzFlN2Q1MTc0ZjYwNWZkZGYxMGExMCJ9fX0=");
         }
-        while (input >= 900) {
-            s += "CM";
-            input -= 900;
-        }
-        while (input >= 500) {
-            s += "D";
-            input -= 500;
-        }
-        while (input >= 400) {
-            s += "CD";
-            input -= 400;
-        }
-        while (input >= 100) {
-            s += "C";
-            input -= 100;
-        }
-        while (input >= 90) {
-            s += "XC";
-            input -= 90;
-        }
-        while (input >= 50) {
-            s += "L";
-            input -= 50;
-        }
-        while (input >= 40) {
-            s += "XL";
-            input -= 40;
-        }
-        while (input >= 10) {
-            s += "X";
-            input -= 10;
-        }
-        while (input >= 9) {
-            s += "IX";
-            input -= 9;
-        }
-        return s;
+
+        coin.setItemMeta(coinMeta);
+        return coin;
     }
 
     public static ItemStack createCollectionItem(int type, String collectionName, String collectionLevel, int percentageUnlocked, int collected, int maxCollected, List<String> coopPlayers, List<String> collectionRewards, Short data){

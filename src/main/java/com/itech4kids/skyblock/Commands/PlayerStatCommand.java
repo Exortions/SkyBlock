@@ -32,6 +32,9 @@ public class PlayerStatCommand implements CommandExecutor {
             SkyblockPlayer skyblockPlayer = Main.getMain().getPlayer(target.getName());
             skyblockPlayer.getBukkitPlayer().playSound(skyblockPlayer.getBukkitPlayer().getLocation(), Sound.NOTE_PLING, 10, 1);
             skyblockPlayer.getBukkitPlayer().sendMessage(ChatColor.GREEN + "Success!");
+
+            Player player = skyblockPlayer.getBukkitPlayer();
+
             if (args[1].equalsIgnoreCase("coins")){
                 try {
                     Config.setPurseCoins(target, Integer.parseInt(args[2]));
@@ -48,6 +51,13 @@ public class PlayerStatCommand implements CommandExecutor {
                 for (Map.Entry<SkyblockStats, Integer> entry : skyblockPlayer.getStats().entrySet()) {
                     if (entry.getKey().name().equalsIgnoreCase(args[1])) {
                         entry.setValue(Integer.parseInt(args[2]));
+                        if (entry.getKey().equals(SkyblockStats.HEALTH)){
+                            skyblockPlayer.setStat(SkyblockStats.MAX_HEALTH, Integer.parseInt(args[2]));
+                            skyblockPlayer.setStat(SkyblockStats.HEALTH, 1);
+                            skyblockPlayer.getBukkitPlayer().setHealth(skyblockPlayer.getBukkitPlayer().getMaxHealth());
+                        }else if (entry.getKey().equals(SkyblockStats.MANA)){
+                            skyblockPlayer.setStat(SkyblockStats.MAX_MANA, Integer.parseInt(args[2]));
+                        }
                     }
                 }
             }

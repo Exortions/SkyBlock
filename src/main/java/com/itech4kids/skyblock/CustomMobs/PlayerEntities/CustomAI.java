@@ -52,8 +52,12 @@ public class CustomAI {
             @Override
             public void run() {
                 if (npc.isSpawned()) {
-                    armorStand.teleport(new Location(npc.getEntity().getLocation().getWorld(), npc.getEntity().getLocation().getX(), npc.getEntity().getLocation().getY() + 0.75, npc.getEntity().getLocation().getZ()));
-                    armorStand.setCustomName(ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "Lvl" + 175 + ChatColor.DARK_GRAY + "] " + ChatColor.RED + "Yeti " + ChatColor.GREEN + Main.format((long) (((CraftPlayer) npc.getEntity()).getHealth() * 2000000)) + ChatColor.RED + "❤");
+                    if (armorStand != null){
+                        armorStand.teleport(new Location(npc.getEntity().getLocation().getWorld(), npc.getEntity().getLocation().getX(), npc.getEntity().getLocation().getY() + 0.75, npc.getEntity().getLocation().getZ()));
+                        armorStand.setCustomName(ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "Lvl " + 175 + ChatColor.DARK_GRAY + "] " + ChatColor.RED + "Yeti " + ChatColor.GREEN + Main.format((long) (((CraftPlayer) npc.getEntity()).getHealth() * 2000000)) + ChatColor.RED + "❤");
+                    }else{
+                        npc.destroy();
+                    }
                 }else if (!npc.isSpawned()){
                     armorStand.remove();
                     cancel();
@@ -98,51 +102,12 @@ public class CustomAI {
             @Override
             public void run() {
                 if (npc.isSpawned()) {
-                    armorStand.teleport(new Location(npc.getEntity().getLocation().getWorld(), npc.getEntity().getLocation().getX(), npc.getEntity().getLocation().getY() + 0.75, npc.getEntity().getLocation().getZ()));
-                    armorStand.setCustomName(ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "Lvl"  + 7 + ChatColor.DARK_GRAY + "] " + ChatColor.RED + "Frozen Steve " + ChatColor.GREEN + Main.format((long) (((CraftPlayer) npc.getEntity()).getHealth() * 700)) + ChatColor.RED + "❤");
-                }else if (!npc.isSpawned()){
-                    armorStand.remove();
-                    cancel();
-                }
-            }
-        }.runTaskTimer(Main.getMain(), 5L, 1);
-    }
-    public static void cryptUndeadAI(NPC npc, ArmorStand armorStand){
-        EntityPlayer entityPlayer = ((CraftPlayer) npc.getEntity()).getHandle();
-
-        GameProfile gameProfile = entityPlayer.getProfile();
-        gameProfile.getProperties().removeAll("textures");
-
-        PropertyMap map = gameProfile.getProperties();
-
-        map.put("textures", new Property("textures", "ewogICJ0aW1lc3RhbXAiIDogMTYxOTM3MjEyNDMyOCwKICAicHJvZmlsZUlkIiA6ICI0ZTMwZjUwZTdiYWU0M2YzYWZkMmE3NDUyY2ViZTI5YyIsCiAgInByb2ZpbGVOYW1lIiA6ICJfdG9tYXRvel8iLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzJlMmQwZWQxNGMyMzg2MjY2NmI0MDVhZWZhYmM2NWE1N2EyNzFlODQyZmRhNWY0ZDE5ZTZiYzExOGNlMGM5NCIKICAgIH0KICB9Cn0=", "kwty3PTmG16frvChfqSZp3ScrnTn/frtZclCIOKcKC6P2QhVlaOdg1i94q9Qk4pqFxqQN09q6Jdn7bKhdATr9zboCNIqpuiP4RrFwtGloCqd0KXSNiUW0lSdrsuGazx8QXqj7cnmPOzSGSxBk8vK4gZ05Kok3InMnimZAZ6hySTdGVptrlMBbaWw7MKaY7+GuSHWKsqfEzk6dwNCGr2I4UzgpgVmftbK5e52mbZsKTkZ0foOGFNaHdcSEZ3GNjkmENp2i4b2Vsii1f7wBzMKaV5jm+ho7mjDxgJvYZAJ1rj2J0LBTyPsuz5Ei/ze4Vouk2zIQkL1V9Ii9SUyJppCOmNURQdPEYjbNQQGiHTk77KkTqh9ofyjyFCKyOx9OW3n0E1YZ/k5qwE8+vNDjsTwmJDVEEoja+UQlI83rW643UpRqrw0JbSfVKux7MFgeMxlnXVn51xO3oQRHlgq+QbHUek2/z1VwnGsUOoJhlv3jUqMnDRPv/CCOTEHftoBFRSnIEkScvOFZ6r2PPMlH1R449JPFd77j/iWg647w0Lm019BZ1hqomcENCFvgDiLSkt5bkpwgoovTJUKxbXF8IdVV72UtQXkzTH7OwEu4S/VisJzzT7CctPHfa5A5OmBjUzhpHwHBTvr9+GBtW/V9atnRsOYrMP7LgHYvvfzmZ3td30="));
-
-        ((CraftPlayer) npc.getEntity()).setHealth(1);
-        ((CraftPlayer) npc.getEntity()).setMaxHealth(1);
-
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                if (npc.isSpawned()) {
-                    for (Entity entity : entityPlayer.getBukkitEntity().getNearbyEntities(3, 3, 3)) {
-                        if (entity instanceof Player) {
-                            if (!entity.hasMetadata("NPC")) {
-                                npc.getNavigator().setTarget(entity, true);
-                                break;
-                            }
-                        }
+                    if (armorStand != null) {
+                        armorStand.teleport(new Location(npc.getEntity().getLocation().getWorld(), npc.getEntity().getLocation().getX(), npc.getEntity().getLocation().getY() + 0.75, npc.getEntity().getLocation().getZ()));
+                        armorStand.setCustomName(ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "Lvl " + 7 + ChatColor.DARK_GRAY + "] " + ChatColor.RED + "Frozen Steve " + ChatColor.GREEN + Main.format((long) (((CraftPlayer) npc.getEntity()).getHealth() * 700)) + ChatColor.RED + "❤");
+                    }else{
+                        npc.destroy();
                     }
-                }else{
-                    cancel();
-                }
-            }
-        }.runTaskTimer(Main.getMain(), 5L, 20);
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                if (npc.isSpawned()) {
-                    armorStand.teleport(new Location(npc.getEntity().getLocation().getWorld(), npc.getEntity().getLocation().getX(), npc.getEntity().getLocation().getY() + 0.75, npc.getEntity().getLocation().getZ()));
-                    armorStand.setCustomName(ChatColor.RED + "Crypt Undead " + ChatColor.GREEN + Main.format((long) (((CraftPlayer) npc.getEntity()).getHealth() * 45000)) + ChatColor.RED + "❤");
                 }else if (!npc.isSpawned()){
                     armorStand.remove();
                     cancel();

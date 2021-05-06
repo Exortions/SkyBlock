@@ -1,5 +1,6 @@
 package com.itech4kids.skyblock.CustomMobs.Zombie;
 
+import com.avaje.ebean.validation.NotNull;
 import com.itech4kids.skyblock.Events.SkyblockSkillExpGainEvent;
 import com.itech4kids.skyblock.Main;
 import com.itech4kids.skyblock.Objects.SkillType;
@@ -16,6 +17,7 @@ import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -41,7 +43,6 @@ public class SkyblockZombie extends EntityZombie implements Listener {
     private ItemStack boots;
     private ItemStack weapon;
     private String mobName;
-    private ArmorStand healthDisplay;
     public Zombie bukkitZombie;
     public double xp;
 
@@ -49,7 +50,6 @@ public class SkyblockZombie extends EntityZombie implements Listener {
         super(world);
         this.zombieType = zombieType;
         Bukkit.getPluginManager().registerEvents(this, Main.getMain());
-        healthDisplay = this.getBukkitEntity().getWorld().spawn(new Location(this.getBukkitEntity().getLocation().getWorld(), this.getBukkitEntity().getLocation().getX(), this.getBukkitEntity().getLocation().getY() + 0.10, this.getBukkitEntity().getLocation().getZ()), ArmorStand.class);
         zombie = (Damageable) this.getBukkitEntity();
         zombie.setHealth(1);
         zombie.setMaxHealth(1);
@@ -110,9 +110,7 @@ public class SkyblockZombie extends EntityZombie implements Listener {
             this.maxHealth = 1500;
             this.xp = 200;
             this.helmet = new ItemStack(Material.SKULL_ITEM, 1, (short) SkullType.PLAYER.ordinal());
-            SkullMeta skullMeta = (SkullMeta) helmet.getItemMeta();
-            skullMeta.setOwner("alligatorpro");
-            helmet.setItemMeta(skullMeta);
+            this.helmet = Main.getMain().IDtoSkull(this.helmet, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzJlN2ZhMmY5YjhkNmQxZTczNGVkYTVlM2NlMDI2Njg4MTM0MjkyZmNhZmMzMjViMWVhZDQzZDg5Y2MxZTEifX19");
             this.chestplate = new ItemStack(Material.LEATHER_CHESTPLATE, 1, DyeColor.BLUE.getData());
             LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) chestplate.getItemMeta();
             chestplateMeta.setColor(Color.BLUE);
@@ -175,23 +173,22 @@ public class SkyblockZombie extends EntityZombie implements Listener {
         bukkitZombie.getEquipment().setChestplate(chestplate);
         bukkitZombie.getEquipment().setLeggings(leggings);
         bukkitZombie.getEquipment().setBoots(boots);
-        this.setCustomNameVisible(false);
-        this.healthDisplay.setCustomNameVisible(true);
-        this.healthDisplay.setGravity(false);
-        this.healthDisplay.setVisible(false);
-        this.healthDisplay.setSmall(true);
-        this.healthDisplay.setCustomName(mobName);
-        updateHealth(this.getBukkitEntity(), healthDisplay);
+        this.dropEquipment(false, 0);
+        this.setCustomNameVisible(true);
+        this.setCustomName(mobName);
+        updateHealth(this.getBukkitEntity());
     }
 
     @EventHandler
     public void onDamage(EntityDamageEvent e){
         if (e.getEntity().equals(this.getBukkitEntity())){
             if (!e.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) {
-                health = (int) (health - e.getFinalDamage());
                 e.setDamage(0);
+                health = (int) (health - e.getFinalDamage());
+                this.setCustomName(ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "Lv" + level + ChatColor.DARK_GRAY + "] " + ChatColor.RED + name + " " + ChatColor.GREEN + health + ChatColor.DARK_GRAY + "/" + ChatColor.GREEN + maxHealth);
                 if (health <= 0) {
                     zombie.setHealth(0);
+                    HandlerList.unregisterAll(this);
                 }
             }
         }
@@ -200,8 +197,9 @@ public class SkyblockZombie extends EntityZombie implements Listener {
     @EventHandler
     public void onEntityDamage(EntityDamageByEntityEvent e) throws IOException {
         if (e.getEntity().equals(this.getBukkitEntity())) {
-            health = (int) (health - e.getFinalDamage());
             e.setDamage(0);
+            health = (int) (health - e.getFinalDamage());
+            this.setCustomName(ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "Lv" + level + ChatColor.DARK_GRAY + "] " + ChatColor.RED + name + " " + ChatColor.GREEN + health + ChatColor.DARK_GRAY + "/" + ChatColor.GREEN + maxHealth);
             if (health <= 0) {
                 zombie.setHealth(0);
                 if (e.getDamager() instanceof Player) {
@@ -216,16 +214,15 @@ public class SkyblockZombie extends EntityZombie implements Listener {
         }
     }
 
-    public void updateHealth(CraftEntity entity, ArmorStand armorStand) {
+    public void updateHealth(CraftEntity armorStand) {
         new BukkitRunnable() {
             @Override
             public void run() {
-                if (entity.isDead()){
+                if (armorStand.isDead()){
                     cancel();
                     armorStand.remove();
                 }else{
-                    ((CraftArmorStand) armorStand).getHandle().setLocation(entity.getLocation().getX(), entity.getLocation().getY() + 1.25, entity.getLocation().getZ(), 0F, 0F);
-                    //armorStand.teleport(new Location(entity.getLocation().getWorld(), entity.getLocation().getX(), entity.getLocation().getY() + 1.25, entity.getLocation().getZ()));
+                    armorStand.setCustomNameVisible(true);
                     armorStand.setCustomName(ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "Lv" + level + ChatColor.DARK_GRAY + "] " + ChatColor.RED + name + " " + ChatColor.GREEN + health + ChatColor.DARK_GRAY + "/" + ChatColor.GREEN + maxHealth);
                 }
             }

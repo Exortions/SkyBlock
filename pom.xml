@@ -93,6 +93,20 @@
             <scope>system</scope>
             <systemPath>c:/Users/Quade/Documents/Code/Plugins/Skyblock/Server/plugins/ActionBarAPI-1.5.4.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>com.google.code</groupId>
+            <artifactId>armorequip</artifactId>
+            <version>2.1</version>
+            <scope>system</scope>
+            <systemPath>c:/Users/Quade/Documents/Code/Plugins/Skyblock/Server/plugins/ArmorEventPlugin.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code</groupId>
+            <artifactId>worldedit</artifactId>
+            <version>2.0</version>
+            <scope>system</scope>
+            <systemPath>c:/Users/Quade/Documents/Code/Plugins/Skyblock/Server/plugins/worldedit-bukkit-6.1.jar</systemPath>
+        </dependency>
     </dependencies>
 
 </project>

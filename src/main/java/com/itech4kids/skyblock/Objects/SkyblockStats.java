@@ -22,6 +22,6 @@ public enum SkyblockStats {
     MINING_FORTUNE,
     FORAGING_FORTUNE,
     FARMING_FORTUNE,
-    ATTACK_DAMAGE
+    DAMAGE,
 
 }

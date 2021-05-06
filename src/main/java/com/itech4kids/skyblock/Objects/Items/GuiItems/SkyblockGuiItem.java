@@ -28,7 +28,13 @@ public class SkyblockGuiItem extends ItemStack {
         itemMeta.setDisplayName(name);
         if (otherLore != null) {
             lore.add(" ");
-            for (String s : otherLore) { ItemUtil.addLoreMessage(s, this); }
+            for (String s : otherLore) {
+                if (s.equals(" ")){
+                    lore.add(" ");
+                }else{
+                    ItemUtil.addLoreMessage(s, this);
+                }
+            }
         }
         lore.add(" ");
         lore.add(ChatColor.YELLOW + "Click to view!");

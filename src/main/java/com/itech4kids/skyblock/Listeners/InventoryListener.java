@@ -52,6 +52,9 @@ public class InventoryListener implements Listener {
             } else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "boots")){
                 player.sendMessage(ChatColor.YELLOW + "Opening boots category...");
                 player.performCommand("bootscategory");
+            } else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "material")){
+                player.sendMessage(ChatColor.YELLOW + "Opening materials category...");
+                player.performCommand("materialscategory");
             }
         } else if(event.getInventory().getName().equals("Swords")){
             event.setCancelled(true);
@@ -118,6 +121,22 @@ public class InventoryListener implements Listener {
                 player.sendMessage(ChatColor.RED + "Page not implemented yet!");
             }
         } else if(event.getInventory().getName().equals("Boots")){
+            event.setCancelled(true);
+            if(event.getCurrentItem() == null) { return; }
+            if(!(event.getCurrentItem().getType().equals(Material.STAINED_GLASS_PANE)) && !(event.getCurrentItem().getType().equals(Material.ARROW)) && !(event.getCurrentItem().getType().equals(Material.BARRIER))){
+                String old_item_name = event.getCurrentItem().getItemMeta().getDisplayName();
+                String new_item_name = old_item_name.replace(' ', '_');
+                player.sendMessage(ChatColor.GREEN + "Giving one of " + new_item_name.toUpperCase() + ChatColor.GREEN + " to " + ChatColor.WHITE + player.getName());
+                player.playSound(player.getLocation(), Sound.NOTE_PLING, 100, 2);
+                player.getInventory().addItem(event.getCurrentItem());
+            } else if(event.getCurrentItem().getType().equals(Material.BARRIER)){
+                player.closeInventory();
+            } else if(event.getCurrentItem().getType().equals(Material.ARROW) && event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "go back")){
+                player.performCommand("itembrowser");
+            } else if(event.getCurrentItem().getType().equals(Material.ARROW) && event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "next page")){
+                player.sendMessage(ChatColor.RED + "Page not implemented yet!");
+            }
+        } else if(event.getInventory().getName().equals("Materials")){
             event.setCancelled(true);
             if(event.getCurrentItem() == null) { return; }
             if(!(event.getCurrentItem().getType().equals(Material.STAINED_GLASS_PANE)) && !(event.getCurrentItem().getType().equals(Material.ARROW)) && !(event.getCurrentItem().getType().equals(Material.BARRIER))){

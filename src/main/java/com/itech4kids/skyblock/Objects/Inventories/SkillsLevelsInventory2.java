@@ -17,6 +17,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,67 +86,91 @@ public class SkillsLevelsInventory2 extends CraftInventoryCustom implements List
         switch (skillType){
             case FARMING:
                 this.setItem(0, farming);
-                createInventory("Farmhand", index, lvlItem, meta, lore, i);
+                createInventory("Farmhand", index, lvlItem, meta, lore, i, ChatColor.RED + "❤ Health", ChatColor.WHITE + "Grants " + ChatColor.GOLD + "+"  + ChatColor.GOLD + "4 ☘ Farming Fortune");
                 break;
             case MINING:
                 this.setItem(0, mining);
-                createInventory("Spelunker", index, lvlItem, meta, lore, i);
+                createInventory("Spelunker", index, lvlItem, meta, lore, i, ChatColor.GREEN + "❈ Defense", ChatColor.WHITE + "Grants " + ChatColor.GOLD + "+"  + ChatColor.GOLD + "4 ☘ Mining Fortune");
                 break;
             case COMBAT:
                 this.setItem(0, combat);
-                createInventory("Warrior", index, lvlItem, meta, lore, i);
+                createInventory("Warrior", index, lvlItem, meta, lore, i, ChatColor.BLUE + "☣ Crit Chance", ChatColor.WHITE + "Grants " + ChatColor.RED + "+"  + ChatColor.RED + "4%" + ChatColor.WHITE + " extra damage to mobs");
                 break;
             case FORAGING:
                 this.setItem(0, foraging);
-                createInventory("Logger", index, lvlItem, meta, lore, i);
+                createInventory("Logger", index, lvlItem, meta, lore, i, ChatColor.RED + "❁ Strength", ChatColor.WHITE + "Grants " + ChatColor.GOLD + "+"  + ChatColor.GOLD + "2 ☘ Foraging Fortune");
                 break;
             case FISHING:
                 this.setItem(0, fishing);
-                createInventory("Treasure Hunter", index, lvlItem, meta, lore, i);
+                createInventory("Treasure Hunter", index, lvlItem, meta, lore, i, ChatColor.RED + "❤ Health", ChatColor.WHITE + "Grants " + ChatColor.DARK_AQUA + "+"  + ChatColor.DARK_AQUA + "0.2% " + ChatColor.WHITE + " chance to find treasure");
                 break;
             case ENCHANTING:
                 this.setItem(0, enchanting);
-                createInventory("Conjourer", index, lvlItem, meta, lore, i);
+                createInventory("Conjourer", index, lvlItem, meta, lore, i, ChatColor.RED + "✹ Ability Damage", ChatColor.WHITE + "Grants " + ChatColor.DARK_AQUA + "+"  + ChatColor.AQUA + "4% " + ChatColor.WHITE + " more xp from any source");
                 break;
             case ALCHEMY:
                 this.setItem(0, alchemy);
-                createInventory("Brewer", index, lvlItem, meta, lore, i);
+                createInventory("Brewer", index, lvlItem, meta, lore, i, ChatColor.AQUA + "✎ Intelligence", ChatColor.WHITE + "Potions your brew have a " + ChatColor.AQUA + "1%" + ChatColor.WHITE + " longer duration");
                 break;
             case CARPENTRY:
                 this.setItem(0, carpentry);
-                createInventory("Cosmetic Skill", index, lvlItem, meta, lore, i);
+                createInventory("Cosmetic Skill", index, lvlItem, meta, lore, i, "Placeholder", "Placeholder");
                 break;
             case RUNECRAFTING:
                 this.setItem(0, runecrafting);
-                createInventory("Cosmetic Skill", index, lvlItem, meta, lore, i);
+                createInventory("Cosmetic Skill", index, lvlItem, meta, lore, i, "Placeholder", ChatColor.GRAY + "Access to Level " + ChatColor.DARK_PURPLE + "<newlvl> " + ChatColor.GRAY + "Runes");
                 break;
             case SOCIAL:
                 this.setItem(0, social);
-                createInventory("Cosmetic Skill", index, lvlItem, meta, lore, i);
+                createInventory("Cosmetic Skill", index, lvlItem, meta, lore, i, "Placeholder", "Placeholder");
                 break;
             case TAMING:
                 this.setItem(0, taming);
-                createInventory("Zoologist", index, lvlItem, meta, lore, i);
+                createInventory("Zoologist", index, lvlItem, meta, lore, i, ChatColor.LIGHT_PURPLE + "♣ Pet Luck", ChatColor.WHITE + "Gain <oldlvl>" + ChatColor.DARK_GRAY + "➜" + ChatColor.GREEN + "<newlvl>% " + ChatColor.WHITE + " extra pet exp.");
                 break;
             case CATACOMBS:
                 this.setItem(0, dungeoneering);
-                createInventory("Catacombs", index, lvlItem, meta, lore, i);
+                createInventory("Catacombs", index, lvlItem, meta, lore, i, "Placeholder", "Placeholder");
                 break;
         }
     }
 
-    public void createInventory(String s, int index, ItemStack lvlItem, ItemMeta meta, List<String> lore, int i){
-
+    public void createInventory(String s, int index, ItemStack lvlItem, ItemMeta meta, List<String> lore, int i, String stat, String stat2){
         for (index = 1; index < 26; ++index){
+            String statII = " " + stat2.replaceAll("<oldlvl>", String.valueOf(index+25 - 1)).replaceAll("<newlvl>", String.valueOf(index+25));
+            double lvl = 0;
             String s1 = ChatColor.YELLOW + " " + s + " " + (Integer.valueOf(index) + 25);
             if (index >= 1 && index < 4) {
-                if (i >= 26 && index < i) {
+                if (i >= 26 && index + 25 < i) {
                     lvlItem.setDurability((short) 5);
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(1 + 8 + (9 * (index - 1)), lvlItem);
                     lore.clear();
                 } else {
@@ -153,19 +178,65 @@ public class SkillsLevelsInventory2 extends CraftInventoryCustom implements List
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(1 + 8 + (9 * (index - 1)), lvlItem);
                     lore.clear();
                 }
             }else if (index == 4){
-                if (i >= 26 && index < i) {
+                if (i >= 26 && index + 25 < i) {
                     lvlItem.setDurability((short) 5);
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(28, lvlItem);
                     lore.clear();
                 } else {
@@ -173,19 +244,65 @@ public class SkillsLevelsInventory2 extends CraftInventoryCustom implements List
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(28, lvlItem);
                     lore.clear();
                 }
             }else if (index >= 5 && index < 9){
-                if (i >= 26 && index < i) {
+                if (i >= 26 && index + 25 < i) {
                     lvlItem.setDurability((short) 5);
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(5 + 24 - ((index - 5) * 9), lvlItem);
                     lore.clear();
                 } else {
@@ -193,19 +310,65 @@ public class SkillsLevelsInventory2 extends CraftInventoryCustom implements List
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(5 + 24 - ((index - 5) * 9), lvlItem);
                     lore.clear();
                 }
             }else if (index == 9){
-                if (i >= 26 && index < i) {
+                if (i >= 26 && index + 25 < i) {
                     lvlItem.setDurability((short) 5);
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(3, lvlItem);
                     lore.clear();
                 } else {
@@ -213,19 +376,65 @@ public class SkillsLevelsInventory2 extends CraftInventoryCustom implements List
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(3, lvlItem);
                     lore.clear();
                 }
             }else if (index >= 10 && index < 14){
-                if (i >= 26 && index < i) {
+                if (i >= 26 && index + 25 < i) {
                     lvlItem.setDurability((short) 5);
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(10 - 6 + ((index - 10) * 9), lvlItem);
                     lore.clear();
                 } else {
@@ -233,19 +442,65 @@ public class SkillsLevelsInventory2 extends CraftInventoryCustom implements List
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(10 - 6 + ((index - 10) * 9), lvlItem);
                     lore.clear();
                 }
             }else if (index == 14){
-                if (i >= 26 && index < i) {
+                if (i >= 26 && index + 25 < i) {
                     lvlItem.setDurability((short) 5);
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(32, lvlItem);
                     lore.clear();
                 } else {
@@ -253,19 +508,65 @@ public class SkillsLevelsInventory2 extends CraftInventoryCustom implements List
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(32, lvlItem);
                     lore.clear();
                 }
             }else if (index >= 15 && index < 19){
-                if (i >= 26 && index < i) {
+                if (i >= 26 && index + 25 < i) {
                     lvlItem.setDurability((short) 5);
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(15 + 18 - ((index - 15) * 9), lvlItem);
                     lore.clear();
                 } else {
@@ -273,19 +574,65 @@ public class SkillsLevelsInventory2 extends CraftInventoryCustom implements List
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(15 + 18 - ((index - 15) * 9), lvlItem);
                     lore.clear();
                 }
             }else if (index == 19){
-                if (i >= 26 && index < i) {
+                if (i >= 26 && index + 25 < i) {
                     lvlItem.setDurability((short) 5);
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(7, lvlItem);
                     lore.clear();
                 } else {
@@ -293,19 +640,65 @@ public class SkillsLevelsInventory2 extends CraftInventoryCustom implements List
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(7, lvlItem);
                     lore.clear();
                 }
             }else if (index >= 20 && index < 26){
-                if (i >= 26 && index < i) {
+                if (i >= 26 && index + 25 < i) {
                     lvlItem.setDurability((short) 5);
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(20 - 12 + ((index - 20) * 9), lvlItem);
                     lore.clear();
                 } else {
@@ -313,8 +706,31 @@ public class SkillsLevelsInventory2 extends CraftInventoryCustom implements List
                     meta.setDisplayName(ChatColor.GREEN + StringUtils.capitalize(skillType.name().toLowerCase()) + " " + (Integer.valueOf(index) + 25));
                     lore.add(ChatColor.GRAY + "Rewards:");
                     lore.add(s1);
+                    if (!ChatColor.stripColor(stat2).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(statII);
+                    }
+                    if (ChatColor.stripColor(stat).toLowerCase().contains("pet luck")) {
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("defense")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("health")){
+                        lvl = 2;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("crit chance")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("strength")){
+                        lvl = 1;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("ability damage")){
+                        lvl = 0.5;
+                    }else if (ChatColor.stripColor(stat).toLowerCase().contains("intelligence")){
+                        lvl = 1;
+                    }
+                    if (!ChatColor.stripColor(stat).toLowerCase().equalsIgnoreCase("placeholder")) {
+                        lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.getLastColors(stat) + lvl + stat);
+                    }
+                    lore.add(ChatColor.DARK_GRAY + "+" + ChatColor.GOLD + (index+25)*25 + ChatColor.GRAY + " Coins");
                     meta.setLore(lore);
                     lvlItem.setItemMeta(meta);
+                    lvlItem.setAmount(index + 25);
                     this.setItem(20 - 12 + ((index - 20) * 9), lvlItem);
                     lore.clear();
                 }
@@ -324,7 +740,7 @@ public class SkillsLevelsInventory2 extends CraftInventoryCustom implements List
 
     @EventHandler
     public void onClick(InventoryClickEvent e){
-        if (e.getInventory().equals(this)){
+        if (e.getClickedInventory().equals(this)){
             if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "Previous Page")) {
                 SkillLevelsInventory skillsLevelsInventory2 = new SkillLevelsInventory(skillType, skyblockPlayer);
                 skyblockPlayer.getBukkitPlayer().openInventory(skillsLevelsInventory2);

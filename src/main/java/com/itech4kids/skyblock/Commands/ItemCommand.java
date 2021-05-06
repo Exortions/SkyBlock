@@ -43,6 +43,13 @@ public class ItemCommand implements CommandExecutor {
         items.add(ItemHandler.thick_scorpion_foil);
         items.add(ItemHandler.zombie_sword);
         items.add(ItemHandler.grappling_hook);
+        items.add(ItemHandler.ornate_zombie_sword);
+        items.add(ItemHandler.recluse_fang);
+        items.add(ItemHandler.end_stone_sword);
+        items.add(ItemHandler.reaper_falchion);
+        items.add(ItemHandler.pooch_sword);
+        items.add(ItemHandler.edibleMace);
+
         if(!(sender instanceof Player)){
             sender.sendMessage(ChatColor.RED + "Only players can use this command!");
             return true;
@@ -55,13 +62,13 @@ public class ItemCommand implements CommandExecutor {
             player.sendMessage(ChatColor.RED + "Incorrect usage!\n /item <item>");
             return true;
         } else if(args.length == 1){
+            player.sendMessage(ChatColor.GREEN + args[0].toUpperCase());
             for(int i = 0; i < items.size(); i++){
                 String old_item_name = ChatColor.stripColor(items.get(i).getItemMeta().getDisplayName().toUpperCase());
                 String new_item_name = ChatColor.stripColor(old_item_name.replace(' ', '_'));
                 if(args[0].toUpperCase().equals(new_item_name)){
                     player.getInventory().addItem(items.get(i));
                     player.playSound(player.getLocation(), Sound.NOTE_PLING, 100, 2);
-                    player.sendMessage(ChatColor.GREEN + "Givng " + ChatColor.YELLOW + new_item_name.toUpperCase() + ChatColor.GREEN + " to " + ChatColor.YELLOW + player.getName());
                     return true;
                 }
             }

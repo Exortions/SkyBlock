@@ -4,6 +4,7 @@ import com.itech4kids.skyblock.Main;
 import com.itech4kids.skyblock.Objects.Items.GuiItems.SkyblockGuiItem;
 import com.itech4kids.skyblock.Objects.SkyblockPlayer;
 import com.itech4kids.skyblock.Objects.SkyblockStats;
+import com.itech4kids.skyblock.Util.Config;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -63,7 +64,9 @@ public class SkyblockMenuCommand implements CommandExecutor {
             skullMeta.setLore(lore);
             skull.setItemMeta(skullMeta);
 
-            SkyblockGuiItem skillsItem = new SkyblockGuiItem(ChatColor.GREEN + "Your Skills", "View your skill progression and rewards.", null, Material.DIAMOND_SWORD);
+            ArrayList<String> skillsLore = new ArrayList<String>();
+            skillsLore.add("§6" + Main.getMain().getSkillAverage(player) + " Skill Avg §8(non-cosmetic)");
+            SkyblockGuiItem skillsItem = new SkyblockGuiItem(ChatColor.GREEN + "Your Skills", "View your skill progression and rewards.", skillsLore, Material.DIAMOND_SWORD);
             SkyblockGuiItem collectionsItem = new SkyblockGuiItem(ChatColor.GREEN + "Collections", "View all of the items available in Skyblock. Collect more of an item to unlock rewards on your way to becoming a master of Skyblock!", null, Material.PAINTING);
             SkyblockGuiItem recipieBook = new SkyblockGuiItem(ChatColor.GREEN + "Recipe Book", "Through your adventure, you will unlock recipes for all kinds of special items! You can view how to craft these items here.", null, Material.BOOK);
             SkyblockGuiItem tradesItem = new SkyblockGuiItem(ChatColor.GREEN + "Trades", "View your available trades. These trades are always available and accessible through the Skyblock Menu.", null, Material.EMERALD);
@@ -72,9 +75,13 @@ public class SkyblockMenuCommand implements CommandExecutor {
             SkyblockGuiItem storage = new SkyblockGuiItem(ChatColor.GREEN + "Storage", "Store global items that you want to access at any time from anywhere here.", null, Material.CHEST);
             ArrayList<String> affectsAddLore = new ArrayList<String>();
             affectsAddLore.add(ChatColor.GRAY + "Drink Potions or splash them on the ground to buff yourself!");
+            affectsAddLore.add(" ");
+            affectsAddLore.add(ChatColor.GRAY + "Active Affects: " + "§e" + player.getActivePotionEffects().size());
             SkyblockGuiItem activeAffects = new SkyblockGuiItem(ChatColor.GREEN + "Active Effects", "View and manage all of your active potion effects.", affectsAddLore, Material.POTION);
             ArrayList<String> petsLore = new ArrayList<>();
             petsLore.add(ChatColor.GRAY + "Level up your pets faster by gaining xp in their favourite skill!");
+            //petsLore.add(" ");
+            //petsLore.add(ChatColor.GRAY + "Selected pet: " + ChatColor.getLastColors(Config.getActivePet(player).getItemMeta().getDisplayName()) + Config.getActivePet(player).getItemMeta().getDisplayName().split(" ")[2]);
             SkyblockGuiItem petsItem = new SkyblockGuiItem(ChatColor.GREEN + "Pets", "View and manage all of your Pets.", petsLore, Material.BONE);
             SkyblockGuiItem workbenchItem = new SkyblockGuiItem(ChatColor.GREEN + "Crafting Table", "Opens the crafting grid", null, Material.WORKBENCH);
 

@@ -27,7 +27,7 @@ public class SkyblockSkillExpGainEvent extends Event implements Cancellable {
         this.skyblockPlayer = skyblockPlayer;
         this.skillType = skillType;
         this.expAmount = amount;
-        skyblockPlayer.getBukkitPlayer().playSound(skyblockPlayer.getBukkitPlayer().getLocation(), Sound.ORB_PICKUP, 10, 1);
+        skyblockPlayer.getBukkitPlayer().playSound(skyblockPlayer.getBukkitPlayer().getLocation(), Sound.ORB_PICKUP, 10, 2);
         Config.setStatExp(skyblockPlayer.getBukkitPlayer(), skillType.name().toLowerCase(), (int) (Config.getStatExp(skyblockPlayer.getBukkitPlayer(), skillType.name().toLowerCase()) + expAmount));
         IChatBaseComponent icbc = IChatBaseComponent.ChatSerializer.a(
                 "{\"text\":\"" + "§c" + skyblockPlayer.getStat(SkyblockStats.HEALTH) + "/" + skyblockPlayer.getStat(SkyblockStats.MAX_HEALTH) + "❤   §3" +
