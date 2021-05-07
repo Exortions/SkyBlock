@@ -62,7 +62,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Hypixel SkyBlock, a Minecraft gamemode, is a very interesting gamemode, with crazy new features, an economy (even a rip-off stock market), armor, weapons, abilities, bosses, and more! It's revolutionized the Minecraft experience, and is very fun to play around in. Me (Itchs), and a friend (OptimusChen) decided to create this Hypixel SkyBlock Remake as a fun side-project (Though, now it has become our main project). The goal of this project is to replicate the Hypixel SkyBlock experience as much as possible.
+Hypixel SkyBlock, a Minecraft game, is a very interesting new take on the Minecraft experience. With crazy new features, an economy (even a rip-off stock market), custom armor, weapons, abilities, bosses, and more! It's revolutionized the Minecraft experience, and is very fun to play around in. Me (Itchs), and a friend (OptimusChen) decided to create this Hypixel SkyBlock Remake as a fun side-project (Though, now it has become our main project). The goal of this project is to replicate the Hypixel SkyBlock experience as much as possible.
 
 Here's why:
 * Because sometimes it isn't fun to play the real game (Mostly because nothing is fun if you can't cheat)
