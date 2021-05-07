@@ -13,7 +13,7 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">The best remake of Hypixel SkyBlock</h3>
+  <h3 align="center">Remake Hypixel SkyBlock</h3>
 
   <p align="center">
     An awesome attempt at re-creating Hypixel SkyBlock.
