@@ -4,6 +4,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
+[![Size][size-shield]][size-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -61,73 +62,50 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+Hypixel SkyBlock, a Minecraft gamemode, is a very interesting gamemode, with crazy new features, an economy (even a rip-off stock market), armor, weapons, abilities, bosses, and more! It's revolutionized the Minecraft experience, and is very fun to play around in. Me (Itchs), and a friend (OptimusChen) decided to create this Hypixel SkyBlock Remake as a fun side-project (Though, now it has become our main project). The goal of this project is to replicate the Hypixel SkyBlock experience as much as possible.
 
 Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
+* Because sometimes it isn't fun to play the real game (Mostly because nothing is fun if you can't cheat)
+* It's fun to re-learn Spigot plugin development, as well as work with many APIs :smile:
+* Hypixel SkyBlock is such a massive gamemode, therefore re-creating it is a very big challenge. And, I think I can speak for most humans when I say: "I like a challenge".
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have have contributed to expanding this template!
+Of course, this project is a side project, and is NOT to be used for commercial use. If people do start using it for commercial use, we might have to take down the open-sourceness of this project.
 
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
+A list of commonly used resources that we used to create this project can be found in the acknowledgements.
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-* [Laravel](https://laravel.com)
-
-
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+This section is all of the frameworks/applications that were used in the process of making this Hypixel SkyBlock Remake. You can see some smaller things towards the bottom of this page in the Acknowledgements section.
+* [IntelliJ](https://www.jetbrains.com/idea/)
+* [Maven](https://maven.apache.org/)
+* [Spigot](https://www.spigotmc.org/)
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+  Here's the great thing about all of this: You don't need any other plugins to run this SkyBlock Remake! The plugin is also coded in the most efficient way, to prevent lag & unwanted glitches/bugs.
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
-   ```
-
-
+If you want to install this for yourself, and only yourself (Limited to a small group of friends) for a Minecraft server, you can do so with the following instructions.
+IF YOU ARE TRYING TO PROFIT OFF OF THIS PLUGIN, PLEASE BE WARNED THAT IT IS NOT LEGAL, AS THE GAME SKYBLOCK IS OWNED BY [HYPIXEL](https://hypixel.net/), AND THIS IS A FUN SIDE PROJECT THAT IS NOT MEANT TO BE FOR COMMERCIAL USE.
+1. Download a release from the Releases section.
+2. Move the downloaded JAR into your server plugins folder
+   `C:/Users/Username/Folder/Server/plugins`
+4. Stop and start your server again.
+4. Log onto the server! Bam! You now have SkyBlock running on your private server.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+If you want to install this for yourself, and only yourself (Limited to a small group of friends) for a Minecraft server, you can do so with the following instructions.
+IF YOU ARE TRYING TO PROFIT OFF OF THIS PLUGIN, PLEASE BE WARNED THAT IT IS NOT LEGAL, AS THE GAME SKYBLOCK IS OWNED BY [HYPIXEL](https://hypixel.net/), AND THIS IS A FUN SIDE PROJECT THAT IS NOT MEANT TO BE FOR COMMERCIAL USE.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
+_For more examples, please refer to the [Documentation](https://github.com/Itchss/SkyBlock) - Not done yet._
 
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/Itchss/SkyBlock/issues) for a list of proposed features (and known issues).
 
 
 
@@ -143,44 +121,36 @@ Contributions are what make the open source community such an amazing place to b
 5. Open a Pull Request
 
 
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-
-
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Discord - [Itchs#0001](https://github.com/Itchss) or [OptimusChen#0000](https://github.com/OptimusChen)
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/Itchss/SkyBlock](https://github.com/Itchss/SkyBlock)
 
 
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
+* [Spigot API](https://www.spigotmc.org/wiki/spigot-maven/)
+* [Hypixel API](https://api.hypixel.net/)
+* [Armor Event API](https://www.spigotmc.org/resources/armor-event-1-8-1-9-1-10.24111/)
+* [Auto Respawn Plus](https://www.spigotmc.org/resources/autorespawnplus.14412/)
+* [Actionbar API](https://www.spigotmc.org/resources/actionbarapi-1-8-1-14-2.1315)
+* [Citizens 2 API](https://github.com/CitizensDev/Citizens2)
+* [Item NBT API](https://github.com/tr7zw/Item-NBT-API)
+* [WorldEdit API](https://worldedit.enginehub.org/en/latest/api/index.html)
 * [Img Shields](https://shields.io)
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Pages](https://pages.github.com)
-* [Animate.css](https://daneden.github.io/animate.css)
-* [Loaders.css](https://connoratherton.com/loaders)
-* [Slick Carousel](https://kenwheeler.github.io/slick)
-* [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
-* [Sticky Kit](http://leafo.net/sticky-kit)
-* [JVectorMap](http://jvectormap.com)
-* [Font Awesome](https://fontawesome.com)
-
-
-
-
+* [Readme Template](https://github.com/othneildrew/Best-README-Template)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/Itchss/SkyBlock?style=for-the-badge
 [contributors-url]: https://github.com/Itchss/SkyBlock/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/Itchss/SkyBlock?style=for-the-badge
 [forks-url]: https://github.com/Itchss/SkyBlock/members
@@ -190,4 +160,6 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 [issues-url]: https://github.com/Itchss/SkyBlock/issues
 [license-shield]: https://img.shields.io/github/license/Itchss/SkyBlock?style=for-the-badge
 [license-url]: https://github.com/Itchss/SkyBlock/blob/master/LICENSE.txt
+[size-shield]: https://img.shields.io/github/languages/code-size/Itchss/SkyBlock?style=for-the-badge
+[size-url]: https://github.com/Itchss/SkyBlock
 [product-screenshot]: images/screenshot.png
