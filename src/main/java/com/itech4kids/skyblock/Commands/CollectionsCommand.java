@@ -4,6 +4,7 @@ import com.itech4kids.skyblock.Main;
 import com.itech4kids.skyblock.Objects.Items.ItemHandler;
 import com.itech4kids.skyblock.Objects.SkyblockPlayer;
 import com.itech4kids.skyblock.Util.Config;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -126,31 +127,27 @@ public class CollectionsCommand implements CommandExecutor {
                     menu.setItem(menu.firstEmpty(), emptySpace);
                 }
 
-                if(Config.getCollectionUnlocked(player, "farming", "wheat")){
-                    List<String> coopPlayers = new ArrayList<>();
-                    coopPlayers.add("Exortions");
-                    coopPlayers.add("OptimusChen");
-                    menu.setItem(10, ItemHandler.createCollectionItem(296, "Wheat", "I", 100, 50, 50, coopPlayers, Collections.singletonList(ChatColor.BLUE + "Wheat Minion" + ChatColor.GRAY + " Recipes"), (short) 0));
-                } else{
-                    menu.setItem(10, notUnlocked);
-                }
-                if(Config.getCollectionUnlocked(player, "farming", "wheat")){
-                    List<String> coopPlayers = new ArrayList<>();
-                    coopPlayers.add("Exortions");
-                    coopPlayers.add("OptimusChen");
-                    menu.setItem(11, ItemHandler.createCollectionItem(391, "Carrot", "I", 100, 50, 50, coopPlayers, Collections.singletonList(ChatColor.BLUE + "Carrot Minion" + ChatColor.GRAY + " Recipes"), (short) 0));
+//                if(Config.getCollectionUnlocked(player, "farming", "wheat")){
+//                    List<String> coopPlayers = new ArrayList<>();
+//                    coopPlayers.add("Exortions");
+//                    coopPlayers.add("OptimusChen");
+//                    menu.setItem(10, ItemHandler.createCollectionItem(296, "Wheat", "I", 100, 50, 50, coopPlayers, Collections.singletonList(ChatColor.BLUE + "Wheat Minion" + ChatColor.GRAY + " Recipes"), (short) 0));
+//                } else{
+//                    menu.setItem(10, notUnlocked);
+//                }
+                checkUnlocked(player, menu, "farming", "wheat", 10, notUnlocked, Config.getCollectionLevel(player, "farming", "wheat"), Config.getCollectionCollected(player, "farming", "wheat"));
+                if(Config.getCollectionUnlocked(player, "farming", "carrot")){
+                    menu.setItem(11, ItemHandler.createCollectionItem(391, "Carrot", "I", 100, 50, 50, null, Collections.singletonList(ChatColor.BLUE + "Carrot Minion" + ChatColor.GRAY + " Recipes"), (short) 0));
                 } else{
                     menu.setItem(11, notUnlocked);
                 }
                 if(Config.getCollectionUnlocked(player, "farming", "potato")){
-                    player.sendMessage("potato");
-                    List<String> coopPlayers = new ArrayList<>();
-                    coopPlayers.add("Exortions");
-                    coopPlayers.add("OptimusChen");
-                    menu.setItem(12, ItemHandler.createCollectionItem(392, "Potato", "I", 100, 50, 50, coopPlayers, Collections.singletonList(ChatColor.BLUE + "Potato Minion" + ChatColor.GRAY + " Recipes"),  (short) 0));
+                    menu.setItem(12, ItemHandler.createCollectionItem(392, "Potato", "I", 100, 50, 50, null, Collections.singletonList(ChatColor.BLUE + "Potato Minion" + ChatColor.GRAY + " Recipes"),  (short) 0));
                 } else{
                     menu.setItem(12, notUnlocked);
-                    player.sendMessage("potato 2");
+                }
+                if(Config.getCollectionUnlocked(player, "farming", "pumpkin")){
+
                 }
 
                 for(int i = 31; i < 35; i++){
@@ -188,5 +185,21 @@ public class CollectionsCommand implements CommandExecutor {
             return true;
         }
         return false;
+    }
+
+    public void checkUnlocked(Player player, Inventory menu, String collectionType, String collection, int slot, ItemStack notUnlocked, int collectionLevel, int amountCollected){
+        if(collectionLevel == 1) {
+            if (Config.getCollectionUnlocked(player, collectionType, collection)) {
+                List<String> coopPlayers = new ArrayList<>();
+                coopPlayers.add("Exortions");
+                coopPlayers.add("OptimusChen");
+                int percentageUnlocked = amountCollected*100/50 ;
+                player.sendMessage(ChatColor.RED + "[Debug] " + percentageUnlocked);
+                player.sendMessage(ChatColor.RED + "[Debug] " + amountCollected);
+                menu.setItem(slot, ItemHandler.createCollectionItem(296, StringUtils.capitalize(collection), "I", percentageUnlocked, amountCollected, 50, coopPlayers, Collections.singletonList(ChatColor.BLUE +  StringUtils.capitalize(collection) + " Minion" + ChatColor.GRAY + " Recipes"), (short) 0));
+            } else {
+                menu.setItem(slot, notUnlocked);
+            }
+        }
     }
 }
