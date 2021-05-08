@@ -46,21 +46,21 @@
             <artifactId>citizens</artifactId>
             <version>2.0</version>
             <scope>system</scope>
-            <systemPath>c:/Users/Quade/Documents/Code/Plugins/Skyblock/Server/plugins/Citizens-2.0.26-b1995.jar</systemPath>
+            <systemPath>c:/Users/YOU_THOUGHT/Documents/Code/Plugins/Skyblock/Server/plugins/Citizens-2.0.26-b1995.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>system</scope>
-            <systemPath>C:/Users/Quade/Documents/Code/Plugins/Skyblock/Dependencies/spigot-api-1.8.8-R0.1-SNAPSHOT.jar</systemPath>
+            <systemPath>C:/Users/YOU_THOUGHT/Documents/Code/Plugins/Skyblock/Dependencies/spigot-api-1.8.8-R0.1-SNAPSHOT.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <version>1.</version>
             <scope>system</scope>
-            <systemPath>C:/Users/Quade/Documents/Code/Plugins/Skyblock/Dependencies/craftbukkit-1.8.8-R0.1-SNAPSHOT.jar</systemPath>
+            <systemPath>C:/Users/YOU_THOUGHT/Documents/Code/Plugins/Skyblock/Dependencies/craftbukkit-1.8.8-R0.1-SNAPSHOT.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -77,35 +77,35 @@
             <artifactId>kaptcha</artifactId>
             <version>2.3</version>
             <scope>system</scope>
-            <systemPath>c:/Users/Quade/Documents/Code/Plugins/Skyblock/Dependencies/craftbukkit-1.8.8-R0.1-SNAPSHOT.jar</systemPath>
+            <systemPath>c:/Users/YOU_THOUGHT/Documents/Code/Plugins/Skyblock/Dependencies/craftbukkit-1.8.8-R0.1-SNAPSHOT.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>de.tr7zw</groupId>
             <artifactId>item-nbt-api-plugin</artifactId>
             <version>2.7.1</version>
             <scope>system</scope>
-            <systemPath>c:/Users/Quade/Documents/Code/Plugins/Skyblock/Server/plugins/item-nbt-api-plugin-2.6.0.jar</systemPath>
+            <systemPath>c:/Users/YOU_THOUGHT/Documents/Code/Plugins/Skyblock/Server/plugins/item-nbt-api-plugin-2.6.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.google.code</groupId>
             <artifactId>actionbarapi</artifactId>
             <version>2.3</version>
             <scope>system</scope>
-            <systemPath>c:/Users/Quade/Documents/Code/Plugins/Skyblock/Server/plugins/ActionBarAPI-1.5.4.jar</systemPath>
+            <systemPath>c:/Users/YOU_THOUGHT/Documents/Code/Plugins/Skyblock/Server/plugins/ActionBarAPI-1.5.4.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.google.code</groupId>
             <artifactId>armorequip</artifactId>
             <version>2.1</version>
             <scope>system</scope>
-            <systemPath>c:/Users/Quade/Documents/Code/Plugins/Skyblock/Server/plugins/ArmorEventPlugin.jar</systemPath>
+            <systemPath>c:/Users/YOU_THOUGHT/Documents/Code/Plugins/Skyblock/Server/plugins/ArmorEventPlugin.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.google.code</groupId>
             <artifactId>worldedit</artifactId>
             <version>2.0</version>
             <scope>system</scope>
-            <systemPath>c:/Users/Quade/Documents/Code/Plugins/Skyblock/Server/plugins/worldedit-bukkit-6.1.jar</systemPath>
+            <systemPath>c:/Users/YOU_THOUGHT/Documents/Code/Plugins/Skyblock/Server/plugins/worldedit-bukkit-6.1.jar</systemPath>
         </dependency>
     </dependencies>
 
