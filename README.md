@@ -10,7 +10,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Itchss/SkyBlock">
-    <img src="images/skyblock.png" alt="SkyBlock" width="1280" height="420">
+    <img src="images/skyblock.png" alt="SkyBlock" width="720" height="420">
   </a>
 
   <h3 align="center">Remake Hypixel SkyBlock</h3>
