@@ -10,7 +10,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Itchss/SkyBlock">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/skyblock.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Remake Hypixel SkyBlock</h3>
@@ -51,7 +51,7 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="https://github.com/Itchss/SkyBlock/blob/master/LICENSE">License</a></li>
+    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
@@ -124,6 +124,7 @@ Contributions are what make the open source community such an amazing place to b
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
+* [License](https://github.com/Itchss/SkyBlock/blob/master/LICENSE
 
 <!-- CONTACT -->
 ## Contact
