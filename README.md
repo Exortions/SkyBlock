@@ -124,7 +124,7 @@ Contributions are what make the open source community such an amazing place to b
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-* [License](https://github.com/Itchss/SkyBlock/blob/master/LICENSE
+* [License](https://github.com/Itchss/SkyBlock/blob/master/LICENSE)
 
 <!-- CONTACT -->
 ## Contact
