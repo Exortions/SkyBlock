@@ -16,57 +16,57 @@ public class CollectionStatCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-        Player target = Bukkit.getPlayer(args[0]);
-        if(args.length == 5){
-            if(sender.isOp()){
-                if(target.hasPlayedBefore()){
-                    String collectionType = args[1];
-                    String collection = args[2];
-                    if(!checkCollectionTypeValid(collectionType).equals("invalid")){
-                        if(!checkCollectionValid(collection).equals("invalid")){
-                            String clu = args[3];
-                            String value = args[4];
-                            if(clu.equalsIgnoreCase("collected")){
-                                try {
-                                    Config.setCollectionCollected(target, collectionType, collection, Integer.parseInt(value));
-                                } catch (IOException exception) {
-                                    exception.printStackTrace();
-                                }
-                            } else if(clu.equalsIgnoreCase("level")){
-                                try {
-                                    Config.setCollectionLevel(target, collectionType, collection, Integer.parseInt(value));
-                                } catch (IOException exception) {
-                                    exception.printStackTrace();
-                                }
-                            } else if(clu.equalsIgnoreCase("unlocked")){
-                                try {
-                                    Config.setCollectionUnlocked(target, collectionType, collection, Boolean.parseBoolean(value));
-                                } catch (IOException exception) {
-                                    exception.printStackTrace();
+        if(sender.isOp()){
+            if(args.length == 5){
+                Player target = Bukkit.getPlayer(args[0]);
+                        if(target.hasPlayedBefore()){
+                        String collectionType = args[1];
+                        String collection = args[2];
+                        if(!checkCollectionTypeValid(collectionType).equals("invalid")){
+                            if(!checkCollectionValid(collection).equals("invalid")){
+                                String clu = args[3];
+                                String value = args[4];
+                                if(clu.equalsIgnoreCase("collected")){
+                                    try {
+                                        Config.setCollectionCollected(target, collectionType, collection, Integer.parseInt(value));
+                                    } catch (IOException exception) {
+                                        exception.printStackTrace();
+                                    }
+                                    sender.sendMessage(ChatColor.GREEN + "");
+                                } else if(clu.equalsIgnoreCase("level")){
+                                    try {
+                                        Config.setCollectionLevel(target, collectionType, collection, Integer.parseInt(value));
+                                    } catch (IOException exception) {
+                                        exception.printStackTrace();
+                                    }
+                                } else if(clu.equalsIgnoreCase("unlocked")){
+                                    try {
+                                        Config.setCollectionUnlocked(target, collectionType, collection, Boolean.parseBoolean(value));
+                                    } catch (IOException exception) {
+                                        exception.printStackTrace();
+                                    }
+                                } else{
+                                    sender.sendMessage(ChatColor.RED + "That isn't a valid collection modifier!\nThe collection modifier can only be collected, level, or unlocked.");
+                                    return true;
                                 }
                             } else{
-                                sender.sendMessage(ChatColor.RED + "That isn't a valid collection modifier!\nThe collection modifier can only be collected, level, or unlocked.");
+                                sender.sendMessage(ChatColor.RED + "That isn't a valid collection!");
                                 return true;
                             }
                         } else{
-                            sender.sendMessage(ChatColor.RED + "That isn't a valid collection!");
+                            sender.sendMessage(ChatColor.RED + "That isn't a valid collection type!");
                             return true;
                         }
-                    } else{
-                        sender.sendMessage(ChatColor.RED + "That isn't a valid collection type!");
-                        return true;
-                    }
-                } else{
+                } else {
                     sender.sendMessage(MessageConfig.notPlayed());
                     return true;
                 }
             } else{
-                sender.sendMessage(MessageConfig.noPermission());
+                sender.sendMessage(ChatColor.RED + "Not enough arguments!\n" + ChatColor.GREEN + "Usage: " + ChatColor.YELLOW + "/collectionstat <username> <collection type> <collection> <collected/level/unlocked> <value>");
                 return true;
             }
         } else{
-            sender.sendMessage(ChatColor.RED + "Not enough arguments!\n" + ChatColor.GREEN + "Usage: " + ChatColor.YELLOW + "/collectionstat <username> <collection type> <collection> <collected/level/unlocked> <value>");
-            return true;
+            sender.sendMessage(MessageConfig.noPermission());
         }
         return false;
     }
