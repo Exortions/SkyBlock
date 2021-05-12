@@ -63,6 +63,7 @@ public class Eventlistener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
+        e.setJoinMessage(null);
         final Player player = e.getPlayer();
         if(Config.getBanned(player)){
             player.kickPlayer(ChatColor.RED + "You are permanently banned from this server!\n\n" + ChatColor.GRAY + "Reason: " + ChatColor.WHITE + Config.getBanReason(player) + "\n" + ChatColor.GRAY + "Find out more: " + ChatColor.AQUA + "" + ChatColor.UNDERLINE + "https://www.hypixel.net/appeal\n\n" + ChatColor.GRAY + "Ban ID: " + ChatColor.WHITE + "#1379254\n" + ChatColor.GRAY + "Sharing your ban ID may affect the process of your appeal!");
@@ -188,6 +189,7 @@ public class Eventlistener implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent e) throws IOException {
+        e.setQuitMessage(null);
         SkyblockPlayer skyblockPlayer = main.getPlayer(e.getPlayer().getName());
         skyblockPlayer.saveStats();
         skyblockPlayer.activePet.remove();
