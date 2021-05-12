@@ -12,8 +12,6 @@ import org.bukkit.entity.Player;
 import java.io.IOException;
 
 public class CollectionStatCommand implements CommandExecutor {
-    // collectionstat <player> <collection type> <collection> <collected/level/unlocked> <value>
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if(sender.isOp()){
