@@ -26,23 +26,31 @@ public class CollectionStatCommand implements CommandExecutor {
                                 String value = args[4];
                                 if(clu.equalsIgnoreCase("collected")){
                                     try {
+                                        sender.sendMessage(ChatColor.YELLOW + "Attempting to set " + collection + " collected amount for player " + target.getName() + " to: " + value + "...");
                                         Config.setCollectionCollected(target, collectionType, collection, Integer.parseInt(value));
                                     } catch (IOException exception) {
                                         exception.printStackTrace();
+                                        sender.sendMessage(ChatColor.RED + "An error occured while trying to set " + collection + " collected amount for player " + target.getName() + " to: " + value + "! (CHECK CONSOLE)");
                                     }
-                                    sender.sendMessage(ChatColor.GREEN + "");
+                                    sender.sendMessage(ChatColor.GREEN + "Sucessfully set " + collection + " collected amount for player " + target.getName() + " to: " + value);
                                 } else if(clu.equalsIgnoreCase("level")){
                                     try {
+                                        sender.sendMessage(ChatColor.YELLOW + "Attempting to set " + collection + " collection level for player " + target.getName() + " to: " + value + "...");
                                         Config.setCollectionLevel(target, collectionType, collection, Integer.parseInt(value));
                                     } catch (IOException exception) {
                                         exception.printStackTrace();
+                                        sender.sendMessage(ChatColor.RED + "An error occured while trying to set " + collection + " collection level for player " + target.getName() + " to: " + value + "! (CHECK CONSOLE)");
                                     }
+                                    sender.sendMessage(ChatColor.GREEN + "Sucessfully set " + collection + " collection level for player " + target.getName() + " to: " + value);
                                 } else if(clu.equalsIgnoreCase("unlocked")){
                                     try {
+                                        sender.sendMessage(ChatColor.YELLOW + "Attempting to set " + collection + " collection unlocked for player " + target.getName() + " to: " + value + "...");
                                         Config.setCollectionUnlocked(target, collectionType, collection, Boolean.parseBoolean(value));
                                     } catch (IOException exception) {
                                         exception.printStackTrace();
+                                        sender.sendMessage(ChatColor.RED + "An error occured while trying to set " + collection + " unlocked for player " + target.getName() + " to: " + value + "! (CHECK CONSOLE)");
                                     }
+                                    sender.sendMessage(ChatColor.GREEN + "Sucessfully set " + collection + " unlocked for player " + target.getName() + " to: " + value);
                                 } else{
                                     sender.sendMessage(ChatColor.RED + "That isn't a valid collection modifier!\nThe collection modifier can only be collected, level, or unlocked.");
                                     return true;
