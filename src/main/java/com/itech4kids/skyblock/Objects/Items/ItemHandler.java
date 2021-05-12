@@ -960,7 +960,7 @@ public class ItemHandler {
         return coin;
     }
 
-    public static ItemStack createCollectionItem(int type, String collectionName, String collectionLevel, int percentageUnlocked, int collected, String maxCollected, List<String> coopPlayers, String collectionRewards, Short data){
+    public static ItemStack createCollectionItem(int type, String collectionName, String collectionLevel, int percentageUnlocked, String collected, String maxCollected, List<String> coopPlayers, String collectionRewards, Short data){
         ItemStack item = new ItemStack(type);
         ItemMeta meta = item.getItemMeta();
         String itemName = collectionName + " " + collectionLevel;
