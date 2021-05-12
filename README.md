@@ -10,7 +10,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Itchss/SkyBlock">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/skyblock.png" alt="SkyBlock" width="720" height="420">
   </a>
 
   <h3 align="center">Remake Hypixel SkyBlock</h3>
@@ -124,6 +124,7 @@ Contributions are what make the open source community such an amazing place to b
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
+* [License](https://github.com/Itchss/SkyBlock/blob/master/LICENSE)
 
 <!-- CONTACT -->
 ## Contact
