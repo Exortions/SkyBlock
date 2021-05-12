@@ -1,12 +1,9 @@
 package com.itech4kids.skyblock.Util;
 
 import com.itech4kids.skyblock.Main;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +12,7 @@ import java.util.HashMap;
 
 public class LaunchPadConfig {
 
-       public static Main main;
+    public static Main main;
 
     public LaunchPadConfig(Main main) throws IOException {
         this.main = main;
@@ -37,6 +34,9 @@ public class LaunchPadConfig {
         File file = new File(main.getDataFolder()+File.separator+"launchpad.yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         ArrayList<String> strings = new ArrayList<>();
+        if(config.getConfigurationSection("launchpadlocations") == null){
+            config.getConfigurationSection("launchpadlocations").set("launchpadlocations", "");
+        }
         for(String key : config.getConfigurationSection("launchpadlocations").getKeys(false)){
             strings.add(key);
         }

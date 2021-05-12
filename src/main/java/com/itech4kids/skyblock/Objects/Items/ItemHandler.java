@@ -6,6 +6,7 @@ import com.itech4kids.skyblock.Enums.ReforgeTypes;
 import com.itech4kids.skyblock.Util.ItemUtil;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -959,7 +960,7 @@ public class ItemHandler {
         return coin;
     }
 
-    public static ItemStack createCollectionItem(int type, String collectionName, String collectionLevel, int percentageUnlocked, int collected, int maxCollected, List<String> coopPlayers, List<String> collectionRewards, Short data){
+    public static ItemStack createCollectionItem(int type, String collectionName, String collectionLevel, int percentageUnlocked, int collected, String maxCollected, List<String> coopPlayers, String collectionRewards, Short data){
         ItemStack item = new ItemStack(type);
         ItemMeta meta = item.getItemMeta();
         String itemName = collectionName + " " + collectionLevel;
@@ -983,18 +984,76 @@ public class ItemHandler {
         lore.add(ChatColor.GRAY + "Total: " + ChatColor.YELLOW + collected);
         lore.add("");
         lore.add(ChatColor.GRAY + itemName + " Rewards:");
-        if(collectionRewards.size() >= 2){
-            for(String s : collectionRewards){
-                lore.add(" " + s);
-            }
-        } else{
-            lore.add(" " + collectionRewards.get(0));
-        }
+        lore.add(" " + collectionRewards);
         lore.add("");
         lore.add(ChatColor.YELLOW + "Click to view!");
         meta.setDisplayName(ChatColor.YELLOW + itemName);
         meta.setLore(lore);
         item.setItemMeta(meta);
+        return item;
+    }
+
+    public static ItemStack createCollectionProgressItem(int index, String collectionName, String collectionLevel, int collected, String maxCollected, int maxCollectedInt, List<String> collectionRewards, boolean showRewards, int amount){
+        ItemStack item = new ItemStack(Material.STAINED_GLASS_PANE, amount);
+        ItemMeta meta = item.getItemMeta();
+        int percentageUnlocked = collected*100/maxCollectedInt;
+        List<String> lore = new ArrayList<>();
+        switch (index){
+            case 1:
+                item.setDurability((short) 14);
+                meta.setDisplayName(ChatColor.RED + "" + StringUtils.capitalize(collectionName) + " " + collectionLevel);
+                lore.add("");
+                lore.add(ChatColor.GRAY + "Progress: " + ChatColor.YELLOW + percentageUnlocked + ChatColor.GOLD + "%");
+                lore.add(ChatColor.WHITE + "-------------------- " + ChatColor.YELLOW + collected + ChatColor.GOLD + "/" + ChatColor.YELLOW + maxCollected);
+                lore.add("");
+                lore.add(ChatColor.GRAY + "Rewards: ");
+                for(String s : collectionRewards){
+                    lore.add(s);
+                }
+                lore.add("");
+                if(showRewards){
+                    lore.add(ChatColor.YELLOW + "Click to view rewards!");
+                }
+                meta.setLore(lore);
+                item.setItemMeta(meta);
+                break;
+            case 2:
+                item.setDurability((short) 4);
+                meta.setDisplayName(ChatColor.YELLOW + "" + StringUtils.capitalize(collectionName) + " " + collectionLevel);
+                lore.add("");
+                lore.add(ChatColor.GRAY + "Progress: " + ChatColor.YELLOW + percentageUnlocked + ChatColor.GOLD + "%");
+                lore.add(ChatColor.WHITE + "-------------------- " + ChatColor.YELLOW + collected + ChatColor.GOLD + "/" + ChatColor.YELLOW + maxCollected);
+                lore.add("");
+                lore.add(ChatColor.GRAY + "Rewards: ");
+                for(String s : collectionRewards){
+                    lore.add(s);
+                }
+                lore.add("");
+                if(showRewards){
+                    lore.add(ChatColor.YELLOW + "Click to view rewards!");
+                }
+                meta.setLore(lore);
+                item.setItemMeta(meta);
+                break;
+            case 3:
+                item.setDurability((short) 5);
+                meta.setDisplayName(ChatColor.GREEN + "" + StringUtils.capitalize(collectionName) + " " + collectionLevel);
+                lore.add("");
+                lore.add(ChatColor.GRAY + "Progress: " + ChatColor.GREEN + "100%");
+                lore.add(ChatColor.DARK_GREEN + "-------------------- " + ChatColor.YELLOW + collected + ChatColor.GOLD + "/" + ChatColor.YELLOW + maxCollected);
+                lore.add("");
+                lore.add(ChatColor.GRAY + "Rewards: ");
+                for(String s : collectionRewards){
+                    lore.add(s);
+                }
+                lore.add("");
+                if(showRewards){
+                    lore.add(ChatColor.YELLOW + "Click to view rewards!");
+                }
+                meta.setLore(lore);
+                item.setItemMeta(meta);
+                break;
+        }
         return item;
     }
 }

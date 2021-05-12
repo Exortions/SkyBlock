@@ -155,14 +155,16 @@ public class InventoryListener implements Listener {
         }
     }
 
-    @EventHandler
-    public void onDrop(PlayerDropItemEvent event){
-        if(event.getItemDrop().equals(null)) { return; }
-        Player player = event.getPlayer();
-        if(event.getItemDrop().getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "skyblock menu (right click)")){
-            event.setCancelled(true);
-        }
-    }
+//    @EventHandler
+//    public void onDrop(PlayerDropItemEvent event){
+//        if(event.getItemDrop().equals(null)) { return; }
+//        Player player = event.getPlayer();
+//        if(event.getItemDrop().getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "skyblock menu (right click)")){
+//            event.setCancelled(true);
+//        } else{
+//            return;
+//        }
+//    }
 
     @EventHandler
     public void onClear(PlayerCommandPreprocessEvent event){

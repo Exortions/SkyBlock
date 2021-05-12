@@ -1,6 +1,9 @@
 package com.itech4kids.skyblock.Commands;
 
+import com.itech4kids.skyblock.Enums.CollectionItemTypes;
+import com.itech4kids.skyblock.Enums.CollectionTypes;
 import com.itech4kids.skyblock.Main;
+import com.itech4kids.skyblock.Objects.Inventories.CollectionItemInventory;
 import com.itech4kids.skyblock.Objects.Items.ItemHandler;
 import com.itech4kids.skyblock.Objects.SkyblockPlayer;
 import com.itech4kids.skyblock.Util.Config;
@@ -89,7 +92,7 @@ public class CollectionsCommand implements CommandExecutor {
         ItemStack boss_collection = ItemHandler.createBasicHead(ChatColor.DARK_PURPLE + "Boss Collection", bossCollectionLore, 1, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzk1M2I2YzY4NDQ4ZTdlNmI2YmY4ZmIyNzNkNzIwM2FjZDhlMWJlMTllODE0ODFlYWQ1MWY0NWRlNTlhOCJ9fX0=", 1);
 
         if(args.length == 1){
-            if(args[0].toLowerCase().equals("main")){
+            if(args[0].equalsIgnoreCase("main")){
 
                 skyblockPlayer.setInventory("Collection", Bukkit.createInventory(null, 54, "Collection"));
                 Inventory menu = skyblockPlayer.getInventory("Collection");
@@ -116,7 +119,7 @@ public class CollectionsCommand implements CommandExecutor {
 
                 player.openInventory(skyblockPlayer.getInventory("Collection"));
                 return false;
-            } else if(args[0].toLowerCase().equals("farming")){
+            } else if(args[0].equalsIgnoreCase("farming")){
                 skyblockPlayer.setInventory("Farming Collection", Bukkit.createInventory(null, 54, "Farming Collection"));
                 Inventory menu = skyblockPlayer.getInventory("Farming Collection");
 
@@ -127,28 +130,9 @@ public class CollectionsCommand implements CommandExecutor {
                     menu.setItem(menu.firstEmpty(), emptySpace);
                 }
 
-//                if(Config.getCollectionUnlocked(player, "farming", "wheat")){
-//                    List<String> coopPlayers = new ArrayList<>();
-//                    coopPlayers.add("Exortions");
-//                    coopPlayers.add("OptimusChen");
-//                    menu.setItem(10, ItemHandler.createCollectionItem(296, "Wheat", "I", 100, 50, 50, coopPlayers, Collections.singletonList(ChatColor.BLUE + "Wheat Minion" + ChatColor.GRAY + " Recipes"), (short) 0));
-//                } else{
-//                    menu.setItem(10, notUnlocked);
-//                }
-                checkUnlocked(player, menu, "farming", "wheat", 10, notUnlocked, Config.getCollectionLevel(player, "farming", "wheat"), Config.getCollectionCollected(player, "farming", "wheat"));
-                if(Config.getCollectionUnlocked(player, "farming", "carrot")){
-                    menu.setItem(11, ItemHandler.createCollectionItem(391, "Carrot", "I", 100, 50, 50, null, Collections.singletonList(ChatColor.BLUE + "Carrot Minion" + ChatColor.GRAY + " Recipes"), (short) 0));
-                } else{
-                    menu.setItem(11, notUnlocked);
-                }
-                if(Config.getCollectionUnlocked(player, "farming", "potato")){
-                    menu.setItem(12, ItemHandler.createCollectionItem(392, "Potato", "I", 100, 50, 50, null, Collections.singletonList(ChatColor.BLUE + "Potato Minion" + ChatColor.GRAY + " Recipes"),  (short) 0));
-                } else{
-                    menu.setItem(12, notUnlocked);
-                }
-                if(Config.getCollectionUnlocked(player, "farming", "pumpkin")){
-
-                }
+                checkUnlocked(player, menu, "farming", "wheat", 10, notUnlocked, Config.getCollectionLevel(player, "farming", "wheat"), Config.getCollectionCollected(player, "farming", "wheat"), 296,  ChatColor.BLUE + " Wheat Minion" + ChatColor.GRAY + " Recipes", ChatColor.GREEN + "Enchanted Book (Harvesting V)" + ChatColor.GRAY + "  Recipe", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+                checkUnlocked(player, menu, "farming", "carrot", 11, notUnlocked, Config.getCollectionLevel(player, "farming", "carrot"), Config.getCollectionCollected(player, "farming", "carrot"), 391, ChatColor.BLUE + " Carrot Minion" + ChatColor.GRAY + " Recipes", ChatColor.GREEN + "Simple Carrot Candy " + ChatColor.GRAY + "Recipe", ChatColor.DARK_PURPLE + "Catching Egg " + ChatColor.DARK_GRAY + "(" + ChatColor.DARK_RED + "COMING SOON" + ChatColor.DARK_GRAY + ")", ChatColor.GREEN + "Enchanted Carrot " + ChatColor.GRAY + "Recipe", ChatColor.GREEN + "Enchanted Carrot on a Stick " + ChatColor.GRAY + "Recipe", "", "", "", "", "", "" ,"", "", "", "", "", "", (short) 0);
+                checkUnlocked(player, menu, "farming", "potato", 12, notUnlocked, Config.getCollectionLevel(player, "farming", "potato"), Config.getCollectionCollected(player, "farming", "potato"), 391, ChatColor.BLUE + " Potato Minion" + ChatColor.GRAY + " Recipes", "", "", "", "", "", "", "", "", "", "" ,"", "", "", "", "", "", (short) 0);
 
                 for(int i = 31; i < 35; i++){
                     menu.setItem(i, new ItemStack(Material.AIR));
@@ -163,43 +147,123 @@ public class CollectionsCommand implements CommandExecutor {
                 menu.setItem(49, ItemHandler.createExitBarrier());
 
                 player.openInventory(skyblockPlayer.getInventory("Farming Collection"));
-            } else if(args[0].toLowerCase().equals("mining")){
+            } else if(args[0].equalsIgnoreCase("mining")){
                 player.sendMessage("mining");
-            } else if(args[0].toLowerCase().equals("combat")){
+            } else if(args[0].equalsIgnoreCase("combat")){
                 player.sendMessage("combat");
-            } else if(args[0].toLowerCase().equals("foraging")){
+            } else if(args[0].equalsIgnoreCase("foraging")){
                 player.sendMessage("foraging");
-            } else if(args[0].toLowerCase().equals("fishing")){
+            } else if(args[0].equalsIgnoreCase("fishing")){
                 player.sendMessage("fishing");
-            } else if(args[0].toLowerCase().equals("boss")){
+            } else if(args[0].equalsIgnoreCase("boss")){
                 player.sendMessage("boss");
-            } else if(args[0].toLowerCase().equals("help")){
-
+            } else if(args[0].equalsIgnoreCase("help")){
+                player.sendMessage(ChatColor.GREEN + "All avaliable menu names:\n" + ChatColor.AQUA + " - Farming\n - Mining\n - Combat\n - Foraging\n - Fishing\n - Boss");
+                return true;
+            } else{
+                player.sendMessage(ChatColor.RED + "Incorrect Usage!\n/collections <menu_name | set to help for list of menus> OR /collections <menu_name> <item_name>");
+                return true;
             }
-            else{
-                player.sendMessage(ChatColor.RED + "Incorrect Usage!\n/collections <menu_name | set to help for list of menus>");
+        } else if(args.length == 2){
+            if(args[0].equalsIgnoreCase("farming")){
+                if(args[1].equalsIgnoreCase("wheat")){
+                    player.sendMessage(ChatColor.YELLOW + "You opened wheat collection menu XDD");
+                    new CollectionItemInventory(player, CollectionItemTypes.WHEAT, CollectionTypes.FARMING);
+                }
+            } else if(args[0].equalsIgnoreCase("mining")){
+
+            } else if(args[0].equalsIgnoreCase("combat")){
+
+            } else if(args[0].equalsIgnoreCase("foraging")){
+
+            } else if(args[0].equalsIgnoreCase("fishing")){
+
+            } else if(args[0].equalsIgnoreCase("boss")){
+
+            } else{
+                player.sendMessage(ChatColor.RED + "Incorrect Usage!\n/collections <menu_name | set to help for list of menus> OR /collections <menu_name> <item_name>");
                 return true;
             }
         } else{
-            player.sendMessage(ChatColor.RED + "Incorrect Usage!\n/collections <menu_name | set to help for list of menus>");
+            player.sendMessage(ChatColor.RED + "Incorrect Usage!\n/collections <menu_name | set to help for list of menus> OR /collections <menu_name> <item_name>");
             return true;
         }
         return false;
     }
 
-    public void checkUnlocked(Player player, Inventory menu, String collectionType, String collection, int slot, ItemStack notUnlocked, int collectionLevel, int amountCollected){
+    // I = 100
+    // II = 250
+    // III = 750
+    // IV = 1.5k
+    // V = 3k
+    // VI = 5k
+    // VII = 10k
+    // VIII = 25k
+    // IX = 50k
+    // X = 200k
+    // XI = 400k
+    // XII = 600k
+    // XIII = 800k
+    // XIV = 1M
+    // XV = 1.2M
+    // XVI = 1.4M
+
+    public void checkUnlocked(Player player, Inventory menu, String collectionType, String collection, int slot, ItemStack notUnlocked, int collectionLevel, int amountCollected, int typeID, String rewards, String rewards1, String rewards2, String rewards3, String rewards4, String rewards5, String rewards6, String rewards7, String rewards8, String rewards9, String rewards10, String rewards11, String rewards12, String rewards13, String rewards14, String rewards15, String rewards16, Short data){
+        List<String> coopPlayers = new ArrayList<>();
+        coopPlayers.add("Exortions");
+        coopPlayers.add("OptimusChen");
         if(collectionLevel == 1) {
-            if (Config.getCollectionUnlocked(player, collectionType, collection)) {
-                List<String> coopPlayers = new ArrayList<>();
-                coopPlayers.add("Exortions");
-                coopPlayers.add("OptimusChen");
-                int percentageUnlocked = amountCollected*100/50 ;
-                player.sendMessage(ChatColor.RED + "[Debug] " + percentageUnlocked);
-                player.sendMessage(ChatColor.RED + "[Debug] " + amountCollected);
-                menu.setItem(slot, ItemHandler.createCollectionItem(296, StringUtils.capitalize(collection), "I", percentageUnlocked, amountCollected, 50, coopPlayers, Collections.singletonList(ChatColor.BLUE +  StringUtils.capitalize(collection) + " Minion" + ChatColor.GRAY + " Recipes"), (short) 0));
-            } else {
-                menu.setItem(slot, notUnlocked);
-            }
+            int percentageUnlocked = amountCollected*100/100;
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "I", percentageUnlocked, amountCollected, Integer.toString(100), coopPlayers, rewards, data));
+        } else if(collectionLevel == 2){
+            int percentageUnlocked = amountCollected*100/250;
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "II", percentageUnlocked, amountCollected, Integer.toString(250), coopPlayers, rewards2, data));
+        } else if(collectionLevel == 3){
+            int percentageUnlocked = amountCollected*100/750;
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "III", percentageUnlocked, amountCollected, Integer.toString(750), coopPlayers, rewards3, data));
+        } else if(collectionLevel == 4){
+            int percentageUnlocked = amountCollected*100/1500;
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "IV", percentageUnlocked, amountCollected, "1.5k", coopPlayers, rewards4, data));
+        } else if(collectionLevel == 5){
+            int percentageUnlocked = amountCollected*100/3000;
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "V", percentageUnlocked, amountCollected, "3k", coopPlayers, rewards5, data));
+        } else if(collectionLevel == 6){
+            int percentageUnlocked = amountCollected*100/5000;
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "VI", percentageUnlocked, amountCollected, "5k", coopPlayers, rewards6, data));
+        } else if(collectionLevel == 7){
+            int percentageUnlocked = amountCollected*100/10000;
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "VII", percentageUnlocked, amountCollected, "10k", coopPlayers, rewards7, data));
+        } else if(collectionLevel == 8){
+            int percentageUnlocked = amountCollected*100/25000;
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "VIII", percentageUnlocked, amountCollected, "25k", coopPlayers, rewards8, data));
+        } else if(collectionLevel == 9){
+            int percentageUnlocked = amountCollected*100/50000;
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "IX", percentageUnlocked, amountCollected, "50k", coopPlayers, rewards9, data));
+        } else if(collectionLevel == 10){
+            int percentageUnlocked = amountCollected*100/200000;
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "X", percentageUnlocked, amountCollected, "200k", coopPlayers, rewards10, data));
+        } else if(collectionLevel == 11){
+            int percentageUnlocked = amountCollected*100/400000;
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XI", percentageUnlocked, amountCollected, "400k", coopPlayers, rewards11, data));
+        } else if(collectionLevel == 12){
+            int percentageUnlocked = amountCollected*100/600000;
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XII", percentageUnlocked, amountCollected, "600k", coopPlayers, rewards12, data));
+        } else if(collectionLevel == 13){
+            int percentageUnlocked = amountCollected*100/800000;
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XIII", percentageUnlocked, amountCollected, "800k", coopPlayers, rewards13, data));
+        } else if(collectionLevel == 14){
+            int percentageUnlocked = amountCollected*100/1000000;
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XIV", percentageUnlocked, amountCollected, "1M", coopPlayers, rewards14, data));
+        } else if(collectionLevel == 15){
+            int percentageUnlocked = amountCollected*100/1200000;
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XV", percentageUnlocked, amountCollected, "1.2M", coopPlayers, rewards15, data));
+        } else if(collectionLevel == 16){
+            int percentageUnlocked = amountCollected*100/1400000;
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XVI", percentageUnlocked, amountCollected, "1.4M", coopPlayers, rewards16, data));
+        }
+
+        else if(!Config.getCollectionUnlocked(player, collectionType, collection)){
+            menu.setItem(slot, notUnlocked);
         }
     }
 }

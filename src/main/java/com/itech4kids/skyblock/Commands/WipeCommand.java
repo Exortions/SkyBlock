@@ -19,6 +19,7 @@ public class WipeCommand implements CommandExecutor {
             if(player.getServer().getOnlinePlayers().contains(cheater)){
                 cheater.sendMessage(ChatColor.RED + "Cheating has been detected on one or more of your Skyblock Profiles and your profiles have been wiped.");
                 cheater.performCommand("warp hub");
+                cheater.getInventory().clear();
                 IslandManager.deleteWorld(cheater);
                 if (sender instanceof Player){
                     player.performCommand("ban " + cheater.getName() + " Cheating_has_been_detected_on_one_or_more_of_your_Skyblock_Profiles_and_your_profiles_have_been_wiped.");

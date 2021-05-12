@@ -172,6 +172,7 @@ public class Main extends JavaPlugin {
         getCommand("mobspawn").setExecutor(new MobSpawnSetUpCommand());
         getCommand("kick").setExecutor(new KickCommand());
         getCommand("ban").setExecutor(new BanCommand());
+        getCommand("unban").setExecutor(new UnbanCommand());
         getCommand("location").setExecutor(new LocationSetupCommand());
     }
 
@@ -572,40 +573,6 @@ public class Main extends JavaPlugin {
 
                         skyblockPlayer.itemInHand = itemStack;
                     }
-
-
-//                    if (!skyblockPlayer.itemInHand.getItemMeta().equals(player.getItemInHand().getItemMeta())){
-//                        //player.sendMessage("TEST");
-//
-//                        ItemStack item = new ItemStack(Material.SKULL_ITEM, 1, (byte) SkullType.PLAYER.ordinal());
-//                        ItemMeta itemMeta = item.getItemMeta();
-//                        itemMeta.setDisplayName(org.bukkit.ChatColor.DARK_GRAY + "[Lvl 0] None");
-//                        item.setItemMeta(itemMeta);
-//
-//                        //player.sendMessage(skyblockPlayer.itemInHand + "siih");
-//                        //player.sendMessage(skyblockPlayer.oldItemInHand + "oiih");
-//
-////                        if (skyblockPlayer.oldItemInHand != null) {
-////                            updateStats(skyblockPlayer, player.getItemInHand(), skyblockPlayer.oldItemInHand);
-////                        }else {
-////                            updateStats(skyblockPlayer, player.getItemInHand(), null);
-////                        }
-//
-//                        updateStats(skyblockPlayer, player.getItemInHand(), skyblockPlayer.oldItemInHand);
-//                        updateActionbar(skyblockPlayer);
-//
-//                        if (skyblockPlayer.itemInHand != null) {
-//                            skyblockPlayer.oldItemInHand = skyblockPlayer.itemInHand;
-//                        }else{
-//                            skyblockPlayer.oldItemInHand = item;
-//                        }
-//
-//                        if (player.getItemInHand() == null){
-//                            skyblockPlayer.itemInHand = item;
-//                        }else{
-//                            skyblockPlayer.itemInHand = player.getItemInHand();
-//                        }
-//                    }
                 }
             }
         }.runTaskTimer(this, 5L, 5L);
