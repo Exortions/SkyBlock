@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.itech4kids.skyblock.Enums.ReforgeTypes;
 import com.itech4kids.skyblock.Util.ItemUtil;
+import com.itech4kids.skyblock.Util.Util;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import org.apache.commons.lang3.StringUtils;
@@ -996,7 +997,7 @@ public class ItemHandler {
     public static ItemStack createCollectionProgressItem(int index, String collectionName, String collectionLevel, int collected, String maxCollected, int maxCollectedInt, List<String> collectionRewards, boolean showRewards, int amount){
         ItemStack item = new ItemStack(Material.STAINED_GLASS_PANE, amount);
         ItemMeta meta = item.getItemMeta();
-        int percentageUnlocked = collected*100/maxCollectedInt;
+        int percentageUnlocked = Util.percentage(collected, maxCollectedInt);
         List<String> lore = new ArrayList<>();
         switch (index){
             case 1:
