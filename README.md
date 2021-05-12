@@ -129,7 +129,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Discord - [Itchs#0001](https://github.com/Itchss) or [OptimusChen#0000](https://github.com/OptimusChen)
+Discord - [Itchs#0001](https://github.com/Itchss) or [OptimusChen#9323](https://github.com/OptimusChen)
 
 Project Link: [https://github.com/Itchss/SkyBlock](https://github.com/Itchss/SkyBlock)
 
