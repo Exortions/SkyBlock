@@ -63,3 +63,4 @@ commands:
   kick:
   unban:
   location:
+  collectionstat:

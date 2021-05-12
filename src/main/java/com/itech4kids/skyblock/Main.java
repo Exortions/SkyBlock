@@ -27,10 +27,7 @@ import com.itech4kids.skyblock.Objects.Items.ItemHandler;
 import com.itech4kids.skyblock.Objects.Items.SkyblockUsableItem;
 import com.itech4kids.skyblock.Objects.SkyblockPlayer;
 import com.itech4kids.skyblock.Objects.SkyblockStats;
-import com.itech4kids.skyblock.Util.Config;
-import com.itech4kids.skyblock.Util.CustomMobSpawning;
-import com.itech4kids.skyblock.Util.LaunchPadConfig;
-import com.itech4kids.skyblock.Util.LocationsManager;
+import com.itech4kids.skyblock.Util.*;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import net.minecraft.server.v1_8_R3.EntityInsentient;
@@ -73,12 +70,9 @@ public class Main extends JavaPlugin {
         new IslandManager();
         new LocationsManager();
         ItemHandler.init();
+        try { new MessageConfig(this); } catch (IOException e) { e.printStackTrace(); }
         try { new LaunchPadConfig(this); } catch (IOException e) { e.printStackTrace(); }
-        try {
-            new CustomMobSpawning(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        try { new CustomMobSpawning(this); } catch (IOException e) { e.printStackTrace(); }
         spawnCustomMobs();
     }
 
@@ -174,6 +168,7 @@ public class Main extends JavaPlugin {
         getCommand("ban").setExecutor(new BanCommand());
         getCommand("unban").setExecutor(new UnbanCommand());
         getCommand("location").setExecutor(new LocationSetupCommand());
+        getCommand("collectionstat").setExecutor(new CollectionStatCommand());
     }
 
     public void updateMaxHealth(SkyblockPlayer skyblockPlayer) {
