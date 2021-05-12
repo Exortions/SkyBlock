@@ -18,8 +18,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class CollectionsCommand implements CommandExecutor {
@@ -99,13 +99,9 @@ public class CollectionsCommand implements CommandExecutor {
 
                 ItemStack rankings = ItemHandler.createBasicItem(Material.PAINTING, ChatColor.GREEN + "Collection", rankingsLore, (short) 0,false, 1);
 
-
                 for(int i = 0; i < 54; i++) {
                     menu.setItem(menu.firstEmpty(), emptySpace);
                 }
-
-                player.sendMessage(ChatColor.GREEN + "Cobble level: " + Config.getCollectionLevel(player, "mining","cobblestone"));
-                player.sendMessage(ChatColor.GREEN + "Cobble collected: " + Config.getCollectionCollected(player, "mining", "cobblestone"));
 
                 menu.setItem(4, rankings);
                 menu.setItem(20, farming_collection);
@@ -124,7 +120,6 @@ public class CollectionsCommand implements CommandExecutor {
                 Inventory menu = skyblockPlayer.getInventory("Farming Collection");
 
                 ItemStack notUnlocked = ItemHandler.createBasicItem(Material.INK_SACK, ChatColor.RED + "Not Unlocked", notUnlockedLore, (short) 8, false, 1);
-                ItemStack air = new ItemStack(Material.AIR);
 
                 for(int i = 0; i < 54; i++){
                     menu.setItem(menu.firstEmpty(), emptySpace);
@@ -209,57 +204,61 @@ public class CollectionsCommand implements CommandExecutor {
     // XVI = 1.4M
 
     public void checkUnlocked(Player player, Inventory menu, String collectionType, String collection, int slot, ItemStack notUnlocked, int collectionLevel, int amountCollected, int typeID, String rewards, String rewards1, String rewards2, String rewards3, String rewards4, String rewards5, String rewards6, String rewards7, String rewards8, String rewards9, String rewards10, String rewards11, String rewards12, String rewards13, String rewards14, String rewards15, String rewards16, Short data){
+        NumberFormat numFormat = NumberFormat.getInstance();
+        numFormat.setGroupingUsed(true);
+        String amountCollectedFormatted = numFormat.format(amountCollected);
+
         List<String> coopPlayers = new ArrayList<>();
         coopPlayers.add("Exortions");
         coopPlayers.add("OptimusChen");
         if(collectionLevel == 1) {
             int percentageUnlocked = amountCollected*100/100;
-            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "I", percentageUnlocked, amountCollected, Integer.toString(100), coopPlayers, rewards, data));
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "I", percentageUnlocked, amountCollectedFormatted, Integer.toString(100), coopPlayers, rewards, data));
         } else if(collectionLevel == 2){
             int percentageUnlocked = amountCollected*100/250;
-            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "II", percentageUnlocked, amountCollected, Integer.toString(250), coopPlayers, rewards2, data));
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "II", percentageUnlocked, amountCollectedFormatted, Integer.toString(250), coopPlayers, rewards2, data));
         } else if(collectionLevel == 3){
             int percentageUnlocked = amountCollected*100/750;
-            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "III", percentageUnlocked, amountCollected, Integer.toString(750), coopPlayers, rewards3, data));
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "III", percentageUnlocked, amountCollectedFormatted, Integer.toString(750), coopPlayers, rewards3, data));
         } else if(collectionLevel == 4){
             int percentageUnlocked = amountCollected*100/1500;
-            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "IV", percentageUnlocked, amountCollected, "1.5k", coopPlayers, rewards4, data));
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "IV", percentageUnlocked, amountCollectedFormatted, "1.5k", coopPlayers, rewards4, data));
         } else if(collectionLevel == 5){
             int percentageUnlocked = amountCollected*100/3000;
-            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "V", percentageUnlocked, amountCollected, "3k", coopPlayers, rewards5, data));
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "V", percentageUnlocked, amountCollectedFormatted, "3k", coopPlayers, rewards5, data));
         } else if(collectionLevel == 6){
             int percentageUnlocked = amountCollected*100/5000;
-            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "VI", percentageUnlocked, amountCollected, "5k", coopPlayers, rewards6, data));
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "VI", percentageUnlocked, amountCollectedFormatted, "5k", coopPlayers, rewards6, data));
         } else if(collectionLevel == 7){
             int percentageUnlocked = amountCollected*100/10000;
-            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "VII", percentageUnlocked, amountCollected, "10k", coopPlayers, rewards7, data));
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "VII", percentageUnlocked, amountCollectedFormatted, "10k", coopPlayers, rewards7, data));
         } else if(collectionLevel == 8){
             int percentageUnlocked = amountCollected*100/25000;
-            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "VIII", percentageUnlocked, amountCollected, "25k", coopPlayers, rewards8, data));
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "VIII", percentageUnlocked, amountCollectedFormatted, "25k", coopPlayers, rewards8, data));
         } else if(collectionLevel == 9){
             int percentageUnlocked = amountCollected*100/50000;
-            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "IX", percentageUnlocked, amountCollected, "50k", coopPlayers, rewards9, data));
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "IX", percentageUnlocked, amountCollectedFormatted, "50k", coopPlayers, rewards9, data));
         } else if(collectionLevel == 10){
             int percentageUnlocked = amountCollected*100/200000;
-            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "X", percentageUnlocked, amountCollected, "200k", coopPlayers, rewards10, data));
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "X", percentageUnlocked, amountCollectedFormatted, "200k", coopPlayers, rewards10, data));
         } else if(collectionLevel == 11){
             int percentageUnlocked = amountCollected*100/400000;
-            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XI", percentageUnlocked, amountCollected, "400k", coopPlayers, rewards11, data));
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XI", percentageUnlocked, amountCollectedFormatted, "400k", coopPlayers, rewards11, data));
         } else if(collectionLevel == 12){
             int percentageUnlocked = amountCollected*100/600000;
-            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XII", percentageUnlocked, amountCollected, "600k", coopPlayers, rewards12, data));
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XII", percentageUnlocked, amountCollectedFormatted, "600k", coopPlayers, rewards12, data));
         } else if(collectionLevel == 13){
             int percentageUnlocked = amountCollected*100/800000;
-            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XIII", percentageUnlocked, amountCollected, "800k", coopPlayers, rewards13, data));
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XIII", percentageUnlocked, amountCollectedFormatted, "800k", coopPlayers, rewards13, data));
         } else if(collectionLevel == 14){
             int percentageUnlocked = amountCollected*100/1000000;
-            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XIV", percentageUnlocked, amountCollected, "1M", coopPlayers, rewards14, data));
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XIV", percentageUnlocked, amountCollectedFormatted, "1M", coopPlayers, rewards14, data));
         } else if(collectionLevel == 15){
             int percentageUnlocked = amountCollected*100/1200000;
-            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XV", percentageUnlocked, amountCollected, "1.2M", coopPlayers, rewards15, data));
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XV", percentageUnlocked, amountCollectedFormatted, "1.2M", coopPlayers, rewards15, data));
         } else if(collectionLevel == 16){
             int percentageUnlocked = amountCollected*100/1400000;
-            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XVI", percentageUnlocked, amountCollected, "1.4M", coopPlayers, rewards16, data));
+            menu.setItem(slot, ItemHandler.createCollectionItem(typeID, StringUtils.capitalize(collection), "XVI", percentageUnlocked, amountCollectedFormatted, "1.4M", coopPlayers, rewards16, data));
         }
 
         else if(!Config.getCollectionUnlocked(player, collectionType, collection)){
