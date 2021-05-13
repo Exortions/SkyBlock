@@ -169,7 +169,6 @@ public class Main extends JavaPlugin {
         getCommand("unban").setExecutor(new UnbanCommand());
         getCommand("location").setExecutor(new LocationSetupCommand());
         getCommand("collectionstat").setExecutor(new CollectionStatCommand());
-        getCommand("skills").setExecutor(new SkillsCommand());
     }
 
     public void updateMaxHealth(SkyblockPlayer skyblockPlayer) {
