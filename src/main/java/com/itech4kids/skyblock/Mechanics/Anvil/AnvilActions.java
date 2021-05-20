@@ -1,15 +1,18 @@
-// This was made on a text editor, classes aren't imported and code isn't tested
-package skyblock.Mechanics.Anvil;
+package com.itech4kids.skyblock.Mechanics.Anvil;
+
+import com.itech4kids.skyblock.Objects.Items.ItemHandler;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 public class AnvilActions {
- 
-  public void combineItems(Inventory inv, Player player){
-    ItemStack air = new ItemStack(Material.AIR);
-    inv.setItem(29, air);
-    inv.setItem(33, air);
-    // Code to take slot 29 & 33 and combine them to make item in slot 13
-    // Blank space cause I dont know how to do that yet
-    player.playSound(Sound.ANVIL_COMBINE, 100, 1);
-  }
-  
+
+    public void combineItems(Inventory inv, Player player){
+        ItemStack air = ItemHandler.createAir();
+        inv.setItem(29, air);
+        inv.setItem(33, air);
+        player.playSound(player.getLocation(), Sound.ANVIL_USE, 100, 1);
+    }
+
 }
