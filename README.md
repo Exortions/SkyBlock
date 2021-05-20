@@ -97,7 +97,7 @@ IF YOU ARE TRYING TO PROFIT OFF OF THIS PLUGIN, PLEASE BE WARNED THAT IT IS NOT 
 <!-- FEATURES -->
 ## Features
 
-# Current Features: 
+Current Features
  - Private Islands
  - Stats
  - Custom Mobs
@@ -106,13 +106,12 @@ IF YOU ARE TRYING TO PROFIT OFF OF THIS PLUGIN, PLEASE BE WARNED THAT IT IS NOT 
  - Launch Pads
  - Regions/Locations
 
-
-# Coming Soon
+Coming Soon
  - Collections
  - Merchants
  - Dragons
 
-# Not Coming Soon
+Not Coming Soon
  - Dungeons
  - Bazaar 
  - Auctions
