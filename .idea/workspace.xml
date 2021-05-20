@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c19df67f-9a66-48e8-923f-a4c77a62bce5" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="2ed7dec3-6630-4dd0-842b-5349f487d54e" />
+        <option name="url" value="https://github.com/Itchss/SkyBlock.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="ProjectId" id="1rY0jvyCaOTSy3fWsxpbAu0inHJ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c19df67f-9a66-48e8-923f-a4c77a62bce5" name="Default Changelist" comment="" />
+      <created>1619137855233</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619137855233</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Stuff">
+      <created>1620342336639</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1620342336639</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Commit stuff">
+      <created>1620342414777</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1620342414777</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Fixed wiping issue, can now have multiple words in ban reason. Also added auto-generation for CollectionsListener.java, allowing us to really easily generate collections, without having to hardcode everything">
+      <created>1620343785297</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1620343785297</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added API &amp; Plugin jars for the future">
+      <created>1620344103635</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1620344103635</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Worked on Collection level ups (Auto-generation)">
+      <created>1620490112590</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1620490112590</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Collections">
+      <created>1620784309356</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1620784309357</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Removed join/quit messages.">
+      <created>1620790255706</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1620790255706</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fixed a bug in the ban command.">
+      <created>1620790287730</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1620790287730</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added collectionstat command.">
+      <created>1620790310803</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1620790310803</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added a message configuration.">
+      <created>1620790325653</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1620790325653</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fixed a bug with /collectionstat.">
+      <created>1620790736225</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1620790736225</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Fixed a bug with /collectionstat.">
+      <created>1620790897089</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1620790897089</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added Util.java">
+      <created>1620847449397</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1620847449397</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added messages to /collectionstat">
+      <created>1620847498676</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1620847498676</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Formatted strings with commas in collection items.">
+      <created>1620847529498</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1620847529498</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Util stuff">
+      <created>1620848012140</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1620848012140</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Added /skills command (Opens skill menu)">
+      <created>1620942923737</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1620942923737</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Cleanup">
+      <created>1620943133879</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1620943133879</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Merged from OptimusChen/RemakeSkyblock">
+      <created>1621471454993</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1621471454993</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Stuff" />
+    <MESSAGE value="Commit stuff" />
+    <MESSAGE value="Fixed wiping issue, can now have multiple words in ban reason. Also added auto-generation for CollectionsListener.java, allowing us to really easily generate collections, without having to hardcode everything" />
+    <MESSAGE value="Added API &amp; Plugin jars for the future" />
+    <MESSAGE value="Worked on Collection level ups (Auto-generation)" />
+    <MESSAGE value="Collections" />
+    <MESSAGE value="Removed join/quit messages." />
+    <MESSAGE value="Fixed a bug in the ban command." />
+    <MESSAGE value="Added collectionstat command." />
+    <MESSAGE value="Added a message configuration." />
+    <MESSAGE value="Fixed a bug with /collectionstat." />
+    <MESSAGE value="Added Util.java" />
+    <MESSAGE value="Added messages to /collectionstat" />
+    <MESSAGE value="Formatted strings with commas in collection items." />
+    <MESSAGE value="Util stuff" />
+    <MESSAGE value="Added /skills command (Opens skill menu)" />
+    <MESSAGE value="Cleanup" />
+    <MESSAGE value="Pulled from OptimusChen/RemakeSkyblock" />
+    <MESSAGE value="Merged from OptimusChen/RemakeSkyblock" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merged from OptimusChen/RemakeSkyblock" />
+  </component>
+</project>
