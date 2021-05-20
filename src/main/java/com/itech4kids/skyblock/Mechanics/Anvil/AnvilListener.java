@@ -37,12 +37,4 @@ public class AnvilListener implements Listener {
         }
     }
 
-    @EventHandler
-    public void onDrop(PlayerDropItemEvent e){
-        if(e.getItemDrop() == null) { return; }
-        if(e.getItemDrop().getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.YOUR_CHAT_COLOR + "your item name in lowercase") && e.getItemDrop().getItemStack().getType().equals(Material.BARRIER)){
-            e.setCancelled(true);
-        }
-    }
-
 }
