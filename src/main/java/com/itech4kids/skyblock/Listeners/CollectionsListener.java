@@ -69,7 +69,7 @@ public class CollectionsListener implements Listener {
                     player.sendMessage("DEBUG");
                 }
                 player.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "COLLECTION UNLOCKED " + ChatColor.YELLOW + " " + StringUtils.capitalize(collection));
-                player.playSound(player.getLocation(), Sound.LEVEL_UP, 100, 1);
+                player.playSound(player.getLocation(), Sound.LEVEL_UP, 100, 2);
             } else if (collected == 100) {
                 new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(0), "I", 1, rewards);
             } else if (collected == 250) {

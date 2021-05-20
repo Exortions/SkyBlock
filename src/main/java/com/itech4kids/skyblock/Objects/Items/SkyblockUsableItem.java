@@ -1,9 +1,8 @@
 package com.itech4kids.skyblock.Objects.Items;
 
-import com.itech4kids.skyblock.Objects.SkyblockStats;
+import com.itech4kids.skyblock.Enums.SkyblockStats;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
 import java.util.HashMap;

@@ -4,30 +4,18 @@ import com.itech4kids.skyblock.Events.SkyblockAbilityUseEvent;
 import com.itech4kids.skyblock.Events.SkyblockMagicDamageEvent;
 import com.itech4kids.skyblock.Main;
 import com.itech4kids.skyblock.Objects.SkyblockPlayer;
-import com.itech4kids.skyblock.Objects.SkyblockStats;
-import net.minecraft.server.v1_8_R3.IChatBaseComponent;
-import net.minecraft.server.v1_8_R3.ItemArmor;
-import net.minecraft.server.v1_8_R3.ItemSkull;
-import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerListHeaderFooter;
+import com.itech4kids.skyblock.Enums.SkyblockStats;
 import org.bukkit.*;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Fireball;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import java.lang.reflect.Field;
 
 public class AbilityListener implements Listener {
 

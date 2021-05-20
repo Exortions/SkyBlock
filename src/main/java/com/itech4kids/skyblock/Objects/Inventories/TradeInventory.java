@@ -18,7 +18,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TradeInventory extends CraftInventoryCustom implements Listener {
+public class TradeInventory extends CraftInventoryCustom {
 
     public Player player;
     public Player player2;
@@ -29,7 +29,7 @@ public class TradeInventory extends CraftInventoryCustom implements Listener {
         this.player = player;
         this.player2 = player2;
 
-        Bukkit.getPluginManager().registerEvents(this, Main.getMain());
+        //Bukkit.getPluginManager().registerEvents(this, Main.getMain());
 
         ItemStack space1 = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.GRAY.getData());
         ItemMeta itemMeta = space1.getItemMeta();

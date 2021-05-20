@@ -61,6 +61,10 @@ commands:
     description: Setup mob spawn locations
   ban:
   kick:
-  unban:
   location:
+  craft:
+  spawnNpc:
+  clearchat:
+  slayer:
+  spot:
   collectionstat:

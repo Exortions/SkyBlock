@@ -10,6 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="RemakeHypixelSkyblock (1)" target="1.5" />
       <module name="Skyblock" target="8" />
     </bytecodeTargetLevel>
   </component>

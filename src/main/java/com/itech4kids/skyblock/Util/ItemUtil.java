@@ -138,7 +138,7 @@ public class ItemUtil {
         nbtas.setBoolean("CustomNameVisible", Boolean.valueOf(true));
         nbtas.setBoolean("Marker", Boolean.valueOf(true));
         nbtas.setBoolean("Invulnerable", Boolean.valueOf(true));
-        Main.getMain().damage_indicator.add(as);
+        Main.damage_indicator.add(as);
         Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getMain(), (Runnable)new Runnable() {
             @Override
             public void run() {
@@ -146,7 +146,7 @@ public class ItemUtil {
                     as.remove();
                 }
                 if (as.isDead()) {
-                    Main.getMain().damage_indicator.remove(as);
+                    Main.damage_indicator.remove(as);
                 }
             }
         }, 20L);

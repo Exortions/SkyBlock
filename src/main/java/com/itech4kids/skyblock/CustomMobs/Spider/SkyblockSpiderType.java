@@ -1,4 +1,14 @@
 package com.itech4kids.skyblock.CustomMobs.Spider;
 
 public enum SkyblockSpiderType {
+
+    SPLITTER_SPIDER_INTERMEDIATE,
+    SPLITTER_SPIDER_MEDIUM,
+    DASHER_SPIDER_EASY,
+    DASHER_SPIDER_INTERMEDIATE,
+    WEAVER_SPIDER,
+    SPIDER_JOCKEY,
+    VORACIOUS_SPIDER,
+    TARANTULA_BROOD_MOTHER
+
 }

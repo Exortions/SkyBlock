@@ -1,7 +1,7 @@
 package com.itech4kids.skyblock.Objects.Items;
 
 import com.itech4kids.skyblock.Main;
-import com.itech4kids.skyblock.Objects.SkyblockStats;
+import com.itech4kids.skyblock.Enums.SkyblockStats;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;

@@ -14,6 +14,7 @@ public class LocationSetupCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
+
         if (sender instanceof Player) {
             Player player = (Player) sender;
             try {

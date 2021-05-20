@@ -7,6 +7,7 @@ import com.sk89q.worldedit.MaxChangedBlocksException;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.bukkit.BukkitWorld;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import com.sk89q.worldedit.extent.clipboard.io.SchematicWriter;
 import com.sk89q.worldedit.schematic.MCEditSchematicFormat;
 import org.bukkit.*;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
@@ -80,12 +81,6 @@ public class IslandManager {
                     world.getBlockAt(new Location(world, -2, 104, 36)).setType(Material.PORTAL);
                 }
             }.runTaskLater(Main.getMain(), 5);
-
-            JERRY jerry = new JERRY(((CraftWorld) world).getHandle());
-            jerry.enderTeleportTo(2, 100, 26);
-            ((CraftWorld) world).getHandle().addEntity(jerry);
-            jerry.enderTeleportTo(2, 100, 26);
-            jerry.getBukkitEntity().teleport(new Location(world, 2, 100, 26));
 
         }
         return false;

@@ -3,14 +3,15 @@ package com.itech4kids.skyblock.Events;
 import com.connorlinfoot.actionbarapi.ActionBarAPI;
 import com.itech4kids.skyblock.Main;
 import com.itech4kids.skyblock.Objects.SkyblockPlayer;
-import com.itech4kids.skyblock.Objects.SkyblockStats;
+import com.itech4kids.skyblock.Enums.SkyblockStats;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
 
-public class SkyblockAbilityUseEvent extends PlayerEvent implements Cancellable {
+public class
+SkyblockAbilityUseEvent extends PlayerEvent implements Cancellable {
 
     private static final HandlerList HANDLERS = new HandlerList();
     private boolean isCancelled;

@@ -2,19 +2,16 @@ package com.itech4kids.skyblock.Events;
 
 import com.itech4kids.skyblock.Main;
 import com.itech4kids.skyblock.Objects.SkyblockPlayer;
-import com.itech4kids.skyblock.Objects.SkyblockStats;
-import com.itech4kids.skyblock.Util.ItemUtil;
+import com.itech4kids.skyblock.Enums.SkyblockStats;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.event.NPCDamageEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerEvent;
 
@@ -39,7 +36,7 @@ public class SkyblockMagicDamageEvent extends PlayerEvent implements Cancellable
                     return;
                 }else {
                     if (!entity.hasMetadata("NPC")) {
-                        Bukkit.getPluginManager().callEvent(new EntityDamageEvent(entity, EntityDamageEvent.DamageCause.CUSTOM, (skyblockPlayer.getStat(SkyblockStats.ABILITY_DAMAGE) + abilityDamage) * (1 + (skyblockPlayer.getStat(SkyblockStats.MANA) / 100F) * scaling)));
+                        Bukkit.getPluginManager().callEvent(new EntityDamageEvent(entity, EntityDamageEvent.DamageCause.ENTITY_EXPLOSION, (skyblockPlayer.getStat(SkyblockStats.ABILITY_DAMAGE) + abilityDamage) * (1 + (skyblockPlayer.getStat(SkyblockStats.MANA) / 100F) * scaling)));
                     } else {
                         Bukkit.getPluginManager().callEvent(new NPCDamageEvent(CitizensAPI.getNPCRegistry().getNPC(entity), new EntityDamageEvent(entity, EntityDamageEvent.DamageCause.CUSTOM, (skyblockPlayer.getStat(SkyblockStats.ABILITY_DAMAGE) + abilityDamage) * (1 + (skyblockPlayer.getStat(SkyblockStats.MANA) / 100F) * scaling))));
                     }

@@ -1,5 +1,7 @@
 package com.itech4kids.skyblock.Objects;
 
+import com.itech4kids.skyblock.Enums.PlayerScoreboardState;
+import com.itech4kids.skyblock.Enums.SkyblockStats;
 import com.itech4kids.skyblock.Util.Config;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -43,6 +45,8 @@ public class SkyblockPlayer {
     public ArrayList<SkyblockLocation> locations;
     public SkyblockLocation location;
 
+    public PlayerScoreboardState state;
+
     public SkyblockPlayer(Player player){
         this.player = player;
         tradedPlayers = new ArrayList<>();
@@ -55,6 +59,7 @@ public class SkyblockPlayer {
 
         padName = "";
         brokenBlock = null;
+        state = PlayerScoreboardState.DEFAULT;
 
         locations = new ArrayList<>();
         location = null;

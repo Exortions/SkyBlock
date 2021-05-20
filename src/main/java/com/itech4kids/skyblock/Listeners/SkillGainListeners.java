@@ -6,9 +6,9 @@ import com.itech4kids.skyblock.CustomMobs.Zombie.SkyblockZombieType;
 import com.itech4kids.skyblock.Events.SkyblockSkillExpGainEvent;
 import com.itech4kids.skyblock.Main;
 import com.itech4kids.skyblock.Objects.Island.IslandManager;
-import com.itech4kids.skyblock.Objects.SkillType;
+import com.itech4kids.skyblock.Enums.SkillType;
 import com.itech4kids.skyblock.Objects.SkyblockPlayer;
-import com.itech4kids.skyblock.Objects.SkyblockStats;
+import com.itech4kids.skyblock.Enums.SkyblockStats;
 import com.itech4kids.skyblock.Util.Config;
 import com.itech4kids.skyblock.Util.RegenerativeBlock;
 import net.citizensnpcs.api.CitizensAPI;
@@ -27,12 +27,9 @@ import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class SkillGainListeners implements Listener {
@@ -58,9 +55,8 @@ public class SkillGainListeners implements Listener {
         if (e.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)) {
             if (c <= skyblockPlayer.getStat(SkyblockStats.SEA_CREATURE_CHANCE)) {
                 if (r2 == 0) {
-                    SkyblockZombie skyblockZombie = new SkyblockZombie(SkyblockZombieType.SEA_WALKER, ((CraftWorld) player.getWorld()).getHandle());
-                    world.addEntity(skyblockZombie);
-                    skyblockZombie.enderTeleportTo(x, y, z);
+                    SkyblockZombie skyblockZombie = new SkyblockZombie(SkyblockZombieType.SEA_WALKER, e.getHook().getLocation());
+
                 } else if (r2 == 1) {
                     NPC npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, ChatColor.RED + "Yeti " + ChatColor.GREEN + Main.format(1 * 2000000) + ChatColor.RED + "❤");
                     npc.spawn(new Location(world.getWorld(), x, y, z));
@@ -88,7 +84,9 @@ public class SkillGainListeners implements Listener {
             Block oldBlock = e.getBlock();
             SkyblockPlayer skyblockPlayer = main.getPlayer(e.getPlayer().getName());
 
-            skyblockPlayer.brokenBlock = e.getBlock();
+            if (!e.getBlock().getType().equals(Material.COBBLESTONE)) {
+                skyblockPlayer.brokenBlock = e.getBlock();
+            }
 
             switch (block.getType()) {
                 case STONE:
@@ -107,17 +105,45 @@ public class SkillGainListeners implements Listener {
                     }
                     break;
                 case COBBLESTONE:
-                    Bukkit.getPluginManager().callEvent(new SkyblockSkillExpGainEvent(skyblockPlayer, SkillType.MINING, 1));
-                    for (ItemStack itemStack : block.getDrops()) {
-                        block.getWorld().dropItemNaturally(block.getLocation(), itemStack);
-                    }
-                    block.setType(Material.BEDROCK);
-                    new BukkitRunnable() {
-                        @Override
-                        public void run() {
-                            block.setType(Material.STONE);
+                    if (skyblockPlayer.brokenBlock != null) {
+                        if (skyblockPlayer.brokenBlock.getType().equals(Material.COBBLESTONE)) {
+                            Bukkit.getPluginManager().callEvent(new SkyblockSkillExpGainEvent(skyblockPlayer, SkillType.MINING, 1));
+                            for (ItemStack itemStack : block.getDrops()) {
+                                block.getWorld().dropItemNaturally(block.getLocation(), itemStack);
+                            }
+                            block.setType(Material.BEDROCK);
+                            new BukkitRunnable() {
+                                @Override
+                                public void run() {
+                                    block.setType(Material.STONE);
+                                }
+                            }.runTaskLater(main, 20 * 7);
+                        }else{
+                            Bukkit.getPluginManager().callEvent(new SkyblockSkillExpGainEvent(skyblockPlayer, SkillType.MINING, 1));
+                            for (ItemStack itemStack : block.getDrops()) {
+                                block.getWorld().dropItemNaturally(block.getLocation(), itemStack);
+                            }
+                            block.setType(Material.BEDROCK);
+                            new BukkitRunnable() {
+                                @Override
+                                public void run() {
+                                    block.setType(Material.COBBLESTONE);
+                                }
+                            }.runTaskLater(main, 20 * 7);
                         }
-                    }.runTaskLater(main, 20*7);
+                    }else{
+                        Bukkit.getPluginManager().callEvent(new SkyblockSkillExpGainEvent(skyblockPlayer, SkillType.MINING, 1));
+                        for (ItemStack itemStack : block.getDrops()) {
+                            block.getWorld().dropItemNaturally(block.getLocation(), itemStack);
+                        }
+                        block.setType(Material.BEDROCK);
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                block.setType(Material.COBBLESTONE);
+                            }
+                        }.runTaskLater(main, 20 * 7);
+                    }
                     break;
                 case LOG:
                     Bukkit.getPluginManager().callEvent(new SkyblockSkillExpGainEvent(skyblockPlayer, SkillType.FORAGING, 6));
@@ -161,7 +187,7 @@ public class SkillGainListeners implements Listener {
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            block.setType(Material.COAL_BLOCK);
+                            block.setType(Material.COAL_ORE);
                         }
                     }.runTaskLater(main, 20*7);
                     break;
@@ -322,6 +348,8 @@ public class SkillGainListeners implements Listener {
                     }.runTaskLater(main, 20*7);
                     break;
             }
+
+
         }else{
             e.setCancelled(true);
         }
@@ -333,19 +361,16 @@ public class SkillGainListeners implements Listener {
         ItemMeta meta = e.getItem().getItemStack().getItemMeta();
 
         if (meta.getDisplayName().contains(ChatColor.GOLD + "coin_iron_")){
-            player.sendMessage(ChatColor.GOLD + "+" + meta.getDisplayName().split("_")[2] + " coins! (Pick Up)");
             Config.setPurseCoins(player, (int) (Config.getPurseCoins(player) + Integer.parseInt(meta.getDisplayName().split("_")[2])));
             player.playSound(player.getLocation(), Sound.ORB_PICKUP, 10, 2);
             e.setCancelled(true);
             e.getItem().remove();
         }else if (meta.getDisplayName().contains(ChatColor.GOLD + "coin_gold_")){
-            player.sendMessage(ChatColor.GOLD + "+" + meta.getDisplayName().split("_")[2] + " coins! (Pick Up)");
             Config.setPurseCoins(player, (int) (Config.getPurseCoins(player) + Integer.parseInt(meta.getDisplayName().split("_")[2])));
             player.playSound(player.getLocation(), Sound.ORB_PICKUP, 10, 2);
             e.setCancelled(true);
             e.getItem().remove();
         }else if (meta.getDisplayName().contains(ChatColor.GOLD + "coin_diamond_")){
-            player.sendMessage(ChatColor.GOLD + "+" + meta.getDisplayName().split("_")[2] + " coins! (Pick Up)");
             Config.setPurseCoins(player, (int) (Config.getPurseCoins(player) + Integer.parseInt(meta.getDisplayName().split("_")[2])));
             player.playSound(player.getLocation(), Sound.ORB_PICKUP, 10, 2);
             e.setCancelled(true);

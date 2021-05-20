@@ -2,10 +2,8 @@ package com.itech4kids.skyblock.Util;
 
 import com.itech4kids.skyblock.Main;
 import com.itech4kids.skyblock.Objects.SkyblockLocation;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.apache.commons.lang.math.IntRange;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -34,72 +32,49 @@ public class LocationsManager {
         File file = new File(Main.getMain().getDataFolder()+File.separator+"locations.yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         SkyblockLocation loc = null;
-        for (String string : getStoredLocations()){
+        ArrayList<SkyblockLocation> locs = new ArrayList<>();
+
+        for (String string : getStoredLocations()) {
             loc = new SkyblockLocation((Location) config.get(string + ".pos1"), (Location) config.get(string + ".pos2"),
                     config.getString(string + ".name"), ChatColor.valueOf(config.getString(string + ".color")), config.getInt(string + ".weight"));
-            for (Block block : blocksFromTwoPoints(loc.pos1, loc.pos2)){
-                if (block.getLocation().distance(location) < 2){
-                    loc = new SkyblockLocation((Location) config.get(string + ".pos1"), (Location) config.get(string + ".pos2"),
-                            config.getString(string + ".name"), ChatColor.valueOf(config.getString(string + ".color")), config.getInt(string + ".weight"));
-                    break;
-                }else{
-                    loc = null;
-                }
+
+            double x1 = loc.pos1.getX();
+            double y1 = loc.pos1.getY();
+            double z1 = loc.pos1.getZ();
+
+            double x2 = loc.pos2.getX();
+            double y2 = loc.pos2.getY();
+            double z2 = loc.pos2.getZ();
+
+            if (inCuboid(location, loc.pos1, loc.pos2)){
+                locs.add(loc);
+            } else {
+                loc = null;
             }
         }
+
+        if (locs.size() >= 1){
+            for (SkyblockLocation skyblockLocation : locs){
+                if (loc != null) {
+                    if (skyblockLocation.weight > loc.weight){
+                        loc = skyblockLocation;
+                    }
+                }else{
+                    loc = skyblockLocation;
+                }
+            }
+        }else{
+            return null;
+        }
+
         return loc;
+
     }
 
-    public static List<Block> blocksFromTwoPoints(Location loc1, Location loc2){
-       List<Block> blocks = new ArrayList<Block>();
-
-        World w = loc1.getWorld();
-        int x1 = loc1.getBlockX();
-        int y1 = loc1.getBlockY();
-        int z1 = loc1.getBlockZ();
-
-        int x2 = loc2.getBlockX();
-        int y2 = loc2.getBlockY();
-        int z2 = loc2.getBlockZ();
-
-        int xMin, yMin, zMin;
-        int xMax, yMax, zMax;
-        int x, y, z;
-
-        if(x1 > x2){
-            xMin = x2;
-            xMax = x1;
-        }else{
-            xMin = x1;
-            xMax = x2;
-        }
-
-        if(y1 > y2){
-            yMin = y2;
-            yMax = y1;
-        }else{
-            yMin = y1;
-            yMax = y2;
-        }
-
-        if(z1 > z2){
-            zMin = z2;
-            zMax = z1;
-        }else{
-            zMin = z1;
-            zMax = z2;
-        }
-
-        for(x = xMin; x <= xMax; x ++){
-            for(y = yMin; y <= yMax; y ++){
-                for(z = zMin; z <= zMax; z ++){
-                    Block b = new Location(w, x, y, z).getBlock();
-                    blocks.add(b);
-                }
-            }
-        }
-
-        return blocks;
+    public static boolean inCuboid(Location origin, Location l1, Location l2){
+        return new IntRange(l1.getX(), l2.getX()).containsDouble(origin.getX())
+                && new IntRange(l1.getY(), l2.getY()).containsDouble(origin.getY())
+                &&  new IntRange(l1.getZ(), l2.getZ()).containsDouble(origin.getZ());
     }
 
     public static ArrayList<String> getStoredLocations(){

@@ -1,7 +1,7 @@
 package com.itech4kids.skyblock.Objects.Items.GuiItems;
 
 import com.itech4kids.skyblock.Objects.SkyblockPlayer;
-import com.itech4kids.skyblock.Objects.SkyblockStats;
+import com.itech4kids.skyblock.Enums.SkyblockStats;
 import com.itech4kids.skyblock.Util.ItemUtil;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;

@@ -6,12 +6,13 @@ import com.itech4kids.skyblock.Objects.Island.IslandManager;
 import com.itech4kids.skyblock.Objects.Items.GuiItems.SkyblockGuiItem;
 import com.itech4kids.skyblock.Objects.Items.GuiItems.SkyblockSkillGuiItem;
 import com.itech4kids.skyblock.Objects.Items.GuiItems.SkyblockStatItem;
-import com.itech4kids.skyblock.Objects.Items.ItemHandler;
+import com.itech4kids.skyblock.Objects.Pets.PetEvent.SkyblockPetEquipEvent;
+import com.itech4kids.skyblock.Objects.Pets.PetEvent.SkyblockPetUnequipEvent;
 import com.itech4kids.skyblock.Objects.Pets.SkyblockPet;
 import com.itech4kids.skyblock.Objects.Pets.SkyblockPetGuiItem;
-import com.itech4kids.skyblock.Objects.SkillType;
+import com.itech4kids.skyblock.Enums.SkillType;
 import com.itech4kids.skyblock.Objects.SkyblockPlayer;
-import com.itech4kids.skyblock.Objects.SkyblockStats;
+import com.itech4kids.skyblock.Enums.SkyblockStats;
 import com.itech4kids.skyblock.Util.Config;
 import com.itech4kids.skyblock.Util.ItemUtil;
 import org.bukkit.*;
@@ -153,7 +154,7 @@ public class SkyblockMenuListener implements Listener {
                     menu = skyblockPlayer.getInventory("Your Skills");
 
                     for (int i = 0; i < 54; ++i){
-                        menu.setItem(i, ItemHandler.createEmptySpace());
+                        menu.setItem(i, space1);
                     }
 
                     SkyblockSkillGuiItem farming = new SkyblockSkillGuiItem(SkillType.FARMING, skyblockPlayer, "Harvest crops and shear sheep to earn Farming XP!", "Farmhand", null,294, 0);
@@ -186,8 +187,8 @@ public class SkyblockMenuListener implements Listener {
                     menu.setItem(32, taming);
                     menu.setItem(33, dungeoneering);
 
-                    menu.setItem(48, ItemHandler.createPageBackArrow("Skyblock Menu"));
-                    menu.setItem(49, ItemHandler.createExitBarrier());
+                    menu.setItem(48, goback);
+                    menu.setItem(49, close);
                     player.openInventory(menu);
                     break;
                 case "collections":
@@ -281,7 +282,7 @@ public class SkyblockMenuListener implements Listener {
                     player.openInventory(menu);
                     break;
                 case "crafting table":
-                    player.performCommand("workbench");
+                    player.performCommand("craft");
                     break;
                 case "wardrobe":
                     skyblockPlayer.setInventory("Wardrobe", Bukkit.createInventory(null, 54, "Wardrobe"));
@@ -362,6 +363,7 @@ public class SkyblockMenuListener implements Listener {
                     for (int i = 0; i < lore.size(); ++i) {
                         String string = lore.get(i);
                         if (string.startsWith(ChatColor.RED + "Click to despawn!")) {
+                            Bukkit.getPluginManager().callEvent(new SkyblockPetUnequipEvent(player, skyblockPlayer.activePet));
                             skyblockPlayer.activePet.remove();
                             skyblockPlayer.activePet = null;
                             Config.setActivePet(player, null);
@@ -377,6 +379,7 @@ public class SkyblockMenuListener implements Listener {
                                 skyblockPlayer.activePet.remove();
                             }
                             skyblockPlayer.activePet = SkyblockPet.spawnArmorStand(player, e.getCurrentItem());
+                            Bukkit.getPluginManager().callEvent(new SkyblockPetEquipEvent(player, skyblockPlayer.activePet));
                             break;
                         }
                     }

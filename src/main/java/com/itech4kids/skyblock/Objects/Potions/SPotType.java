@@ -1,0 +1,40 @@
+package com.itech4kids.skyblock.Objects.Potions;
+
+public enum SPotType {
+
+    STUN,
+    RABBIT,
+    BURNING,
+    SPEED,
+    ENCHANTING_XP_BOOST,
+    PET_LUCK,
+    CRITICAL,
+    STRENGTH,
+    EXPERIENCE,
+    WATER_BREATHING,
+    FARMING_XP_BOOST,
+    FORAGING_XP_BOOST,
+    SPELUNKER,
+    MANA,
+    COMBAT_XP_BOOST,
+    FISHING_XP_BOOST,
+    MINING_XP_BOOST,
+    RESISTANCE,
+    MAGIC_FIND,
+    SPIRIT,
+    ADRENALINE,
+    HASTE,
+    REGENERATION,
+    AGILITY,
+    NIGHT_VISION,
+    DODGE,
+    ARCHERY,
+    JUMP_BOOST,
+    FIRE_RESISTANCE,
+    TRUE_RESISTANCE,
+    ALCHEMY_XP_BOOST,
+    HEALING,
+    POISON,
+    ABSORPTION
+
+}
