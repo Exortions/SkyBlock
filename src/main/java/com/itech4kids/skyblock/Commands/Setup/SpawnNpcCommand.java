@@ -44,11 +44,11 @@ public class SpawnNpcCommand implements CommandExecutor {
                         armorStand.setCustomNameVisible(true);
                         armorStand.setCustomName("Miner Merchant");
                         nbtas = new NBTEntity(armorStand);
-                        nbtas.setBoolean("Invisible", Boolean.valueOf(true));
-                        nbtas.setBoolean("Gravity", Boolean.valueOf(false));
-                        nbtas.setBoolean("CustomNameVisible", Boolean.valueOf(true));
-                        nbtas.setBoolean("Marker", Boolean.valueOf(true));
-                        nbtas.setBoolean("Invulnerable", Boolean.valueOf(true));
+                        nbtas.setBoolean("Invisible", Boolean.TRUE);
+                        nbtas.setBoolean("Gravity", Boolean.FALSE);
+                        nbtas.setBoolean("CustomNameVisible", Boolean.TRUE);
+                        nbtas.setBoolean("Marker", Boolean.TRUE);
+                        nbtas.setBoolean("Invulnerable", Boolean.TRUE);
 
                         armorStand.teleport(new Location(npc.getEntity().getLocation().getWorld(), npc.getEntity().getLocation().getX(), npc.getEntity().getLocation().getY() + 2.15, npc.getEntity().getLocation().getZ()));
                         armorStand.setMetadata("minerMerchant", new FixedMetadataValue(Main.getMain(), true));
@@ -57,11 +57,11 @@ public class SpawnNpcCommand implements CommandExecutor {
                         click = npc.getEntity().getWorld().spawn(new Location(npc.getEntity().getLocation().getWorld(), npc.getEntity().getLocation().getX(), npc.getEntity().getLocation().getY() + 2.10, npc.getEntity().getLocation().getZ()), ArmorStand.class);
                         click.setCustomName(ChatColor.YELLOW + "" + ChatColor.BOLD + "CLICK");
                         nbtEntity = new NBTEntity(click);
-                        nbtEntity.setBoolean("Invisible", Boolean.valueOf(true));
-                        nbtEntity.setBoolean("Gravity", Boolean.valueOf(false));
-                        nbtEntity.setBoolean("CustomNameVisible", Boolean.valueOf(true));
-                        nbtEntity.setBoolean("Marker", Boolean.valueOf(true));
-                        nbtEntity.setBoolean("Invulnerable", Boolean.valueOf(true));
+                        nbtEntity.setBoolean("Invisible", Boolean.TRUE);
+                        nbtEntity.setBoolean("Gravity", Boolean.FALSE);
+                        nbtEntity.setBoolean("CustomNameVisible", Boolean.TRUE);
+                        nbtEntity.setBoolean("Marker", Boolean.TRUE);
+                        nbtEntity.setBoolean("Invulnerable", Boolean.TRUE);
                         click.teleport(new Location(npc.getEntity().getLocation().getWorld(), npc.getEntity().getLocation().getX(), npc.getEntity().getLocation().getY() + 2.10, npc.getEntity().getLocation().getZ()));
 
                         lookClose = npc.getTrait(LookClose.class);
@@ -86,11 +86,11 @@ public class SpawnNpcCommand implements CommandExecutor {
                         armorStand.setCustomNameVisible(true);
                         armorStand.setCustomName("Farmer Merchant");
                         nbtas = new NBTEntity(armorStand);
-                        nbtas.setBoolean("Invisible", Boolean.valueOf(true));
-                        nbtas.setBoolean("Gravity", Boolean.valueOf(false));
-                        nbtas.setBoolean("CustomNameVisible", Boolean.valueOf(true));
-                        nbtas.setBoolean("Marker", Boolean.valueOf(true));
-                        nbtas.setBoolean("Invulnerable", Boolean.valueOf(true));
+                        nbtas.setBoolean("Invisible", Boolean.TRUE);
+                        nbtas.setBoolean("Gravity", Boolean.FALSE);
+                        nbtas.setBoolean("CustomNameVisible", Boolean.TRUE);
+                        nbtas.setBoolean("Marker", Boolean.TRUE);
+                        nbtas.setBoolean("Invulnerable", Boolean.TRUE);
 
                         armorStand.teleport(new Location(npc.getEntity().getLocation().getWorld(), npc.getEntity().getLocation().getX(), npc.getEntity().getLocation().getY() + 2.15, npc.getEntity().getLocation().getZ()));
                         armorStand.setMetadata("farmerMerchant", new FixedMetadataValue(Main.getMain(), true));
@@ -99,11 +99,11 @@ public class SpawnNpcCommand implements CommandExecutor {
                         click = npc.getEntity().getWorld().spawn(npc.getEntity().getLocation(), ArmorStand.class);
                         click.setCustomName(ChatColor.YELLOW + "" + ChatColor.BOLD + "CLICK");
                         nbtEntity = new NBTEntity(click);
-                        nbtEntity.setBoolean("Invisible", Boolean.valueOf(true));
-                        nbtEntity.setBoolean("Gravity", Boolean.valueOf(false));
-                        nbtEntity.setBoolean("CustomNameVisible", Boolean.valueOf(true));
-                        nbtEntity.setBoolean("Marker", Boolean.valueOf(true));
-                        nbtEntity.setBoolean("Invulnerable", Boolean.valueOf(true));
+                        nbtEntity.setBoolean("Invisible", Boolean.TRUE);
+                        nbtEntity.setBoolean("Gravity", Boolean.FALSE);
+                        nbtEntity.setBoolean("CustomNameVisible", Boolean.TRUE);
+                        nbtEntity.setBoolean("Marker", Boolean.TRUE);
+                        nbtEntity.setBoolean("Invulnerable", Boolean.TRUE);
 
                         lookClose = npc.getTrait(LookClose.class);
                         lookClose.lookClose(true);

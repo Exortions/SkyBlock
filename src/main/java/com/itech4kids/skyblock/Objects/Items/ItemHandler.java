@@ -1172,4 +1172,8 @@ public class ItemHandler {
         }
     }
 
+    public static ItemStack createAir(){
+        return new ItemStack(Material.AIR);
+    }
+
 }

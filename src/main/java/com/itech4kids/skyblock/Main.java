@@ -32,6 +32,8 @@ import com.itech4kids.skyblock.CustomMobs.Wolf.SkyblockWolfType;
 import com.itech4kids.skyblock.CustomMobs.Zombie.SkyblockZombie;
 import com.itech4kids.skyblock.CustomMobs.Zombie.SkyblockZombieType;
 import com.itech4kids.skyblock.Listeners.*;
+import com.itech4kids.skyblock.Mechanics.Anvil.AnvilCommand;
+import com.itech4kids.skyblock.Mechanics.Anvil.AnvilListener;
 import com.itech4kids.skyblock.Objects.Crafting.CraftingRecipe;
 import com.itech4kids.skyblock.Objects.Island.IslandManager;
 import com.itech4kids.skyblock.Objects.Items.ItemHandler;
@@ -197,6 +199,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new SlayerListener(), this);
         Bukkit.getPluginManager().registerEvents(new SPotListener(), this);
         Bukkit.getPluginManager().registerEvents(new CollectionsListener(), this);
+        Bukkit.getPluginManager().registerEvents(new AnvilListener(), this);
 
     }
 
@@ -235,6 +238,7 @@ public class Main extends JavaPlugin {
         getCommand("slayer").setExecutor(new SlayerCommand());
         getCommand("spot").setExecutor(new PotionCommand());
         getCommand("collectionstat").setExecutor(new CollectionStatCommand());
+        getCommand("anvil").setExecutor(new AnvilCommand());
 
     }
 
