@@ -48,6 +48,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
+    <li><a href="#features">Features</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -93,6 +94,28 @@ IF YOU ARE TRYING TO PROFIT OFF OF THIS PLUGIN, PLEASE BE WARNED THAT IT IS NOT 
    `C:/Users/Username/Folder/Server/plugins`
 4. Stop and start your server again.
 4. Log onto the server! Bam! You now have SkyBlock running on your private server.
+<!-- FEATURES -->
+## Features
+
+# Current Features: 
+ - Private Islands
+ - Stats
+ - Custom Mobs
+ - Slayers
+ - Skills
+ - Launch Pads
+ - Regions/Locations
+
+
+# Coming Soon
+ - Collections
+ - Merchants
+ - Dragons
+
+# Not Coming Soon
+ - Dungeons
+ - Bazaar 
+ - Auctions
 
 <!-- USAGE EXAMPLES -->
 ## Usage
