@@ -9,7 +9,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/Itchss/SkyBlock">
+  <a href="https://github.com/Exortions/SkyBlock">
     <img src="images/skyblock.png" alt="SkyBlock" width="720" height="420">
   </a>
 
@@ -18,14 +18,14 @@
   <p align="center">
     An awesome attempt at re-creating Hypixel SkyBlock.
     <br />
-    <a href="https://github.com/Itchss/SkyBlock"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Exortions/SkyBlock"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Itchss/SkyBlock">View Demo</a>
+    <a href="https://github.com/Exortions/SkyBlock">View Demo</a>
     ·
-    <a href="https://github.com/Itchss/SkyBlock/issues">Report Bug</a>
+    <a href="https://github.com/Exortions/SkyBlock/issues">Report Bug</a>
     ·
-    <a href="https://github.com/Itchss/SkyBlock/issues">Request Feature</a>
+    <a href="https://github.com/Exortions/SkyBlock/issues">Request Feature</a>
   </p>
 </p>
 
@@ -99,12 +99,12 @@ IF YOU ARE TRYING TO PROFIT OFF OF THIS PLUGIN, PLEASE BE WARNED THAT IT IS NOT 
 
 As said above, if you are downloading this project, you agree to the policy/terms/conditions of this project. Do not attempt get commercial use from this project, because the idea of Hypixel SkyBlock was created by the Hypixel admins, therefore I do not have the right to give this out to people for them to make money off of.
 
-_For more examples, please refer to the [Documentation](https://github.com/Itchss/SkyBlock) - Not done yet._
+_For more examples, please refer to the [Documentation](https://github.com/Exortions/SkyBlock) - Not done yet._
 
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/Itchss/SkyBlock/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/Exortions/SkyBlock/issues) for a list of proposed features (and known issues).
 
 
 
@@ -124,14 +124,14 @@ Contributions are what make the open source community such an amazing place to b
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-* [License](https://github.com/Itchss/SkyBlock/blob/master/LICENSE)
+* [License](https://github.com/Exortions/SkyBlock/blob/master/LICENSE)
 
 <!-- CONTACT -->
 ## Contact
 
-Discord - [Exo#0001](https://github.com/Itchss) or [OptimusChen#9323](https://github.com/OptimusChen)
+Discord - [Exo#0001](https://github.com/Exortions) or [OptimusChen#9323](https://github.com/OptimusChen)
 
-Project Link: [https://github.com/Itchss/SkyBlock](https://github.com/Itchss/SkyBlock)
+Project Link: [https://github.com/Exortions/SkyBlock](https://github.com/Exortions/SkyBlock)
 
 
 
@@ -150,16 +150,16 @@ Project Link: [https://github.com/Itchss/SkyBlock](https://github.com/Itchss/Sky
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/Itchss/SkyBlock?style=for-the-badge
-[contributors-url]: https://github.com/Itchss/SkyBlock/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Itchss/SkyBlock?style=for-the-badge
-[forks-url]: https://github.com/Itchss/SkyBlock/members
-[stars-shield]: https://img.shields.io/github/stars/Itchss/SkyBlock?style=for-the-badge
-[stars-url]: https://github.com/Itchss/SkyBlock/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Itchss/SkyBlock?style=for-the-badge
-[issues-url]: https://github.com/Itchss/SkyBlock/issues
-[license-shield]: https://img.shields.io/github/license/Itchss/SkyBlock?style=for-the-badge
-[license-url]: https://github.com/Itchss/SkyBlock/blob/master/LICENSE.txt
-[size-shield]: https://img.shields.io/github/languages/code-size/Itchss/SkyBlock?style=for-the-badge
-[size-url]: https://github.com/Itchss/SkyBlock
+[contributors-shield]: https://img.shields.io/github/contributors/Exortions/SkyBlock?style=for-the-badge
+[contributors-url]: https://github.com/Exortions/SkyBlock/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Exortions/SkyBlock?style=for-the-badge
+[forks-url]: https://github.com/Exortions/SkyBlock/members
+[stars-shield]: https://img.shields.io/github/stars/Exortions/SkyBlock?style=for-the-badge
+[stars-url]: https://github.com/Exortions/SkyBlock/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Exortions/SkyBlock?style=for-the-badge
+[issues-url]: https://github.com/Exortions/SkyBlock/issues
+[license-shield]: https://img.shields.io/github/license/Exortions/SkyBlock?style=for-the-badge
+[license-url]: https://github.com/Exortions/SkyBlock/blob/master/LICENSE.txt
+[size-shield]: https://img.shields.io/github/languages/code-size/Exortions/SkyBlock?style=for-the-badge
+[size-url]: https://github.com/Exortions/SkyBlock
 [product-screenshot]: images/screenshot.png
