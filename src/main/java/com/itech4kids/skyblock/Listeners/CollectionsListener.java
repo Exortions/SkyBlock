@@ -36,23 +36,6 @@ public class CollectionsListener implements Listener {
         collectionPickup(player, "farming", "potato", 392, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
     }
 
-    // I = 100
-    // II = 250
-    // III = 750
-    // IV = 1.5k
-    // V = 3k
-    // VI = 5k
-    // VII = 10k
-    // VIII = 25k
-    // IX = 50k
-    // X = 200k
-    // XI = 400k
-    // XII = 600k
-    // XIII = 800k
-    // XIV = 1M
-    // XV = 1.2M
-    // XVI = 1.4M
-
     public void collectionPickup(Player player, String collectionType, String collection, int typeID, PlayerPickupItemEvent e, String rewards, String rewards2, String rewards3, String rewards4, String rewards5, String rewards6, String rewards7, String rewards8, String rewards9, String rewards10, String rewards11, String rewards12, String rewards13, String rewards14, String rewards15, String rewards16){
         int collected = Config.getCollectionCollected(player, collectionType, collection);
         if(e.getItem().getItemStack().getTypeId() == typeID){
@@ -64,6 +47,7 @@ public class CollectionsListener implements Listener {
             if(collected == 1) {
                 try {
                     Config.setCollectionUnlocked(player, collectionType, collection, true);
+                    Config.setCollectionLevel(player, collectionType, collection, 1);
                 } catch (IOException exception) {
                     exception.printStackTrace();
                     player.sendMessage("DEBUG");
