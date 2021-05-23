@@ -18,7 +18,7 @@
   <p align="center">
     An awesome attempt at re-creating Hypixel SkyBlock.
     <br />
-    <a href="https://hypixel-skyblock.fandom.com/wiki/Hypixel_SkyBlock_Wiki"><strong>Explore the wiki »</strong></a>
+    <a href="https://github.com/Exortions/SkyBlock/wiki"><strong>Explore the wiki »</strong></a>
     <br />
     <br />
     <a href="https://github.com/Exortions/SkyBlock">View Demo</a>
