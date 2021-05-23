@@ -31,8 +31,9 @@ public class KickCommand implements CommandExecutor {
             } else if (args.length == 2) {
                 Player target = Bukkit.getPlayer(args[0]);
                 String reason = args[1];
+                String new_reason = reason.replace('_', ' ');
                 if (player.getServer().getOnlinePlayers().contains(target)) {
-                    target.kickPlayer(ChatColor.RED + "You have been kicked from \nHypixel SkyBlock!\nKicked by: " + ChatColor.GRAY + player.getName() + ChatColor.RED + "\nReason: " + ChatColor.GRAY + reason);
+                    target.kickPlayer(ChatColor.RED + "You have been kicked from \nHypixel SkyBlock!\nKicked by: " + ChatColor.GRAY + player.getName() + ChatColor.RED + "\nReason: " + ChatColor.GRAY + new_reason);
                 } else {
                     player.sendMessage(ChatColor.RED + "That player isn't online!");
                     return true;

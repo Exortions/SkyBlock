@@ -1080,6 +1080,14 @@ public class ItemHandler {
         return item;
     }
 
+    public static ItemStack createGreenEmptySpace(){
+        ItemStack item = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(" ");
+        item.setItemMeta(meta);
+        return item;
+    }
+
     public static ItemStack createCollectionProgressItem(int index, String collectionName, String collectionLevel, int collected, String maxCollected, int maxCollectedInt, List<String> collectionRewards, boolean showRewards, int amount){
         ItemStack item = new ItemStack(Material.STAINED_GLASS_PANE, amount);
         ItemMeta meta = item.getItemMeta();

@@ -27,14 +27,15 @@ public class AnvilCommand implements CommandExecutor {
         // Registering items
         ItemStack grayEmpty = AnvilInventory.createAnvilItems(0);
         ItemStack redEmpty = AnvilInventory.createAnvilItems(1);
-        ItemStack itemToUpgrade = AnvilInventory.createAnvilItems(2);
-        ItemStack itemToSacrifice = AnvilInventory.createAnvilItems(3);
-        ItemStack anvilBarrier = AnvilInventory.createAnvilItems(4);
-        ItemStack anvilItem = AnvilInventory.createAnvilItems(5);
-        ItemStack error = AnvilInventory.createAnvilItems(6);
-        ItemStack greenItemToUpgrade = AnvilInventory.createAnvilItems(7);
-        ItemStack greenItemToSacrifice = AnvilInventory.createAnvilItems(8);
-        ItemStack exit = AnvilInventory.createAnvilItems(9);
+        ItemStack greenEmpty = AnvilInventory.createAnvilItems(2);
+        ItemStack itemToUpgrade = AnvilInventory.createAnvilItems(3);
+        ItemStack itemToSacrifice = AnvilInventory.createAnvilItems(4);
+        ItemStack anvilBarrier = AnvilInventory.createAnvilItems(5);
+        ItemStack anvilItem = AnvilInventory.createAnvilItems(6);
+        ItemStack error = AnvilInventory.createAnvilItems(7);
+        ItemStack greenItemToUpgrade = AnvilInventory.createAnvilItems(8);
+        ItemStack greenItemToSacrifice = AnvilInventory.createAnvilItems(9);
+        ItemStack exit = AnvilInventory.createAnvilItems(10);
         ItemStack air = ItemHandler.createAir();
 
         // Background of menu

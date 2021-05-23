@@ -18,7 +18,10 @@ public class AnvilInventory {
         } else if(i == 1){
             // Red pane
             return ItemHandler.createRedEmptySpace();
-        } else if(i == 2){
+        } else if(i == 2) {
+            // Green pane
+            return ItemHandler.createGreenEmptySpace();
+        } else if(i == 3){
             // Item to upgrade
             ItemStack tmp = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
             ItemMeta m = tmp.getItemMeta();
@@ -30,7 +33,7 @@ public class AnvilInventory {
             m.setLore(l);
             tmp.setItemMeta(m);
             return tmp;
-        } else if(i == 3){
+        } else if(i == 4){
             // Item to sacrifice
             ItemStack tmp = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
             ItemMeta m = tmp.getItemMeta();
@@ -44,7 +47,7 @@ public class AnvilInventory {
             m.setLore(l);
             tmp.setItemMeta(m);
             return tmp;
-        } else if(i == 4){
+        } else if(i == 5){
             // Anvil barrier
             ItemStack tmp = new ItemStack(Material.BARRIER);
             ItemMeta m = tmp.getItemMeta();
@@ -57,7 +60,7 @@ public class AnvilInventory {
             m.setLore(l);
             tmp.setItemMeta(m);
             return tmp;
-        } else if(i == 5){
+        } else if(i == 6){
             // Anvil item
             ItemStack tmp = new ItemStack(Material.ANVIL);
             ItemMeta m = tmp.getItemMeta();
@@ -69,7 +72,7 @@ public class AnvilInventory {
             m.setLore(l);
             tmp.setItemMeta(m);
             return tmp;
-        } else if(i == 6){
+        } else if(i == 7){
             // Error
             ItemStack tmp = new ItemStack(Material.BARRIER);
             ItemMeta m = tmp.getItemMeta();
@@ -79,7 +82,7 @@ public class AnvilInventory {
             m.setLore(l);
             tmp.setItemMeta(m);
             return tmp;
-        } else if(i == 7){
+        } else if(i == 8){
             // Green item to upgrade
             ItemStack tmp = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5);
             ItemMeta m = tmp.getItemMeta();
@@ -91,7 +94,7 @@ public class AnvilInventory {
             m.setLore(l);
             tmp.setItemMeta(m);
             return tmp;
-        } else if(i == 8){
+        } else if(i == 9){
             // Green item to sacrifice
             ItemStack tmp = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5);
             ItemMeta m = tmp.getItemMeta();
@@ -105,7 +108,7 @@ public class AnvilInventory {
             m.setLore(l);
             tmp.setItemMeta(m);
             return tmp;
-        } else if(i == 9){
+        } else if(i == 10){
             return ItemHandler.createExitBarrier();
         }
         return new ItemStack(Material.AIR);

@@ -26,15 +26,16 @@ public class BanCommand implements CommandExecutor {
             } else if (args.length == 2) {
                 Player target = Bukkit.getPlayer(args[0]);
                 String reason = args[1];
+                String new_reason = reason.replace('_', ' ');
                 if (player.getServer().getOnlinePlayers().contains(target)) {
-                    if (!(reason.equals("null"))) {
+                    if (!(new_reason.equals("null"))) {
                         try {
                             Config.setBanned(target, true);
-                            Config.setBanReason(target, reason);
+                            Config.setBanReason(target, new_reason);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    } else if (reason.equals("null")) {
+                    } else if (new_reason.equals("null")) {
                         try {
                             Config.setBanned(target, true);
                             Config.setBanReason(target, "None provided.");
@@ -42,7 +43,7 @@ public class BanCommand implements CommandExecutor {
                             e.printStackTrace();
                         }
                     }
-                    player.kickPlayer(ChatColor.RED + "You are permanently banned from this server!\n\n" + ChatColor.GRAY + "Reason: " + ChatColor.WHITE + Config.getBanReason(player) + "\n" + ChatColor.GRAY + "Find out more: " + ChatColor.AQUA + "" + ChatColor.UNDERLINE + "https://www.hypixel.net/appeal\n\n" + ChatColor.GRAY + "Ban ID: " + ChatColor.WHITE + "#1379254\n" + ChatColor.GRAY + "Sharing your ban ID may affect the process of your appeal!");
+                    target.kickPlayer(ChatColor.RED + "You are permanently banned from this server!\n\n" + ChatColor.GRAY + "Reason: " + ChatColor.WHITE + Config.getBanReason(player) + "\n" + ChatColor.GRAY + "Find out more: " + ChatColor.AQUA + "" + ChatColor.UNDERLINE + "https://www.hypixel.net/appeal\n\n" + ChatColor.GRAY + "Ban ID: " + ChatColor.WHITE + "#1379254\n" + ChatColor.GRAY + "Sharing your ban ID may affect the process of your appeal!");
                 }
             }
         }
