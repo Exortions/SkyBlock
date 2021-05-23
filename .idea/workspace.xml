@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c19df67f-9a66-48e8-923f-a4c77a62bce5" name="Default Changelist" comment="Fix AnvilActions stuff">
+    <list default="true" id="c19df67f-9a66-48e8-923f-a4c77a62bce5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Moderation/BanCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Moderation/BanCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Moderation/KickCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Moderation/KickCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Listeners/Eventlistener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Listeners/Eventlistener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Mechanics/Anvil/AnvilActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Mechanics/Anvil/AnvilActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Mechanics/Anvil/AnvilCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Mechanics/Anvil/AnvilCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Mechanics/Anvil/AnvilInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Mechanics/Anvil/AnvilInventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Mechanics/Anvil/AnvilListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Mechanics/Anvil/AnvilListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Objects/Items/ItemHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Objects/Items/ItemHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/PlayerCommands/WorkBenchCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Mechanics/Crafting/CraftingCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Listeners/CraftingListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Mechanics/Crafting/CraftingListeners.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Objects/Inventories/CraftInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Objects/Inventories/CraftInventory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621549780062</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Added multiple words for kick &amp; ban reasons">
+      <created>1621788177036</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1621788177036</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -253,6 +258,7 @@
     <MESSAGE value="Pulled from OptimusChen/RemakeSkyblock" />
     <MESSAGE value="Merged from OptimusChen/RemakeSkyblock" />
     <MESSAGE value="Fix AnvilActions stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix AnvilActions stuff" />
+    <MESSAGE value="Added multiple words for kick &amp; ban reasons" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added multiple words for kick &amp; ban reasons" />
   </component>
 </project>

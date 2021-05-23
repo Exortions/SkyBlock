@@ -1,4 +1,4 @@
-package com.itech4kids.skyblock.Listeners;
+package com.itech4kids.skyblock.Mechanics.Crafting;
 
 import com.itech4kids.skyblock.Main;
 import com.itech4kids.skyblock.Objects.Inventories.CraftInventory;
@@ -55,6 +55,20 @@ public class CraftingListeners implements Listener {
         slots.add(30);
     }
 
+    public List<ItemStack> getItemStacks(Inventory inv){
+        List<ItemStack> tmp = new ArrayList<>();
+        tmp.add(inv.getItem(10));
+        tmp.add(inv.getItem(11));
+        tmp.add(inv.getItem(12));
+        tmp.add(inv.getItem(19));
+        tmp.add(inv.getItem(20));
+        tmp.add(inv.getItem(21));
+        tmp.add(inv.getItem(28));
+        tmp.add(inv.getItem(29));
+        tmp.add(inv.getItem(30));
+        return tmp;
+    }
+
     @EventHandler
     public void onInteract(final PlayerInteractEvent e) {
         final Player p = e.getPlayer();
@@ -97,6 +111,12 @@ public class CraftingListeners implements Listener {
     @EventHandler
     public void onClose(final InventoryCloseEvent e) {
         final Player p = (Player)e.getPlayer();
+        if(e.getInventory().getName().equals("Craft Item")){
+            List<ItemStack> itemsInGrid = getItemStacks(e.getInventory());
+            for(int i = 0; i < 8; i++){
+                p.getInventory().addItem(itemsInGrid.get(i));
+            }
+        }
         if (this.crafting.containsKey(p)) {
             this.crafting.remove(p);
         }

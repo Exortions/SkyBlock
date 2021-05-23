@@ -34,6 +34,8 @@ import com.itech4kids.skyblock.CustomMobs.Zombie.SkyblockZombieType;
 import com.itech4kids.skyblock.Listeners.*;
 import com.itech4kids.skyblock.Mechanics.Anvil.AnvilCommand;
 import com.itech4kids.skyblock.Mechanics.Anvil.AnvilListener;
+import com.itech4kids.skyblock.Mechanics.Crafting.CraftingListeners;
+import com.itech4kids.skyblock.Mechanics.Crafting.CraftingCommand;
 import com.itech4kids.skyblock.Objects.Crafting.CraftingRecipe;
 import com.itech4kids.skyblock.Objects.Island.IslandManager;
 import com.itech4kids.skyblock.Objects.Items.ItemHandler;
@@ -232,7 +234,7 @@ public class Main extends JavaPlugin {
         getCommand("kick").setExecutor(new KickCommand());
         getCommand("ban").setExecutor(new BanCommand());
         getCommand("location").setExecutor(new LocationSetupCommand());
-        getCommand("craft").setExecutor(new WorkBenchCommand());
+        getCommand("craft").setExecutor(new CraftingCommand());
         getCommand("spawnNpc").setExecutor(new SpawnNpcCommand());
         getCommand("clearchat").setExecutor(new ClearChatCommand());
         getCommand("slayer").setExecutor(new SlayerCommand());
