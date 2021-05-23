@@ -18,7 +18,7 @@
   <p align="center">
     An awesome attempt at re-creating Hypixel SkyBlock.
     <br />
-    <a href="https://github.com/Exortions/SkyBlock"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Exortions/SkyBlock/wiki"><strong>Explore the wiki »</strong></a>
     <br />
     <br />
     <a href="https://github.com/Exortions/SkyBlock">View Demo</a>
@@ -121,8 +121,6 @@ Not Coming Soon
 
 As said above, if you are downloading this project, you agree to the policy/terms/conditions of this project. Do not attempt get commercial use from this project, because the idea of Hypixel SkyBlock was created by the Hypixel admins, therefore I do not have the right to give this out to people for them to make money off of.
 
-_For more examples, please refer to the [Documentation](https://github.com/Exortions/SkyBlock) - Not done yet._
-
 <!-- ROADMAP -->
 ## Roadmap
 
@@ -145,13 +143,13 @@ Contributions are what make the open source community such an amazing place to b
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
-* [License](https://github.com/Exortions/SkyBlock/blob/master/LICENSE)
+Distributed under the MIT License. See the click the link below for more information.
+* [Link](https://github.com/Exortions/SkyBlock/blob/master/LICENSE)
 
 <!-- CONTACT -->
 ## Contact
 
-Discord - [Exo#0001](https://github.com/Exortions) or [OptimusChen#9323](https://github.com/OptimusChen)
+Discord - [Exo#6969](https://github.com/Exortions) or [OptimusChen#9323](https://github.com/OptimusChen)
 
 Project Link: [https://github.com/Exortions/SkyBlock](https://github.com/Exortions/SkyBlock)
 
