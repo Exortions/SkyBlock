@@ -4,6 +4,10 @@ import com.connorlinfoot.actionbarapi.ActionBarAPI;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.itech4kids.skyblock.Commands.AdminCommands.*;
+import com.itech4kids.skyblock.Commands.AdminCommands.Gamemode.GmaCommand;
+import com.itech4kids.skyblock.Commands.AdminCommands.Gamemode.GmcCommand;
+import com.itech4kids.skyblock.Commands.AdminCommands.Gamemode.GmsCommand;
+import com.itech4kids.skyblock.Commands.AdminCommands.Gamemode.GmspCommand;
 import com.itech4kids.skyblock.Commands.PlayerCommands.CollectionsCommand;
 import com.itech4kids.skyblock.Commands.ItemBrowser.Boots.BootsCategoryCommand;
 import com.itech4kids.skyblock.Commands.ItemBrowser.Chestplate.ChestplateCategoryCommand;
@@ -241,7 +245,10 @@ public class Main extends JavaPlugin {
         getCommand("spot").setExecutor(new PotionCommand());
         getCommand("collectionstat").setExecutor(new CollectionStatCommand());
         getCommand("anvil").setExecutor(new AnvilCommand());
-
+        getCommand("gmc").setExecutor(new GmcCommand());
+        getCommand("gms").setExecutor(new GmsCommand());
+        getCommand("gma").setExecutor(new GmaCommand());
+        getCommand("gmsp").setExecutor(new GmspCommand());
     }
 
     public void updateMaxHealth(SkyblockPlayer skyblockPlayer) {

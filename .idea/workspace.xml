@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c19df67f-9a66-48e8-923f-a4c77a62bce5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/AdminCommands/Gamemode/GmaCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/AdminCommands/Gamemode/GmcCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/AdminCommands/Gamemode/GmsCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/AdminCommands/Gamemode/GmspCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/PlayerCommands/CollectionsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/PlayerCommands/CollectionsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Listeners/CollectionsListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Listeners/CollectionsListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Objects/Inventories/CollectionItemInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Objects/Inventories/CollectionItemInventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,7 +242,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621813297671</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Collection stuff">
+      <created>1621816193100</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1621816193100</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -281,6 +289,7 @@
     <MESSAGE value="Worked on Crafting Table" />
     <MESSAGE value="Removed join/quit messages." />
     <MESSAGE value="Collection bug fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Collection bug fixed" />
+    <MESSAGE value="Collection stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Collection stuff" />
   </component>
 </project>

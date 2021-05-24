@@ -71,3 +71,7 @@ commands:
     description: Set a player's collection level, unlocked, or collected to a specified value.
     aliases: [cstat]
   anvil:
+  gmc:
+  gms:
+  gma:
+  gmsp:
