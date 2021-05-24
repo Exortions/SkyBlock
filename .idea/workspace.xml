@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c19df67f-9a66-48e8-923f-a4c77a62bce5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/PlayerCommands/CollectionsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/PlayerCommands/CollectionsCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Listeners/CollectionsListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Listeners/CollectionsListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Objects/Inventories/CollectionItemInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Objects/Inventories/CollectionItemInventory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621799569280</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Collection bug fixed">
+      <created>1621813297671</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1621813297671</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -270,6 +280,7 @@
     <MESSAGE value="Added multiple words for kick &amp; ban reasons" />
     <MESSAGE value="Worked on Crafting Table" />
     <MESSAGE value="Removed join/quit messages." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed join/quit messages." />
+    <MESSAGE value="Collection bug fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Collection bug fixed" />
   </component>
 </project>

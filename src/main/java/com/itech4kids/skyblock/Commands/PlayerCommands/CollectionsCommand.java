@@ -1,4 +1,4 @@
-package com.itech4kids.skyblock.Commands;
+package com.itech4kids.skyblock.Commands.PlayerCommands;
 
 import com.itech4kids.skyblock.Enums.CollectionItemTypes;
 import com.itech4kids.skyblock.Enums.CollectionTypes;
@@ -127,7 +127,8 @@ public class CollectionsCommand implements CommandExecutor {
 
                 checkUnlocked(player, menu, "farming", "wheat", 10, notUnlocked, Config.getCollectionLevel(player, "farming", "wheat"), Config.getCollectionCollected(player, "farming", "wheat"), 296,  ChatColor.BLUE + " Wheat Minion" + ChatColor.GRAY + " Recipes", ChatColor.GREEN + "Enchanted Book (Harvesting V)" + ChatColor.GRAY + "  Recipe", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
                 checkUnlocked(player, menu, "farming", "carrot", 11, notUnlocked, Config.getCollectionLevel(player, "farming", "carrot"), Config.getCollectionCollected(player, "farming", "carrot"), 391, ChatColor.BLUE + " Carrot Minion" + ChatColor.GRAY + " Recipes", ChatColor.GREEN + "Simple Carrot Candy " + ChatColor.GRAY + "Recipe", ChatColor.DARK_PURPLE + "Catching Egg " + ChatColor.DARK_GRAY + "(" + ChatColor.DARK_RED + "COMING SOON" + ChatColor.DARK_GRAY + ")", ChatColor.GREEN + "Enchanted Carrot " + ChatColor.GRAY + "Recipe", ChatColor.GREEN + "Enchanted Carrot on a Stick " + ChatColor.GRAY + "Recipe", "", "", "", "", "", "" ,"", "", "", "", "", "", (short) 0);
-                checkUnlocked(player, menu, "farming", "potato", 12, notUnlocked, Config.getCollectionLevel(player, "farming", "potato"), Config.getCollectionCollected(player, "farming", "potato"), 391, ChatColor.BLUE + " Potato Minion" + ChatColor.GRAY + " Recipes", "", "", "", "", "", "", "", "", "", "" ,"", "", "", "", "", "", (short) 0);
+                checkUnlocked(player, menu, "farming", "potato", 12, notUnlocked, Config.getCollectionLevel(player, "farming", "potato"), Config.getCollectionCollected(player, "farming", "potato"), 392, ChatColor.BLUE + " Potato Minion" + ChatColor.GRAY + " Recipes", "", "", "", "", "", "", "", "", "", "" ,"", "", "", "", "", "", (short) 0);
+                checkUnlocked(player, menu, "farming", "pumpkin", 13, notUnlocked, Config.getCollectionLevel(player, "farming", "pumpkin"), Config.getCollectionCollected(player, "farming", "pumpkin"), 86, ChatColor.BLUE + " Pumpkin Minion" + ChatColor.GRAY + " Recipes", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
 
                 for(int i = 31; i < 35; i++){
                     menu.setItem(i, new ItemStack(Material.AIR));

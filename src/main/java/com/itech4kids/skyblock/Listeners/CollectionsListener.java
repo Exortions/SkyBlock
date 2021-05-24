@@ -4,6 +4,7 @@ import com.itech4kids.skyblock.Events.SkyblockCollectionLevelUpEvent;
 import com.itech4kids.skyblock.Util.Config;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,14 +13,13 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 
 import java.io.IOException;
-import java.util.List;
 
 public class CollectionsListener implements Listener {
 
     @EventHandler
-    public void onInventoryClick(InventoryClickEvent e){
+    public void onCollectionInventoryClick(InventoryClickEvent e){
         Player player = (Player) e.getWhoClicked();
-        if(e.getCurrentItem().equals(null)) { return; }
+        if(e.getCurrentItem() == null) { return; }
         if(e.getInventory().getName().equals("Collection")){
             if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "Farming Collection")){
                 player.performCommand("collections farming");
@@ -28,12 +28,79 @@ public class CollectionsListener implements Listener {
     }
 
     @EventHandler
+    public void onFarmingCollectionInventoryClick(InventoryClickEvent e){
+        Player player = (Player) e.getWhoClicked();
+        if(e.getCurrentItem() == null) { return; }
+        if(e.getInventory().getName().equals("Farming Collection")){
+            if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "go back")){
+                player.performCommand("collections main");
+            }
+        }
+    }
+
+    @EventHandler
+    public void onMiningCollectionInventoryClick(InventoryClickEvent e){
+        Player player = (Player) e.getWhoClicked();
+        if(e.getCurrentItem() == null) { return; }
+        if(e.getInventory().getName().equals("Mining Collection")){
+            if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "go back")){
+                player.performCommand("collections main");
+            }
+        }
+    }
+
+    @EventHandler
+    public void onCombatCollectionInventoryClick(InventoryClickEvent e){
+        Player player = (Player) e.getWhoClicked();
+        if(e.getCurrentItem() == null) { return; }
+        if(e.getInventory().getName().equals("Combat Collection")){
+            if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "go back")){
+                player.performCommand("collections main");
+            }
+        }
+    }
+
+    @EventHandler
+    public void onForagingCollectionInventoryClick(InventoryClickEvent e){
+        Player player = (Player) e.getWhoClicked();
+        if(e.getCurrentItem() == null) { return; }
+        if(e.getInventory().getName().equals("Foraging Collection")){
+            if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "go back")){
+                player.performCommand("collections main");
+            }
+        }
+    }
+
+    @EventHandler
+    public void onFishingCollectionInventoryClick(InventoryClickEvent e){
+        Player player = (Player) e.getWhoClicked();
+        if(e.getCurrentItem() == null) { return; }
+        if(e.getInventory().getName().equals("Fishing Collection")){
+            if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "go back")){
+                player.performCommand("collections main");
+            }
+        }
+    }
+
+    @EventHandler
+    public void onBossCollectionInventoryClick(InventoryClickEvent e){
+        Player player = (Player) e.getWhoClicked();
+        if(e.getCurrentItem() == null) { return; }
+        if(e.getInventory().getName().equals("Boss Collection")){
+            if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "go back")){
+                player.performCommand("collections main");
+            }
+        }
+    }
+
+    @EventHandler
     public void onItemPickup(PlayerPickupItemEvent e){
         Player player = e.getPlayer();
-        if(e.getItem().equals(null)) { return; }
+        if(e.getItem() == null) { return; }
         collectionPickup(player, "farming", "wheat", 296, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
         collectionPickup(player, "farming", "carrot", 391, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
         collectionPickup(player, "farming", "potato", 392, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+        collectionPickup(player, "farming", "pumpkin", 86, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
     }
 
     public void collectionPickup(Player player, String collectionType, String collection, int typeID, PlayerPickupItemEvent e, String rewards, String rewards2, String rewards3, String rewards4, String rewards5, String rewards6, String rewards7, String rewards8, String rewards9, String rewards10, String rewards11, String rewards12, String rewards13, String rewards14, String rewards15, String rewards16){

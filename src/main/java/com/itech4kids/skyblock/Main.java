@@ -4,7 +4,7 @@ import com.connorlinfoot.actionbarapi.ActionBarAPI;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.itech4kids.skyblock.Commands.AdminCommands.*;
-import com.itech4kids.skyblock.Commands.CollectionsCommand;
+import com.itech4kids.skyblock.Commands.PlayerCommands.CollectionsCommand;
 import com.itech4kids.skyblock.Commands.ItemBrowser.Boots.BootsCategoryCommand;
 import com.itech4kids.skyblock.Commands.ItemBrowser.Chestplate.ChestplateCategoryCommand;
 import com.itech4kids.skyblock.Commands.ItemBrowser.Helmet.HelmetCategoryCommand;
