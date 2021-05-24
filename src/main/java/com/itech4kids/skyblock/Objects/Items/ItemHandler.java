@@ -557,10 +557,10 @@ public class ItemHandler {
         SkullMeta meta = (SkullMeta) item.getItemMeta();
         meta.setDisplayName(itemName);
         meta.setLore(lore);
-        item.setItemMeta(meta);
-        IDtoSkull(item, ID);
         meta.spigot().setUnbreakable(true);
         meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+        item.setItemMeta(meta);
+        IDtoSkull(item, ID);
         setMaxStackSize(CraftItemStack.asNMSCopy(item).getItem(), maxStackSize);
         return item;
     }
@@ -966,6 +966,8 @@ public class ItemHandler {
         ItemStack item = new ItemStack(type);
         ItemMeta meta = item.getItemMeta();
         String itemName = collectionName + " " + collectionLevel;
+        int tmp = Util.numeralToInt(collectionLevel) + 1;
+        String nextItemName = collectionName + " " + Util.intToNumeral(tmp);
         item.setTypeId(type);
         item.setDurability(data);
         List<String> lore = new ArrayList<>();
@@ -973,7 +975,7 @@ public class ItemHandler {
         lore.add(ChatColor.GRAY + "progress and rewards!");
         lore.add("");
         lore.add(ChatColor.GRAY + "Collection Unlocked: " + ChatColor.YELLOW + percentageUnlocked + ChatColor.GOLD + "%");
-        lore.add(ChatColor.WHITE + "-------------------- " + ChatColor.YELLOW + collected + ChatColor.GOLD + "/" + ChatColor.YELLOW + maxCollected);
+        lore.add(ChatColor.DARK_GREEN + "-------------------- " + ChatColor.YELLOW + collected + ChatColor.GOLD + "/" + ChatColor.YELLOW + maxCollected);
         lore.add("");
         lore.add(ChatColor.GRAY + "Co-op Contributions:");
         if(coopPlayers.size() >= 2){
@@ -1155,11 +1157,11 @@ public class ItemHandler {
     public static void fill(Inventory inv, int index){
         if(index == 1){
             for(int i = 0; i < inv.getSize(); i++){
-                inv.setItem(i, createEmptySpace());
+                inv.setItem(inv.firstEmpty(), createEmptySpace());
             }
         } else if(index == 2){
             for(int i = 0; i < inv.getSize(); i++){
-                inv.setItem(i, createRedEmptySpace());
+                inv.setItem(inv.firstEmpty(), createRedEmptySpace());
             }
         } else{
             Main.getMain().getServer().getConsoleSender().sendMessage(ChatColor.RED + "Hm, when you tried the ItemHandler.fill method, you entered " + index + " as the index for color. They have to be between 1 and 2!");

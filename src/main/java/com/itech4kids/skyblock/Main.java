@@ -38,7 +38,6 @@ import com.itech4kids.skyblock.CustomMobs.Zombie.SkyblockZombieType;
 import com.itech4kids.skyblock.Listeners.*;
 import com.itech4kids.skyblock.Mechanics.Anvil.AnvilCommand;
 import com.itech4kids.skyblock.Mechanics.Anvil.AnvilListener;
-import com.itech4kids.skyblock.Mechanics.Crafting.CraftingListeners;
 import com.itech4kids.skyblock.Mechanics.Crafting.CraftingCommand;
 import com.itech4kids.skyblock.Objects.Crafting.CraftingRecipe;
 import com.itech4kids.skyblock.Objects.Island.IslandManager;
@@ -199,7 +198,6 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new AbilityListener(), this);
         Bukkit.getPluginManager().registerEvents(new StatListener(), this);
         Bukkit.getPluginManager().registerEvents(new CollectionsListener(), this);
-        Bukkit.getPluginManager().registerEvents(new CraftingListeners(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamageListeners(), this);
         Bukkit.getPluginManager().registerEvents(new MerchantListeners(), this);
         Bukkit.getPluginManager().registerEvents(new SlayerListener(), this);

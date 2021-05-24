@@ -347,6 +347,21 @@ public class SkillGainListeners implements Listener {
                         }
                     }.runTaskLater(main, 20*7);
                     break;
+                case WHEAT:
+                    if (block.getData() == 0) {
+                        Bukkit.getPluginManager().callEvent(new SkyblockSkillExpGainEvent(skyblockPlayer, SkillType.FARMING, 1));
+                        for (ItemStack itemStack : block.getDrops()) {
+                            block.getWorld().dropItemNaturally(block.getLocation(), itemStack);
+                        }
+                        block.setType(Material.COBBLESTONE);
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                block.setType(Material.STONE);
+                            }
+                        }.runTaskLater(main, 20*7);
+                    }
+                    break;
             }
 
 

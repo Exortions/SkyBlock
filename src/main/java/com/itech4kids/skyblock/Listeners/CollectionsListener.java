@@ -2,9 +2,8 @@ package com.itech4kids.skyblock.Listeners;
 
 import com.itech4kids.skyblock.Events.SkyblockCollectionLevelUpEvent;
 import com.itech4kids.skyblock.Util.Config;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,6 +22,25 @@ public class CollectionsListener implements Listener {
         if(e.getInventory().getName().equals("Collection")){
             if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "Farming Collection")){
                 player.performCommand("collections farming");
+            } else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "Mining Collection")){
+                player.performCommand("collections mining");
+            } else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "Combat Collection")){
+                player.performCommand("collections combat");
+            } else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "Foraging Collection")){
+                player.performCommand("collections foraging");
+            } else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GREEN + "Fishing Collection")){
+                player.performCommand("collections fishing");
+            } else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.DARK_PURPLE + "Boss Collection")){
+                player.performCommand("collections boss");
+            }
+        }
+    }
+
+    @EventHandler
+    public void onCollectionShiftClick(InventoryClickEvent e){
+        if(e.getInventory().getName().contains("Collection")){
+            if(e.getClick().isShiftClick()){
+                e.setCancelled(true);
             }
         }
     }
@@ -97,17 +115,40 @@ public class CollectionsListener implements Listener {
     public void onItemPickup(PlayerPickupItemEvent e){
         Player player = e.getPlayer();
         if(e.getItem() == null) { return; }
-        collectionPickup(player, "farming", "wheat", 296, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-        collectionPickup(player, "farming", "carrot", 391, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-        collectionPickup(player, "farming", "potato", 392, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-        collectionPickup(player, "farming", "pumpkin", 86, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+        farmingCollectionPickup(player, e);
+        miningCollectionPickup(player, e);
     }
 
-    public void collectionPickup(Player player, String collectionType, String collection, int typeID, PlayerPickupItemEvent e, String rewards, String rewards2, String rewards3, String rewards4, String rewards5, String rewards6, String rewards7, String rewards8, String rewards9, String rewards10, String rewards11, String rewards12, String rewards13, String rewards14, String rewards15, String rewards16){
+    public void farmingCollectionPickup(Player player, PlayerPickupItemEvent e){
+        collectionPickup(player, "farming", "wheat", 296, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+        collectionPickup(player, "farming", "carrot", 391, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+        collectionPickup(player, "farming", "potato", 392, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+        collectionPickup(player, "farming", "pumpkin", 86, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+        collectionPickup(player, "farming", "melon", 360, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+        collectionPickup(player, "farming", "seeds", 295, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+        collectionPickup(player, "farming", "mushroom", 40, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+        collectionPickup(player, "farming", "cocoa_beans", 351, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 3);
+        collectionPickup(player, "farming", "cactus", 81, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+        collectionPickup(player, "farming", "sugarcane", 338, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+        collectionPickup(player, "farming", "feather", 288, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+        collectionPickup(player, "farming", "leather", 334, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+        collectionPickup(player, "farming", "raw_porkchop", 319, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+        collectionPickup(player, "farming", "raw_chicken", 365, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+        collectionPickup(player, "farming", "mutton", 423, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+        collectionPickup(player, "farming", "raw_rabbit", 411, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+        collectionPickup(player, "farming", "nether_wart", 372, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+    }
+
+    public void miningCollectionPickup(Player player, PlayerPickupItemEvent e){
+        collectionPickup(player, "mining", "cobblestone", 4, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "","", (short) 0);
+    }
+
+    public void collectionPickup(Player player, String collectionType, String collection, int typeID, PlayerPickupItemEvent e, String rewards, String rewards2, String rewards3, String rewards4, String rewards5, String rewards6, String rewards7, String rewards8, String rewards9, String rewards10, String rewards11, String rewards12, String rewards13, String rewards14, String rewards15, String rewards16, Short data){
         int collected = Config.getCollectionCollected(player, collectionType, collection);
-        if(e.getItem().getItemStack().getTypeId() == typeID){
+        if(e.getItem().getItemStack().getTypeId() == typeID && e.getItem().getItemStack().getDurability() == data){
+            int amount = e.getItem().getItemStack().getAmount();
             try {
-                Config.setCollectionCollected(player, collectionType, collection, Config.getCollectionCollected(player, collectionType, collection.toLowerCase()) + 1);
+                Config.setCollectionCollected(player, collectionType, collection, Config.getCollectionCollected(player, collectionType, collection.toLowerCase()) + amount);
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
@@ -119,7 +160,7 @@ public class CollectionsListener implements Listener {
                     exception.printStackTrace();
                     player.sendMessage("DEBUG");
                 }
-                player.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "COLLECTION UNLOCKED " + ChatColor.YELLOW + " " + StringUtils.capitalize(collection));
+                player.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "COLLECTION UNLOCKED " + ChatColor.YELLOW + " " + WordUtils.capitalize(collection.replace('_', ' ')));
                 player.playSound(player.getLocation(), Sound.LEVEL_UP, 100, 2);
             } else if (collected == 100) {
                 new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(0), "I", 1, rewards);
