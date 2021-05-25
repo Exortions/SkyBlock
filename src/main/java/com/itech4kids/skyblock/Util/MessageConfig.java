@@ -63,6 +63,10 @@ public class MessageConfig {
         return ChatColor.translateAlternateColorCodes('&', config.getString("cmd_error"));
     }
     
+    public static String wipeMsg(){
+        return ChatColor.translateAlternateColorCodes('&', config.getString("wipe_msg"));
+    }
+    
     public static String success(){
         return ChatColor.translateAlternateColorCodes('&', config.getString("success"));
     }
@@ -79,7 +83,8 @@ public class MessageConfig {
             config.set("specify_reason", "&cPlease specify a reason!");
             config.set("specify_player", "&cPlease specify a player!");
             config.set("cmd_error", "&cAn error occured while attempting to perform this command!");
-
+            config.set("wipe_msg", "&cCheating has been detected on one or more of your Skyblock Profiles and your profiles have been wiped.");
+            
             // Good stuff
             config.set("success", "&aSuccess!");
             
