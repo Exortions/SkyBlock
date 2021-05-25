@@ -102,9 +102,7 @@ public class Util {
 
     public static void addLore(ItemMeta meta, List<String> lore){
         List<String> itemLore = meta.getLore();
-        for(String str : lore){
-            itemLore.add(str);
-        }
+        itemLore.addAll(lore);
     }
 
 }

@@ -158,6 +158,7 @@ public class CollectionsCommand implements CommandExecutor {
                 ItemHandler.fill(menu, 1);
 
                 checkUnlocked(player, menu, "mining", "cobblestone", 10, notUnlocked, Config.getCollectionLevel(player, "mining", "cobblestone"), Config.getCollectionCollected(player, "mining", "cobblestone"), 4, ChatColor.BLUE + " Cobblestone Minion " + ChatColor.GRAY + " Recipes", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+                checkUnlocked(player, menu, "mining", "coal", 11, notUnlocked, Config.getCollectionLevel(player, "mining", "coal"), Config.getCollectionCollected(player, "mining", "coal"), 263, ChatColor.BLUE + " Coal Minion " + ChatColor.GRAY + " Recipes", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
 
                 for(int i = 31; i < 35; i++){
                     menu.setItem(i, new ItemStack(Material.AIR));
@@ -213,23 +214,6 @@ public class CollectionsCommand implements CommandExecutor {
         }
         return false;
     }
-
-    // I = 100
-    // II = 250
-    // III = 750
-    // IV = 1.5k
-    // V = 3k
-    // VI = 5k
-    // VII = 10k
-    // VIII = 25k
-    // IX = 50k
-    // X = 200k
-    // XI = 400k
-    // XII = 600k
-    // XIII = 800k
-    // XIV = 1M
-    // XV = 1.2M
-    // XVI = 1.4M
 
     public void checkUnlocked(Player player, Inventory menu, String collectionType, String collection, int slot, ItemStack notUnlocked, int collectionLevel, int amountCollected, int typeID, String rewards, String rewards1, String rewards2, String rewards3, String rewards4, String rewards5, String rewards6, String rewards7, String rewards8, String rewards9, String rewards10, String rewards11, String rewards12, String rewards13, String rewards14, String rewards15, String rewards16, Short data){
         NumberFormat numFormat = NumberFormat.getInstance();
