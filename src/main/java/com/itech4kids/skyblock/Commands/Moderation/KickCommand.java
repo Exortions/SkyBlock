@@ -1,13 +1,12 @@
 package com.itech4kids.skyblock.Commands.Moderation;
 
+import com.itech4kids.skyblock.Util.MessageConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.Random;
 
 public class KickCommand implements CommandExecutor {
 

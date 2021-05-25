@@ -1,6 +1,7 @@
 package com.itech4kids.skyblock.Commands.Setup;
 
 import com.itech4kids.skyblock.Main;
+import com.itech4kids.skyblock.Util.MessageConfig;
 import de.tr7zw.nbtapi.NBTEntity;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;

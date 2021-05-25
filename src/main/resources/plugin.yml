@@ -75,3 +75,6 @@ commands:
   gms:
   gma:
   gmsp:
+  directmessage:
+    description: Direct message a specified player anonymously.
+    aliases: [dm]

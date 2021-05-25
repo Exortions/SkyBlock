@@ -152,51 +152,48 @@ public class CollectionsListener implements Listener {
                 for(int i = 0; i < amount; i++){
                     Config.setCollectionCollected(player, collectionType, collection, Config.getCollectionCollected(player, collectionType, collection.toLowerCase()) + 1);
                     player.sendMessage(Integer.toString(Config.getCollectionCollected(player, collectionType, collection)));
-                    if(collected == 1) {
-                        try {
-                            Config.setCollectionUnlocked(player, collectionType, collection, true);
-                            Config.setCollectionLevel(player, collectionType, collection, 1);
-                        } catch (IOException exception) {
-                            exception.printStackTrace();
-                            player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "YIKES!" + ChatColor.RESET + ChatColor.GRAY + "An error occured with the collections system! Oh no!");
-                        }
-                        player.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "COLLECTION UNLOCKED " + ChatColor.YELLOW + " " + WordUtils.capitalize(collection.replace('_', ' ')));
-                        player.playSound(player.getLocation(), Sound.LEVEL_UP, 100, 1);
-                    } else if (collected == 100) {
-                        new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(0), "I", 1, rewards);
-                    } else if (collected == 250) {
-                        new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(1), "II", 2, rewards2);
-                    } else if (collected == 750) {
-                        new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(2), "III", 3, rewards3);
-                    } else if (collected == 1500) {
-                        new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(3), "IV", 4, rewards4);
-                    } else if (collected == 3000) {
-                        new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(4), "V", 5, rewards5);
-                    } else if (collected == 5000) {
-                        new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(5), "VI", 6, rewards6);
-                    } else if (collected == 10000) {
-                        new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(6), "VII", 7, rewards7);
-                    } else if (collected == 25000) {
-                        new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(7), "VIII", 8, rewards8);
-                    } else if (collected == 50000) {
-                        new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(8), "IX", 9, rewards9);
-                    } else if (collected == 200000) {
-                        new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(9), "X", 10, rewards10);
-                    } else if (collected == 400000) {
-                        new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(10), "XI", 11, rewards11);
-                    } else if (collected == 600000) {
-                        new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(11), "XII", 12, rewards12);
-                    } else if (collected == 800000) {
-                        new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(12), "XIII", 13, rewards13);
-                    } else if (collected == 1000000) {
-                        new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(13), "XIV", 14, rewards14);
-                    } else if (collected == 1200000) {
-                        new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(14), "XV", 15, rewards15);
-                    } else if (collected == 1400000) {
-                        new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(15), "XVI", 16, rewards16);
-                    } else{
-                        player.sendMessage("did not meet any reqs XDDD");
+                }
+                if(collected == 1) {
+                    try {
+                        Config.setCollectionUnlocked(player, collectionType, collection, true);
+                    } catch (IOException exception) {
+                        exception.printStackTrace();
+                        player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "YIKES!" + ChatColor.RESET + ChatColor.GRAY + "An error occured with the collections system! Oh no!");
                     }
+                    player.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "COLLECTION UNLOCKED " + ChatColor.YELLOW + " " + WordUtils.capitalize(collection.replace('_', ' ')));
+                    player.playSound(player.getLocation(), Sound.LEVEL_UP, 100, 1);
+                } else if (collected == 100) {
+                    new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(0), "I", 1, rewards);
+                } else if (collected == 250) {
+                    new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(1), "II", 2, rewards2);
+                } else if (collected == 750) {
+                    new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(2), "III", 3, rewards3);
+                } else if (collected == 1500) {
+                    new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(3), "IV", 4, rewards4);
+                } else if (collected == 3000) {
+                    new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(4), "V", 5, rewards5);
+                } else if (collected == 5000) {
+                    new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(5), "VI", 6, rewards6);
+                } else if (collected == 10000) {
+                    new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(6), "VII", 7, rewards7);
+                } else if (collected == 25000) {
+                    new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(7), "VIII", 8, rewards8);
+                } else if (collected == 50000) {
+                    new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(8), "IX", 9, rewards9);
+                } else if (collected == 200000) {
+                    new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(9), "X", 10, rewards10);
+                } else if (collected == 400000) {
+                    new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(10), "XI", 11, rewards11);
+                } else if (collected == 600000) {
+                    new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(11), "XII", 12, rewards12);
+                } else if (collected == 800000) {
+                    new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(12), "XIII", 13, rewards13);
+                } else if (collected == 1000000) {
+                    new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(13), "XIV", 14, rewards14);
+                } else if (collected == 1200000) {
+                    new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(14), "XV", 15, rewards15);
+                } else if (collected == 1400000) {
+                    new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(15), "XVI", 16, rewards16);
                 }
             } catch (IOException exception) {
                 exception.printStackTrace();

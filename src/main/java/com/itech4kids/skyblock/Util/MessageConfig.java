@@ -11,9 +11,6 @@ import java.io.IOException;
 public class MessageConfig {
 
     public static Main main;
-    
-    private File file = new File(main.getDataFolder()+File.seperator+"messages.yml");
-    private YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 
     public MessageConfig(Main main) throws IOException {
         this.main = main;
@@ -21,77 +18,90 @@ public class MessageConfig {
     }
 
     public static String noPermission(){
-//         File file = new File(main.getDataFolder()+File.separator+"messages.yml");
-//         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-        String str = config.getString("no_permission");
-        return ChatColor.translateAlternateColorCodes('&', str);
+        File file = new File(main.getDataFolder()+File.separator+"messages.yml");
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        return ChatColor.translateAlternateColorCodes('&', config.getString("errors.no_permission"));
     }
 
     public static String notOnline(){
-//         File file = new File(main.getDataFolder()+File.separator+"messages.yml");
-//         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-        String str = config.getString("not_online");
-        return ChatColor.translateAlternateColorCodes('&', str);
+        File file = new File(main.getDataFolder()+File.separator+"messages.yml");
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        return ChatColor.translateAlternateColorCodes('&', config.getString("errors.not_online"));
     }
 
     public static String notPlayed(){
-//         File file = new File(main.getDataFolder()+File.separator+"messages.yml");
-//         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-        String str = config.getString("not_played");
-        return ChatColor.translateAlternateColorCodes('&', str);
+        File file = new File(main.getDataFolder()+File.separator+"messages.yml");
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        return ChatColor.translateAlternateColorCodes('&', config.getString("errors.not_played"));
     }
 
     public static String onlyPlayers(){
-//         File file = new File(main.getDataFolder()+File.separator+"messages.yml");
-//         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-        String str = config.getString("only_players");
-        return ChatColor.translateAlternateColorCodes('&', str);
+        File file = new File(main.getDataFolder()+File.separator+"messages.yml");
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        return ChatColor.translateAlternateColorCodes('&', config.getString("errors.only_players"));
     }
 
     public static String specifyReason(){
-//         File file = new File(main.getDataFolder()+File.separator+"messages.yml");
-//         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-        String str = config.getString("specify_reason");
-        return ChatColor.translateAlternateColorCodes('&', str);
+        File file = new File(main.getDataFolder()+File.separator+"messages.yml");
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        return ChatColor.translateAlternateColorCodes('&', config.getString("errors.specify_reason"));
     }
     
     public static String specifyPlayer(){
-        return ChatColor.translateAlternateColorCodes('&', config.getString("specify_player"));
+        File file = new File(main.getDataFolder()+File.separator+"messages.yml");
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        return ChatColor.translateAlternateColorCodes('&', config.getString("errors.specify_player"));
     }
     
     public static String cmdError(){
-        return ChatColor.translateAlternateColorCodes('&', config.getString("cmd_error"));
+        File file = new File(main.getDataFolder()+File.separator+"messages.yml");
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        return ChatColor.translateAlternateColorCodes('&', config.getString("errors.cmd_error"));
     }
     
     public static String wipeMsg(){
-        return ChatColor.translateAlternateColorCodes('&', config.getString("wipe_msg"));
+        File file = new File(main.getDataFolder()+File.separator+"messages.yml");
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        return ChatColor.translateAlternateColorCodes('&', config.getString("errors.wipe_msg"));
     }
     
     public static String invalidArgs(){
-        return ChatColor.translateAlternateColorCodes('&', config.getString("invalid_args"));
+        File file = new File(main.getDataFolder()+File.separator+"messages.yml");
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        return ChatColor.translateAlternateColorCodes('&', config.getString("errors.invalid_args"));
+    }
+
+    public static String directMessageCmdSpecifyMsg(){
+        File file = new File(main.getDataFolder()+File.separator+"messages.yml");
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        return ChatColor.translateAlternateColorCodes('&', config.getString("errors.dm_cmd_specify_msg"));
     }
     
     public static String success(){
-        return ChatColor.translateAlternateColorCodes('&', config.getString("success"));
+        File file = new File(main.getDataFolder()+File.separator+"messages.yml");
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        return ChatColor.translateAlternateColorCodes('&', config.getString("info.success"));
     }
 
     public static void createConfig() throws IOException {
+        File file = new File(main.getDataFolder()+File.separator+"messages.yml");
         if (!file.exists()){
             file.createNewFile();
-            
+            YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
             // Error-y stuff
-            config.set("no_permission", "&cYou do not have permission to use this command!");
-            config.set("not_online", "&cThat player isn't online!");
-            config.set("not_played", "&cThat player hasn't played before!");
-            config.set("only_players", "&cOnly players can use this command!");
-            config.set("specify_reason", "&cPlease specify a reason!");
-            config.set("specify_player", "&cPlease specify a player!");
-            config.set("cmd_error", "&cAn error occured while attempting to perform this command!");
-            config.set("wipe_msg", "&cCheating has been detected on one or more of your Skyblock Profiles and your profiles have been wiped.");
-            config.set("invalid_args", "&c Invalid arguments!");
+            config.set("errors.no_permission", "&cYou do not have permission to use this command!");
+            config.set("errors.not_online", "&cThat player isn't online!");
+            config.set("errors.not_played", "&cThat player hasn't played before!");
+            config.set("errors.only_players", "&cOnly players can use this command!");
+            config.set("errors.specify_reason", "&cPlease specify a reason!");
+            config.set("errors.specify_player", "&cPlease specify a player!");
+            config.set("errors.cmd_error", "&cAn error occured while attempting to perform this command!");
+            config.set("errors.wipe_msg", "&cCheating has been detected on one or more of your Skyblock Profiles and your profiles have been wiped.");
+            config.set("errors.invalid_args", "&cInvalid arguments!");
+            config.set("errors.dm_cmd_specify_msg", "&cPlease specify a message to send!");
             
             // Good stuff
-            config.set("success", "&aSuccess!");
+            config.set("info.success", "&aSuccess!");
             
             config.save(file);
         }

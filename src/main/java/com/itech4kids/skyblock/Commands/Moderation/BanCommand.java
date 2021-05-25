@@ -1,6 +1,7 @@
 package com.itech4kids.skyblock.Commands.Moderation;
 
 import com.itech4kids.skyblock.Util.Config;
+import com.itech4kids.skyblock.Util.MessageConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -15,7 +16,7 @@ public class BanCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if(!(sender instanceof Player)){
-            sender.sendMessage(MessageConfig.onlyPlayers);
+            sender.sendMessage(MessageConfig.onlyPlayers());
             return true;
         }
         Player player = (Player) sender;

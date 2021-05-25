@@ -213,7 +213,6 @@ public class Main extends JavaPlugin {
         getCommand("itembrowser").setExecutor(new ItemBrowserCommand());
         getCommand("swordcategory").setExecutor(new SwordCategoryCommand());
         getCommand("swordcategory2").setExecutor(new SwordCategoryCommandPage2());
-        getCommand("todolist").setExecutor(new TodoListCommand());
         getCommand("trade").setExecutor(new TradeCommand());
         getCommand("skill").setExecutor(new SkillCommand());
         getCommand("sreforge").setExecutor(new ReforgeCommand());
@@ -246,6 +245,7 @@ public class Main extends JavaPlugin {
         getCommand("gms").setExecutor(new GmsCommand());
         getCommand("gma").setExecutor(new GmaCommand());
         getCommand("gmsp").setExecutor(new GmspCommand());
+        getCommand("directmessage").setExecutor(new DirectMessageCommand());
     }
 
     public void updateMaxHealth(SkyblockPlayer skyblockPlayer) {
