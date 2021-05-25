@@ -67,7 +67,7 @@ public class MessageConfig {
         return ChatColor.translateAlternateColorCodes('&', config.getString("wipe_msg"));
     }
     
-    public static String invalid_args(){
+    public static String invalidArgs(){
         return ChatColor.translateAlternateColorCodes('&', config.getString("invalid_args"));
     }
     
