@@ -14,16 +14,16 @@ public class KickCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if(!(sender instanceof Player)){
-            sender.sendMessage(ChatColor.RED + "Only players can run that command!");
+            sender.sendMessage(MessageConfig.onlyPlayers());
             return true;
         }
         Player player = (Player) sender;
         if (player.isOp()) {
             if (args.length == 0) {
-                player.sendMessage(ChatColor.RED + "Please specify a player to kick!");
+                player.sendMessage(MessageConfig.specifyPlayer());
                 return true;
             } else if (args.length == 1) {
-                player.sendMessage(ChatColor.RED + "Please specify a reason!");
+                player.sendMessage(MessageConfig.specifyReason());
                 return true;
             } else if (args.length == 3) {
                 player.sendMessage(ChatColor.RED + "Incorrect usage!\n/kick <player> <reason>");
@@ -35,10 +35,13 @@ public class KickCommand implements CommandExecutor {
                 if (player.getServer().getOnlinePlayers().contains(target)) {
                     target.kickPlayer(ChatColor.RED + "You have been kicked from \nHypixel SkyBlock!\nKicked by: " + ChatColor.GRAY + player.getName() + ChatColor.RED + "\nReason: " + ChatColor.GRAY + new_reason);
                 } else {
-                    player.sendMessage(ChatColor.RED + "That player isn't online!");
+                    player.sendMessage(MessageConfig.notOnline());
                     return true;
                 }
             }
+        } else {
+            player.sendMessage(MessageConfig.noPermission());
+            return true;
         }
         return false;
     }
