@@ -197,7 +197,6 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new InventoryListener(), this);
         Bukkit.getPluginManager().registerEvents(new AbilityListener(), this);
         Bukkit.getPluginManager().registerEvents(new StatListener(), this);
-        Bukkit.getPluginManager().registerEvents(new CollectionsListener(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamageListeners(), this);
         Bukkit.getPluginManager().registerEvents(new MerchantListeners(), this);
         Bukkit.getPluginManager().registerEvents(new SlayerListener(), this);
