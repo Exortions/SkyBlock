@@ -51,6 +51,13 @@ public class MessageConfig {
         String str = config.getString("specify_reason");
         return ChatColor.translateAlternateColorCodes('&', str);
     }
+    
+    public static String cmdError(){
+        File file = new File(main.getDataFolder()+File.seperator+"messages.yml");
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        String str = config.getString("cmd_error");
+        return ChatColor.translateAlternateColorCodes('&', str);
+    }
 
     public static void createConfig() throws IOException {
         File file = new File(main.getDataFolder()+File.separator+"messages.yml");
@@ -63,6 +70,7 @@ public class MessageConfig {
             config.set("not_played", "&cThat player hasn't played before!");
             config.set("only_players", "&cOnly players can use this command!");
             config.set("specify_reason", "&cPlease specify a reason!");
+            config.set("cmd_error", "&cAn error occured while attempting to perform this command!");
 
             config.save(file);
         }
