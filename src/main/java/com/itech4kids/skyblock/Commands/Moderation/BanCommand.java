@@ -15,7 +15,7 @@ public class BanCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if(!(sender instanceof Player)){
-            sender.sendMessage(ChatColor.RED + "Only players can run this command!");
+            sender.sendMessage(MessageConfig.onlyPlayers);
             return true;
         }
         Player player = (Player) sender;
@@ -46,6 +46,8 @@ public class BanCommand implements CommandExecutor {
                     target.kickPlayer(ChatColor.RED + "You are permanently banned from this server!\n\n" + ChatColor.GRAY + "Reason: " + ChatColor.WHITE + Config.getBanReason(player) + "\n" + ChatColor.GRAY + "Find out more: " + ChatColor.AQUA + "" + ChatColor.UNDERLINE + "https://www.hypixel.net/appeal\n\n" + ChatColor.GRAY + "Ban ID: " + ChatColor.WHITE + "#1379254\n" + ChatColor.GRAY + "Sharing your ban ID may affect the process of your appeal!");
                 }
             }
+        } else{
+            player.sendMessage(MessageConfig.noPermission());
         }
         return false;
     }
