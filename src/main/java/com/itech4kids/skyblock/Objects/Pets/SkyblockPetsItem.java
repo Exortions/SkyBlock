@@ -134,7 +134,6 @@ public class SkyblockPetsItem extends ItemStack {
 
         meta.setLore(lore);
         this.setItemMeta(meta);
-        ItemHandler.setMaxStackSize(CraftItemStack.asNMSCopy(this).getItem(), 1);
     }
 
     public String getName(){return name;}

@@ -8,6 +8,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
+
 public class KickCommand implements CommandExecutor {
 
     @Override
@@ -24,15 +26,11 @@ public class KickCommand implements CommandExecutor {
             } else if (args.length == 1) {
                 player.sendMessage(MessageConfig.specifyReason());
                 return true;
-            } else if (args.length == 3) {
-                player.sendMessage(ChatColor.RED + "Incorrect usage!\n/kick <player> <reason>");
-                return true;
-            } else if (args.length == 2) {
+            } else {
                 Player target = Bukkit.getPlayer(args[0]);
-                String reason = args[1];
-                String new_reason = reason.replace('_', ' ');
+                String reason = String.join(" ", Arrays.asList(args).subList(1, args.length).toArray(new String[]{}));
                 if (player.getServer().getOnlinePlayers().contains(target)) {
-                    target.kickPlayer(ChatColor.RED + "You have been kicked from \nHypixel SkyBlock!\nKicked by: " + ChatColor.GRAY + player.getName() + ChatColor.RED + "\nReason: " + ChatColor.GRAY + new_reason);
+                    target.kickPlayer(ChatColor.RED + "You have been kicked from \nHypixel SkyBlock!\nKicked by: " + ChatColor.GRAY + player.getName() + ChatColor.RED + "\nReason: " + ChatColor.GRAY + reason);
                 } else {
                     player.sendMessage(MessageConfig.notOnline());
                     return true;

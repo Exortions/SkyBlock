@@ -561,7 +561,6 @@ public class ItemHandler {
         meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
         item.setItemMeta(meta);
         IDtoSkull(item, ID);
-        setMaxStackSize(CraftItemStack.asNMSCopy(item).getItem(), maxStackSize);
         return item;
     }
 
@@ -572,7 +571,6 @@ public class ItemHandler {
         meta.setColor(color);
         meta.setDisplayName(name);
         item.setItemMeta(meta);
-        setMaxStackSize(CraftItemStack.asNMSCopy(item).getItem(), 1);
         return item;
     }
 
@@ -652,7 +650,6 @@ public class ItemHandler {
         meta.setDisplayName(itemName);
         meta.setOwner(headName);
         item.setItemMeta(meta);
-        setMaxStackSize(CraftItemStack.asNMSCopy(item).getItem(), 1);
         return item;
     }
 
@@ -898,18 +895,6 @@ public class ItemHandler {
         meta.setDisplayName(" ");
         item.setItemMeta(meta);
         return item;
-    }
-
-    public static void setMaxStackSize(net.minecraft.server.v1_8_R3.Item item, int i){
-        try {
-
-            Field field = Item.class.getDeclaredField("maxStackSize");
-            field.setAccessible(true);
-            field.setInt(item, i);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public static ItemStack IDtoSkull(ItemStack head, String id) {

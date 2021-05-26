@@ -4,18 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c19df67f-9a66-48e8-923f-a4c77a62bce5" name="Default Changelist" comment="Collections">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/AdminCommands/DirectMessageCommand.java" afterDir="false" />
+    <list default="true" id="c19df67f-9a66-48e8-923f-a4c77a62bce5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Moderation/BanCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Moderation/BanCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Moderation/KickCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Moderation/KickCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Moderation/WipeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Moderation/WipeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Setup/SpawnNpcCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Setup/SpawnNpcCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Listeners/CollectionsListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Listeners/CollectionsListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Listeners/InventoryListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Listeners/InventoryListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Util/MessageConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Util/MessageConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Objects/Items/ItemHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Objects/Items/ItemHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Objects/Pets/SkyblockPetsItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Objects/Pets/SkyblockPetsItem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621914095670</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="DM Cmd and MsgConfig">
+      <created>1621983647164</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1621983647164</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -291,7 +293,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Stuff" />
     <MESSAGE value="Commit stuff" />
     <MESSAGE value="Fixed wiping issue, can now have multiple words in ban reason. Also added auto-generation for CollectionsListener.java, allowing us to really easily generate collections, without having to hardcode everything" />
     <MESSAGE value="Added API &amp; Plugin jars for the future" />
@@ -316,6 +317,7 @@
     <MESSAGE value="Collection stuff" />
     <MESSAGE value="Added /gms,gmc,gma,gmsp" />
     <MESSAGE value="Collections" />
-    <option name="LAST_COMMIT_MESSAGE" value="Collections" />
+    <MESSAGE value="DM Cmd and MsgConfig" />
+    <option name="LAST_COMMIT_MESSAGE" value="DM Cmd and MsgConfig" />
   </component>
 </project>

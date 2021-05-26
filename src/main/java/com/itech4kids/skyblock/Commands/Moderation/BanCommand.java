@@ -10,6 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class BanCommand implements CommandExecutor {
 
@@ -26,17 +27,16 @@ public class BanCommand implements CommandExecutor {
                 return true;
             } else if (args.length == 2) {
                 Player target = Bukkit.getPlayer(args[0]);
-                String reason = args[1];
-                String new_reason = reason.replace('_', ' ');
+                String reason = String.join(" ", Arrays.asList(args).subList(1, args.length).toArray(new String[]{}));
                 if (player.getServer().getOnlinePlayers().contains(target)) {
-                    if (!(new_reason.equals("null"))) {
+                    if (!(reason.equals("null"))) {
                         try {
                             Config.setBanned(target, true);
-                            Config.setBanReason(target, new_reason);
+                            Config.setBanReason(target, reason);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    } else if (new_reason.equals("null")) {
+                    } else {
                         try {
                             Config.setBanned(target, true);
                             Config.setBanReason(target, "None provided.");
