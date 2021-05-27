@@ -95,7 +95,7 @@ IF YOU ARE TRYING TO PROFIT OFF OF THIS PLUGIN, PLEASE BE WARNED THAT IT IS NOT 
 4. Move the downloaded JAR into your server plugins folder
    `MainServerFolder/plugins`
 4. Restart your server.
-5. Download the SkyBlock hub from anywhere (doesn't really matter)
+5. Download the SkyBlock hub [here](https://www.mediafire.com/file/rosqqsrtqidkly1/Hypixel_-_Skyblock_Hub.zip/file)
 6. Make the SkyBlock hub your spawning world
 7. Stop your server
 8. Take the private_island.schematic file from the dependencies folder and put it in 
