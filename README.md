@@ -90,17 +90,17 @@ This section is all of the frameworks/applications that were used in the process
 If you want to install this for yourself, and only yourself (Limited to a small group of friends) for a Minecraft server, you can do so with the following instructions.
 IF YOU ARE TRYING TO PROFIT OFF OF THIS PLUGIN, PLEASE BE WARNED THAT IT IS NOT LEGAL, AS THE GAME SKYBLOCK IS OWNED BY [HYPIXEL](https://hypixel.net/), AND THIS IS A FUN SIDE PROJECT THAT IS NOT MEANT TO BE FOR COMMERCIAL USE.
 1. Ensure that your server .jar is Spigot 1.8.9
-2. Download a release from the Releases section.
-3. Move the downloaded JAR into your server plugins folder
+2. Download the dependencies from the dependencies folder
+3. Download a release from the Releases section.
+4. Move the downloaded JAR into your server plugins folder
    `MainServerFolder/plugins`
 4. Restart your server.
 5. Download the SkyBlock hub from anywhere (doesn't really matter)
 6. Make the SkyBlock hub your spawning world
 7. Stop your server
-8. Go into `MainServerFolder/plugins/RemakeHypixelSkyblock/`
-9. Take the private_island.schematic file from the main section in our github, download it, and then put it there.
-10. Start your server again.
-11. Log onto the server! Bam! You now have SkyBlock running on your private server.
+8. Take the private_island.schematic file from the dependencies folder and put it in `MainServerFolder/plugins/RemakeHypixelSkyblock/`
+9. Start your server again.
+10. Log onto the server! Bam! You now have SkyBlock running on your private server.
 Important note: Launch pads and custom mob spawning locations won't work because you need to edit the mobspawns.yml and the launchpad.yml. Those files will directly be added later to the GitHub.
 <!-- FEATURES -->
 ## Features
