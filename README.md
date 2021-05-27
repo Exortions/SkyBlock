@@ -98,9 +98,10 @@ IF YOU ARE TRYING TO PROFIT OFF OF THIS PLUGIN, PLEASE BE WARNED THAT IT IS NOT 
 5. Download the SkyBlock hub from anywhere (doesn't really matter)
 6. Make the SkyBlock hub your spawning world
 7. Stop your server
-8. Take the private_island.schematic file from the dependencies folder and put it in `MainServerFolder/plugins/RemakeHypixelSkyblock/`
-9. Start your server again.
-10. Log onto the server! Bam! You now have SkyBlock running on your private server.
+8. Take the private_island.schematic file from the dependencies folder and put it in 
+  `MainServerFolder/plugins/RemakeHypixelSkyblock/`
+10. Start your server again.
+11. Log onto the server! Bam! You now have SkyBlock running on your private server.
 Important note: Launch pads and custom mob spawning locations won't work because you need to edit the mobspawns.yml and the launchpad.yml. Those files will directly be added later to the GitHub.
 <!-- FEATURES -->
 ## Features
