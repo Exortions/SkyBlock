@@ -13,8 +13,8 @@ public abstract class SandboxModule {
         return name;
     }
 
-    public final void registerCommand(SkyblockCommand command) {
-        Main.getMain().registerCommand(command);
+    public final void registerCommand(CommandExecutor cmd) {
+        Main.getMain().registerCommand(cmd);
     }
 
     public final void registerListener(Listener listener) {
