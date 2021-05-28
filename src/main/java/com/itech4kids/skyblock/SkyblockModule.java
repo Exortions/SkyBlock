@@ -1,20 +1,19 @@
 package com.itech4kids.skyblock;
 // Created in a text editor, imports aren't there, bugs are expected.
 
-public abstract class SandboxModule {
+import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
+
+public abstract class SkyblockModule {
 
     private final String name;
 
-    public SandboxModule(String name) {
+    public SkyblockModule(String name) {
         this.name = name;
     }
 
     public final String getModuleName() {
         return name;
-    }
-
-    public final void registerCommand(CommandExecutor cmd) {
-        Main.getMain().registerCommand(cmd);
     }
 
     public final void registerListener(Listener listener) {
