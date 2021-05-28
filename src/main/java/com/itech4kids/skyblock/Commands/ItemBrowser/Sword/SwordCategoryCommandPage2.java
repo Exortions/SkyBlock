@@ -35,13 +35,25 @@ public class SwordCategoryCommandPage2 implements CommandExecutor {
 
         ItemStack emptySpace = itemHandler.createEmptySpace();
 
-        for (int index = 0; index < 54; index++) {
+        for(int index = 0; index < 9; index++){
             menu.setItem(index, emptySpace);
         }
 
-        ItemStack test = new ItemStack(Material.NETHER_STAR, 1);
+        menu.setItem(9, emptySpace);
+        menu.setItem(17, emptySpace);
+        menu.setItem(18, emptySpace);
+        menu.setItem(26, emptySpace);
+        menu.setItem(27, emptySpace);
+        menu.setItem(36, emptySpace);
+        menu.setItem(35, emptySpace);
 
-        menu.setItem(10, test);
+        for (int i = 44; i < 54; ++i){
+            menu.setItem(i, emptySpace);
+        }
+
+        for (ItemStack item : skyblockPlayer.pendingSwords){
+            menu.addItem(item);
+        }
 
         player.openInventory(skyblockPlayer.getInventory("Swords - Page 2"));
         return false;

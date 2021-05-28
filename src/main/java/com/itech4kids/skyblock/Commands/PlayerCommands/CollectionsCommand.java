@@ -119,7 +119,6 @@ public class CollectionsCommand implements CommandExecutor {
                 Inventory menu = skyblockPlayer.getInventory("Farming Collection");
 
                 ItemHandler.fill(menu, 1);
-
                 checkUnlocked(player, menu, "farming", "wheat", 10, notUnlocked, Config.getCollectionLevel(player, "farming", "wheat"), Config.getCollectionCollected(player, "farming", "wheat"), 296,  ChatColor.BLUE + " Wheat Minion" + ChatColor.GRAY + " Recipes", ChatColor.GREEN + "Enchanted Book (Harvesting V)" + ChatColor.GRAY + "  Recipe", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
                 checkUnlocked(player, menu, "farming", "carrot", 11, notUnlocked, Config.getCollectionLevel(player, "farming", "carrot"), Config.getCollectionCollected(player, "farming", "carrot"), 391, ChatColor.BLUE + " Carrot Minion" + ChatColor.GRAY + " Recipes", ChatColor.GREEN + "Simple Carrot Candy " + ChatColor.GRAY + "Recipe", ChatColor.DARK_PURPLE + "Catching Egg " + ChatColor.DARK_GRAY + "(" + ChatColor.DARK_RED + "COMING SOON" + ChatColor.DARK_GRAY + ")", ChatColor.GREEN + "Enchanted Carrot " + ChatColor.GRAY + "Recipe", ChatColor.GREEN + "Enchanted Carrot on a Stick " + ChatColor.GRAY + "Recipe", "", "", "", "", "", "" ,"", "", "", "", "", "", (short) 0);
                 checkUnlocked(player, menu, "farming", "potato", 12, notUnlocked, Config.getCollectionLevel(player, "farming", "potato"), Config.getCollectionCollected(player, "farming", "potato"), 392, ChatColor.BLUE + " Potato Minion" + ChatColor.GRAY + " Recipes", "", "", "", "", "", "", "", "", "", "" ,"", "", "", "", "", "", (short) 0);
@@ -159,6 +158,7 @@ public class CollectionsCommand implements CommandExecutor {
 
                 checkUnlocked(player, menu, "mining", "cobblestone", 10, notUnlocked, Config.getCollectionLevel(player, "mining", "cobblestone"), Config.getCollectionCollected(player, "mining", "cobblestone"), 4, ChatColor.BLUE + " Cobblestone Minion " + ChatColor.GRAY + " Recipes", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
                 checkUnlocked(player, menu, "mining", "coal", 11, notUnlocked, Config.getCollectionLevel(player, "mining", "coal"), Config.getCollectionCollected(player, "mining", "coal"), 263, ChatColor.BLUE + " Coal Minion " + ChatColor.GRAY + " Recipes", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
+                checkUnlocked(player, menu, "mining", "iron", 12, notUnlocked, Config.getCollectionLevel(player, "mining", "iron"), Config.getCollectionCollected(player, "mining", "iron"), 265, ChatColor.BLUE + " Iron Minion " + ChatColor.GRAY + " Recipes", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", (short) 0);
 
                 for(int i = 31; i < 35; i++){
                     menu.setItem(i, new ItemStack(Material.AIR));

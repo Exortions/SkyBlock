@@ -50,6 +50,7 @@ commands:
   bootscategory:
     description: WIP
   materialscategory:
+  bowscategory:
   visit:
     description: Visit other players islands
   launchpad:
@@ -68,13 +69,3 @@ commands:
   slayer:
   spot:
   collectionstat:
-    description: Set a player's collection level, unlocked, or collected to a specified value.
-    aliases: [cstat]
-  anvil:
-  gmc:
-  gms:
-  gma:
-  gmsp:
-  directmessage:
-    description: Direct message a specified player anonymously.
-    aliases: [dm]

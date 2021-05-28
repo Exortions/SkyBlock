@@ -4,12 +4,8 @@ import com.connorlinfoot.actionbarapi.ActionBarAPI;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.itech4kids.skyblock.Commands.AdminCommands.*;
-import com.itech4kids.skyblock.Commands.AdminCommands.Gamemode.GmaCommand;
-import com.itech4kids.skyblock.Commands.AdminCommands.Gamemode.GmcCommand;
-import com.itech4kids.skyblock.Commands.AdminCommands.Gamemode.GmsCommand;
-import com.itech4kids.skyblock.Commands.AdminCommands.Gamemode.GmspCommand;
-import com.itech4kids.skyblock.Commands.PlayerCommands.CollectionsCommand;
 import com.itech4kids.skyblock.Commands.ItemBrowser.Boots.BootsCategoryCommand;
+import com.itech4kids.skyblock.Commands.ItemBrowser.BowCategoryCommand;
 import com.itech4kids.skyblock.Commands.ItemBrowser.Chestplate.ChestplateCategoryCommand;
 import com.itech4kids.skyblock.Commands.ItemBrowser.Helmet.HelmetCategoryCommand;
 import com.itech4kids.skyblock.Commands.ItemBrowser.Leggings.LeggingsCategoryCommand;
@@ -36,9 +32,6 @@ import com.itech4kids.skyblock.CustomMobs.Wolf.SkyblockWolfType;
 import com.itech4kids.skyblock.CustomMobs.Zombie.SkyblockZombie;
 import com.itech4kids.skyblock.CustomMobs.Zombie.SkyblockZombieType;
 import com.itech4kids.skyblock.Listeners.*;
-import com.itech4kids.skyblock.Mechanics.Anvil.AnvilCommand;
-import com.itech4kids.skyblock.Mechanics.Anvil.AnvilListener;
-import com.itech4kids.skyblock.Mechanics.Crafting.CraftingCommand;
 import com.itech4kids.skyblock.Objects.Crafting.CraftingRecipe;
 import com.itech4kids.skyblock.Objects.Island.IslandManager;
 import com.itech4kids.skyblock.Objects.Items.ItemHandler;
@@ -197,12 +190,12 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new InventoryListener(), this);
         Bukkit.getPluginManager().registerEvents(new AbilityListener(), this);
         Bukkit.getPluginManager().registerEvents(new StatListener(), this);
+        Bukkit.getPluginManager().registerEvents(new CollectionsListener(), this);
+        Bukkit.getPluginManager().registerEvents(new CraftingListeners(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamageListeners(), this);
         Bukkit.getPluginManager().registerEvents(new MerchantListeners(), this);
         Bukkit.getPluginManager().registerEvents(new SlayerListener(), this);
         Bukkit.getPluginManager().registerEvents(new SPotListener(), this);
-        Bukkit.getPluginManager().registerEvents(new CollectionsListener(), this);
-        Bukkit.getPluginManager().registerEvents(new AnvilListener(), this);
 
     }
 
@@ -213,6 +206,7 @@ public class Main extends JavaPlugin {
         getCommand("itembrowser").setExecutor(new ItemBrowserCommand());
         getCommand("swordcategory").setExecutor(new SwordCategoryCommand());
         getCommand("swordcategory2").setExecutor(new SwordCategoryCommandPage2());
+        getCommand("todolist").setExecutor(new TodoListCommand());
         getCommand("trade").setExecutor(new TradeCommand());
         getCommand("skill").setExecutor(new SkillCommand());
         getCommand("sreforge").setExecutor(new ReforgeCommand());
@@ -227,6 +221,7 @@ public class Main extends JavaPlugin {
         getCommand("leggingscategory").setExecutor(new LeggingsCategoryCommand());
         getCommand("bootscategory").setExecutor(new BootsCategoryCommand());
         getCommand("materialscategory").setExecutor(new MaterialCategoryCommand());
+        getCommand("bowscategory").setExecutor(new BowCategoryCommand());
         getCommand("visit").setExecutor(new VisitCommand());
         getCommand("launchpad").setExecutor(new LaunchPadSetUpCommand());
         getCommand("wipe").setExecutor(new WipeCommand());
@@ -234,18 +229,13 @@ public class Main extends JavaPlugin {
         getCommand("kick").setExecutor(new KickCommand());
         getCommand("ban").setExecutor(new BanCommand());
         getCommand("location").setExecutor(new LocationSetupCommand());
-        getCommand("craft").setExecutor(new CraftingCommand());
+        getCommand("craft").setExecutor(new WorkBenchCommand());
         getCommand("spawnNpc").setExecutor(new SpawnNpcCommand());
         getCommand("clearchat").setExecutor(new ClearChatCommand());
         getCommand("slayer").setExecutor(new SlayerCommand());
         getCommand("spot").setExecutor(new PotionCommand());
         getCommand("collectionstat").setExecutor(new CollectionStatCommand());
-        getCommand("anvil").setExecutor(new AnvilCommand());
-        getCommand("gmc").setExecutor(new GmcCommand());
-        getCommand("gms").setExecutor(new GmsCommand());
-        getCommand("gma").setExecutor(new GmaCommand());
-        getCommand("gmsp").setExecutor(new GmspCommand());
-        getCommand("directmessage").setExecutor(new DirectMessageCommand());
+
     }
 
     public void updateMaxHealth(SkyblockPlayer skyblockPlayer) {
@@ -411,7 +401,11 @@ public class Main extends JavaPlugin {
                 score.setScore(scoreNum--);
                 score = objective.getScore(org.bukkit.ChatColor.WHITE + " ");
                 score.setScore(scoreNum--);
-                score = objective.getScore(org.bukkit.ChatColor.WHITE + "Purse: " + ChatColor.GOLD +  formatter.format(Config.getPurseCoins(skyblockPlayer.getBukkitPlayer())));
+                if (skyblockPlayer.lastPickedUpCoins > 0){
+                    score = objective.getScore(org.bukkit.ChatColor.WHITE + "Purse: " + ChatColor.GOLD +  formatter.format(Config.getPurseCoins(skyblockPlayer.getBukkitPlayer())) + ChatColor.YELLOW + " (+" + skyblockPlayer.lastPickedUpCoins + ")");
+                }else{
+                    score = objective.getScore(org.bukkit.ChatColor.WHITE + "Purse: " + ChatColor.GOLD +  formatter.format(Config.getPurseCoins(skyblockPlayer.getBukkitPlayer())));
+                }
                 score.setScore(scoreNum--);
                 score = objective.getScore(org.bukkit.ChatColor.WHITE + "Bits: " + ChatColor.AQUA + formatter.format(Config.getBits(player)));
                 score.setScore(scoreNum--);
@@ -437,7 +431,11 @@ public class Main extends JavaPlugin {
                 score.setScore(scoreNum--);
                 score = objective.getScore(org.bukkit.ChatColor.WHITE + " ");
                 score.setScore(scoreNum--);
-                score = objective.getScore(org.bukkit.ChatColor.WHITE + "Purse: " + ChatColor.GOLD +  formatter.format(Config.getPurseCoins(skyblockPlayer.getBukkitPlayer())));
+                if (skyblockPlayer.lastPickedUpCoins > 0){
+                    score = objective.getScore(org.bukkit.ChatColor.WHITE + "Purse: " + ChatColor.GOLD +  formatter.format(Config.getPurseCoins(skyblockPlayer.getBukkitPlayer())) + ChatColor.YELLOW + " (+" + skyblockPlayer.lastPickedUpCoins + ")");
+                }else{
+                    score = objective.getScore(org.bukkit.ChatColor.WHITE + "Purse: " + ChatColor.GOLD +  formatter.format(Config.getPurseCoins(skyblockPlayer.getBukkitPlayer())));
+                }
                 score.setScore(scoreNum--);
                 score = objective.getScore(org.bukkit.ChatColor.WHITE + "Bits: " + ChatColor.AQUA + formatter.format(Config.getBits(player)));
                 score.setScore(scoreNum--);
@@ -471,7 +469,11 @@ public class Main extends JavaPlugin {
                 score.setScore(scoreNum--);
                 score = objective.getScore(org.bukkit.ChatColor.WHITE + " ");
                 score.setScore(scoreNum--);
-                score = objective.getScore(org.bukkit.ChatColor.WHITE + "Purse: " + ChatColor.GOLD +  formatter.format(Config.getPurseCoins(skyblockPlayer.getBukkitPlayer())));
+                if (skyblockPlayer.lastPickedUpCoins > 0){
+                    score = objective.getScore(org.bukkit.ChatColor.WHITE + "Purse: " + ChatColor.GOLD +  formatter.format(Config.getPurseCoins(skyblockPlayer.getBukkitPlayer())) + ChatColor.YELLOW + " (+" + skyblockPlayer.lastPickedUpCoins + ")");
+                }else{
+                    score = objective.getScore(org.bukkit.ChatColor.WHITE + "Purse: " + ChatColor.GOLD +  formatter.format(Config.getPurseCoins(skyblockPlayer.getBukkitPlayer())));
+                }
                 score.setScore(scoreNum--);
                 score = objective.getScore(org.bukkit.ChatColor.WHITE + "Bits: " + ChatColor.AQUA + formatter.format(Config.getBits(player)));
                 score.setScore(scoreNum--);
@@ -505,7 +507,11 @@ public class Main extends JavaPlugin {
                 score.setScore(scoreNum--);
                 score = objective.getScore(org.bukkit.ChatColor.WHITE + " ");
                 score.setScore(scoreNum--);
-                score = objective.getScore(org.bukkit.ChatColor.WHITE + "Purse: " + ChatColor.GOLD +  formatter.format(Config.getPurseCoins(skyblockPlayer.getBukkitPlayer())));
+                if (skyblockPlayer.lastPickedUpCoins > 0){
+                    score = objective.getScore(org.bukkit.ChatColor.WHITE + "Purse: " + ChatColor.GOLD +  formatter.format(Config.getPurseCoins(skyblockPlayer.getBukkitPlayer())) + ChatColor.YELLOW + " (+" + skyblockPlayer.lastPickedUpCoins + ")");
+                }else{
+                    score = objective.getScore(org.bukkit.ChatColor.WHITE + "Purse: " + ChatColor.GOLD +  formatter.format(Config.getPurseCoins(skyblockPlayer.getBukkitPlayer())));
+                }
                 score.setScore(scoreNum--);
                 score = objective.getScore(org.bukkit.ChatColor.WHITE + "Bits: " + ChatColor.AQUA + formatter.format(Config.getBits(player)));
                 score.setScore(scoreNum--);

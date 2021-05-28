@@ -5,6 +5,7 @@ import com.itech4kids.skyblock.Events.SkyblockEntitySkillGainEvent;
 import com.itech4kids.skyblock.Events.SkyblockSkillExpGainEvent;
 import com.itech4kids.skyblock.Main;
 import com.itech4kids.skyblock.Enums.SkillType;
+import com.itech4kids.skyblock.Objects.Items.ItemHandler;
 import com.itech4kids.skyblock.Objects.SkyblockPlayer;
 import com.itech4kids.skyblock.Enums.SkyblockStats;
 import com.itech4kids.skyblock.Util.ItemUtil;
@@ -46,7 +47,11 @@ public class EntityDamageListeners implements Listener {
             if (!e.getEntity().hasMetadata("NPC")) {
                 if (!e.isCancelled()) {
                     SkyblockPlayer skyblockPlayer = main.getPlayer(e.getEntity().getName());
-                    ItemUtil.setDamageIndicator(e.getEntity().getLocation(), ChatColor.GRAY + "" + Math.round(e.getFinalDamage() - (e.getFinalDamage() * ((skyblockPlayer.getStat(SkyblockStats.DEFENSE)/(skyblockPlayer.getStat(SkyblockStats.DEFENSE) + 100F))))));
+                    if (Math.round(e.getFinalDamage() - (e.getFinalDamage() * ((skyblockPlayer.getStat(SkyblockStats.DEFENSE)/(skyblockPlayer.getStat(SkyblockStats.DEFENSE) + 100F))))) >= 1000000){
+                        ItemUtil.setDamageIndicator(e.getEntity().getLocation(), ChatColor.GRAY + "" + Main.format(Math.round(e.getFinalDamage() - (e.getFinalDamage() * ((skyblockPlayer.getStat(SkyblockStats.DEFENSE) / (skyblockPlayer.getStat(SkyblockStats.DEFENSE) + 100F)))))));
+                    }else {
+                        ItemUtil.setDamageIndicator(e.getEntity().getLocation(), ChatColor.GRAY + "" + formatter.format(Math.round(e.getFinalDamage() - (e.getFinalDamage() * ((skyblockPlayer.getStat(SkyblockStats.DEFENSE) / (skyblockPlayer.getStat(SkyblockStats.DEFENSE) + 100F)))))));
+                    }
                     skyblockPlayer.setStat(SkyblockStats.HEALTH, (int) (skyblockPlayer.getStat(SkyblockStats.HEALTH) - (e.getFinalDamage() - (e.getFinalDamage() * ((skyblockPlayer.getStat(SkyblockStats.DEFENSE)/(skyblockPlayer.getStat(SkyblockStats.DEFENSE) + 100F)))))));
                     e.setDamage(0);
                     skyblockPlayer.getBukkitPlayer().setHealth(skyblockPlayer.getBukkitPlayer().getHealth() - (((e.getFinalDamage() - (e.getFinalDamage() * ((skyblockPlayer.getStat(SkyblockStats.DEFENSE)/(skyblockPlayer.getStat(SkyblockStats.DEFENSE) + 100F))))) * (skyblockPlayer.getBukkitPlayer().getMaxHealth() / (skyblockPlayer.getStat(SkyblockStats.MAX_HEALTH))))));
@@ -55,7 +60,11 @@ public class EntityDamageListeners implements Listener {
         }else{
             if (!e.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)){
                 if (!e.getEntity().getType().equals(EntityType.ARMOR_STAND)) {
-                    ItemUtil.setDamageIndicator(e.getEntity().getLocation(), ChatColor.GRAY + "" + formatter.format(Math.round(e.getFinalDamage())));
+                    if (e.getFinalDamage() >= 1000000){
+                        ItemUtil.setDamageIndicator(e.getEntity().getLocation(), ChatColor.GRAY + "" + Main.format((Math.round(e.getFinalDamage()))));
+                    }else{
+                        ItemUtil.setDamageIndicator(e.getEntity().getLocation(), ChatColor.GRAY + "" + formatter.format(Math.round(e.getFinalDamage())));
+                    }
                 }
             }
         }
@@ -96,7 +105,11 @@ public class EntityDamageListeners implements Listener {
         double damage = 5 + skyblockPlayer.getStat((SkyblockStats.DAMAGE)) + (skyblockPlayer.getStat(SkyblockStats.STRENGTH) / 5F) * (1 + skyblockPlayer.getStat(SkyblockStats.STRENGTH) / 100F);
         if (!npc.getEntity().getType().equals(EntityType.ARMOR_STAND)) {
             if (i <= skyblockPlayer.getStat(SkyblockStats.CRIT_CHANCE)) {
-                ItemUtil.setDamageIndicator(npc.getEntity().getLocation(), ItemUtil.addCritTexture(String.valueOf(formatter.format(Math.round((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100))))));
+                if (Math.round((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100)) >= 1000000){
+                    ItemUtil.setDamageIndicator(npc.getEntity().getLocation(), ItemUtil.addCritTexture(String.valueOf(Main.format(Math.round((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100))))));
+                }else{
+                    ItemUtil.setDamageIndicator(npc.getEntity().getLocation(), ItemUtil.addCritTexture(String.valueOf(formatter.format(Math.round((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100))))));
+                }
                 if (((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100) / divider) >= livingEntity.getHealth()) {
                     new NPCDeathEvent(npc, new EntityDeathEvent((LivingEntity) npc.getEntity(), new ArrayList<>()));
                     Bukkit.getPluginManager().callEvent(new SkyblockSkillExpGainEvent(skyblockPlayer, skillType, xp));
@@ -107,7 +120,11 @@ public class EntityDamageListeners implements Listener {
                     livingEntity.setHealth(livingEntity.getHealth() - ((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100) / divider));
                 }
             } else {
-                ItemUtil.setDamageIndicator(npc.getEntity().getLocation(), org.bukkit.ChatColor.GRAY + "" + formatter.format(Math.round(damage)));
+                if (Math.round(damage) >= 1000000){
+                    ItemUtil.setDamageIndicator(npc.getEntity().getLocation(), org.bukkit.ChatColor.GRAY + "" + Main.format(Math.round(damage)));
+                }else{
+                    ItemUtil.setDamageIndicator(npc.getEntity().getLocation(), org.bukkit.ChatColor.GRAY + "" + formatter.format(Math.round(damage)));
+                }
                 if (damage / divider >= livingEntity.getHealth()) {
                     new NPCDeathEvent(npc, new EntityDeathEvent((LivingEntity) npc.getEntity(), new ArrayList<>()));
                     Bukkit.getPluginManager().callEvent(new SkyblockSkillExpGainEvent(skyblockPlayer, skillType, xp));
@@ -156,11 +173,19 @@ public class EntityDamageListeners implements Listener {
                             sEntity.setLastDamager(skyblockPlayer.getBukkitPlayer());
                             if (i <= skyblockPlayer.getStat(SkyblockStats.CRIT_CHANCE)) {
                                 e.setDamage((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100)/sEntity.getMaximumHealth());
-                                ItemUtil.setDamageIndicator(e.getEntity().getLocation(), ItemUtil.addCritTexture(String.valueOf(formatter.format(Math.round((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100))))));
+                                if (Math.round((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100)) >= 1000000){
+                                    ItemUtil.setDamageIndicator(e.getEntity().getLocation(), ItemUtil.addCritTexture(String.valueOf(Main.format(Math.round((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100))))));
+                                }else{
+                                    ItemUtil.setDamageIndicator(e.getEntity().getLocation(), ItemUtil.addCritTexture(String.valueOf(formatter.format(Math.round((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100))))));
+                                }
                                 sEntity.subtractHealth((int) Math.round((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100)));
                             } else {
                                 e.setDamage(damage/sEntity.getMaximumHealth());
-                                ItemUtil.setDamageIndicator(e.getEntity().getLocation(), org.bukkit.ChatColor.GRAY + "" + formatter.format(Math.round(damage)));
+                                if (Math.round(damage) >= 1000000){
+                                    ItemUtil.setDamageIndicator(e.getEntity().getLocation(), org.bukkit.ChatColor.GRAY + "" + Main.format(Math.round(damage)));
+                                }else{
+                                    ItemUtil.setDamageIndicator(e.getEntity().getLocation(), org.bukkit.ChatColor.GRAY + "" + formatter.format(Math.round(damage)));
+                                }
                                 sEntity.subtractHealth((int) Math.round(damage));
                             }
                             if (r <= skyblockPlayer.getStat(SkyblockStats.FEROCITY)) {
@@ -181,10 +206,18 @@ public class EntityDamageListeners implements Listener {
                         if (!e.getEntity().getType().equals(EntityType.ARMOR_STAND)) {
                             if (i <= skyblockPlayer.getStat(SkyblockStats.CRIT_CHANCE)) {
                                 e.setDamage(damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100);
-                                ItemUtil.setDamageIndicator(e.getEntity().getLocation(), ItemUtil.addCritTexture(String.valueOf(formatter.format(Math.round(e.getDamage())))));
+                                if (Math.round((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100)) >= 1000000){
+                                    ItemUtil.setDamageIndicator(e.getEntity().getLocation(), ItemUtil.addCritTexture(String.valueOf(Main.format(Math.round((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100))))));
+                                }else{
+                                    ItemUtil.setDamageIndicator(e.getEntity().getLocation(), ItemUtil.addCritTexture(String.valueOf(formatter.format(Math.round((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100))))));
+                                }
                             } else {
                                 e.setDamage(damage);
-                                ItemUtil.setDamageIndicator(e.getEntity().getLocation(), org.bukkit.ChatColor.GRAY + "" + formatter.format(Math.round(e.getDamage())));
+                                if (Math.round(damage) >= 1000000){
+                                    ItemUtil.setDamageIndicator(e.getEntity().getLocation(), org.bukkit.ChatColor.GRAY + "" + Main.format(Math.round(damage)));
+                                }else{
+                                    ItemUtil.setDamageIndicator(e.getEntity().getLocation(), org.bukkit.ChatColor.GRAY + "" + formatter.format(Math.round(damage)));
+                                }
                             }
                             if (r <= skyblockPlayer.getStat(SkyblockStats.FEROCITY)) {
                                 if (!skyblockPlayer.ferocityCooldown) {
@@ -234,10 +267,18 @@ public class EntityDamageListeners implements Listener {
                     if (!e.getEntity().getType().equals(EntityType.ARMOR_STAND)) {
                         if (i <= skyblockPlayer.getStat(SkyblockStats.CRIT_CHANCE)) {
                             e.setDamage(damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100);
-                            ItemUtil.setDamageIndicator(e.getEntity().getLocation(), ItemUtil.addCritTexture(String.valueOf(formatter.format(Math.round(e.getDamage())))));
+                            if (Math.round((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100)) >= 1000000){
+                                ItemUtil.setDamageIndicator(e.getEntity().getLocation(), ItemUtil.addCritTexture(String.valueOf(Main.format(Math.round((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100))))));
+                            }else{
+                                ItemUtil.setDamageIndicator(e.getEntity().getLocation(), ItemUtil.addCritTexture(String.valueOf(formatter.format(Math.round((damage * ((100 + skyblockPlayer.getStat(SkyblockStats.CRIT_DAMAGE))) / 100))))));
+                            }
                         } else {
                             e.setDamage(damage);
-                            ItemUtil.setDamageIndicator(e.getEntity().getLocation(), org.bukkit.ChatColor.GRAY + "" + formatter.format(Math.round(e.getDamage())));
+                            if (Math.round(damage) >= 1000000){
+                                ItemUtil.setDamageIndicator(e.getEntity().getLocation(), org.bukkit.ChatColor.GRAY + "" + Main.format(Math.round(damage)));
+                            }else{
+                                ItemUtil.setDamageIndicator(e.getEntity().getLocation(), org.bukkit.ChatColor.GRAY + "" + formatter.format(Math.round(damage)));
+                            }
                         }
                         if (r <= skyblockPlayer.getStat(SkyblockStats.FEROCITY)) {
                             if (!skyblockPlayer.ferocityCooldown) {
@@ -281,6 +322,9 @@ public class EntityDamageListeners implements Listener {
                     Bukkit.getPluginManager().callEvent(new SkyblockEntitySkillGainEvent(Main.getMain().getPlayer(sEntity.getLastDamager().getName()), sEntity.getSkillType(), sEntity.getSkillExpDropped(), sEntity.getVanillaEntity()));
                 } catch (IOException exception) {
                     exception.printStackTrace();
+                }
+                if (sEntity.getCoins() > 0) {
+                    entity.getLocation().getWorld().dropItemNaturally(entity.getLocation(), ItemHandler.createCoin(sEntity.getCoins()));
                 }
             }
         }

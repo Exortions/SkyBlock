@@ -4,6 +4,7 @@ import com.itech4kids.skyblock.Enums.SkillType;
 import com.itech4kids.skyblock.Events.SkyblockEntitySkillGainEvent;
 import com.itech4kids.skyblock.Events.SkyblockSkillExpGainEvent;
 import com.itech4kids.skyblock.Main;
+import com.itech4kids.skyblock.Objects.Items.ItemHandler;
 import com.itech4kids.skyblock.Util.ItemUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -37,9 +38,12 @@ public abstract class SEntity {
     private int skillExpDropped;
     private SkillType skillType;
 
+    private int coins;
+
     public SEntity(EntityType entityType){
         this.entityType = entityType;
         this.lifespan = 20*15;
+        this.coins = 0;
         this.skillType = null;
         lastDamager = null;
     }
@@ -99,7 +103,9 @@ public abstract class SEntity {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-
+                            if (coins > 0) {
+                                entity.getLocation().getWorld().dropItemNaturally(entity.getLocation(), ItemHandler.createCoin(coins));
+                            }
                             entity.setCustomName(ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "Lv" + level + ChatColor.DARK_GRAY + "] " + ChatColor.RED + name + " " + ChatColor.GREEN + 0 + ChatColor.DARK_GRAY + "/" + ChatColor.GREEN + maximumHealth + ChatColor.RED + "❤");
                             Main.getMain().handler.unRegisterEntity(entity);
                             lentity.setHealth(0);
@@ -113,6 +119,14 @@ public abstract class SEntity {
 
         vanillaEntity = entity;
         return entity;
+    }
+
+    public void setCoins(int i){
+        coins = i;
+    }
+
+    public int getCoins(){
+        return coins;
     }
 
     public int getSkillExpDropped(){

@@ -1,33 +1,30 @@
 package com.itech4kids.skyblock.Listeners;
 
-import com.itech4kids.skyblock.Enums.SkillType;
-import com.itech4kids.skyblock.Enums.SkyblockStats;
+import com.itech4kids.skyblock.CustomMobs.SEntity;
+import com.itech4kids.skyblock.CustomMobs.Slayer.SlayerBoss;
 import com.itech4kids.skyblock.Events.SkyblockSkillExpGainEvent;
 import com.itech4kids.skyblock.Main;
 import com.itech4kids.skyblock.Objects.Island.IslandManager;
 import com.itech4kids.skyblock.Objects.Items.GuiItems.ClickGuiItem;
 import com.itech4kids.skyblock.Objects.Pets.SkyblockPet;
+import com.itech4kids.skyblock.Enums.SkillType;
 import com.itech4kids.skyblock.Objects.SkyblockPlayer;
+import com.itech4kids.skyblock.Enums.SkyblockStats;
 import com.itech4kids.skyblock.Util.Config;
 import com.itech4kids.skyblock.Util.ItemUtil;
 import com.itech4kids.skyblock.Util.LaunchPadConfig;
-import net.citizensnpcs.api.event.NPCDeathEvent;
+import net.citizensnpcs.api.event.*;
 import net.minecraft.server.v1_8_R3.*;
-import org.bukkit.Material;
 import org.bukkit.*;
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.*;
+import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockPhysicsEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityCombustEvent;
-import org.bukkit.event.entity.EntityTeleportEvent;
-import org.bukkit.event.entity.FoodLevelChangeEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.block.*;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCreativeEvent;
 import org.bukkit.event.player.*;
@@ -43,9 +40,7 @@ import org.bukkit.util.Vector;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import static org.bukkit.Material.*;
 
@@ -61,10 +56,9 @@ public class Eventlistener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
-        e.setJoinMessage(null);
         final Player player = e.getPlayer();
         if(Config.getBanned(player)){
-            player.kickPlayer(ChatColor.RED + "You are permanently banned from this server!\n\n" + ChatColor.GRAY + "Reason: " + ChatColor.WHITE + Config.getBanReason(player) + "\n" + ChatColor.GRAY + "Find out more: " + ChatColor.AQUA + "" + ChatColor.UNDERLINE + "https://www.hypixel.net/appeal\n\n" + ChatColor.GRAY + "Ban ID: " + ChatColor.WHITE + "#1379254\n" + ChatColor.GRAY + "Sharing your ban ID may affect the process of your appeal!");
+            player.kickPlayer(ChatColor.RED + "You are permanently banned from this server!\n\n" + ChatColor.GRAY + "Reason: " + ChatColor.WHITE + Config.getBanReason(player) + "\n" + ChatColor.GRAY + "Find out more: " + ChatColor.AQUA + "" + ChatColor.UNDERLINE + "https://www.hypixel.net/appeal/n/n" + ChatColor.GRAY + "Ban ID: " + ChatColor.WHITE + "#1379254\n" + ChatColor.GRAY + "Sharing your ban ID may affect the process of your appeal!");
             return;
         }
         if (!player.hasMetadata("NPC")) {
@@ -142,11 +136,13 @@ public class Eventlistener implements Listener {
                                 cancel(); // this cancels it when they leave
                             }else if (player.isOnline()){
                                 for (String string : LaunchPadConfig.getLaunchPadStrings()) {
-                                    if (LaunchPadConfig.getLaunchPadLocations(string).get("to").distance(player.getLocation()) < 4) {
-                                        if (skyblockPlayer.padName.toLowerCase().equalsIgnoreCase(string)) {
-                                            e.getPlayer().teleport(LaunchPadConfig.getLaunchPadLocations(string).get("teleport"));
-                                            e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.HORSE_ARMOR, 10, 2);
-                                            skyblockPlayer.padName = "";
+                                    if (player.getWorld().equals(LaunchPadConfig.getLaunchPadLocations(string).get("to").getWorld())) {
+                                        if (LaunchPadConfig.getLaunchPadLocations(string).get("to").distance(player.getLocation()) < 4) {
+                                            if (skyblockPlayer.padName.toLowerCase().equalsIgnoreCase(string)) {
+                                                e.getPlayer().teleport(LaunchPadConfig.getLaunchPadLocations(string).get("teleport"));
+                                                e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.HORSE_ARMOR, 10, 2);
+                                                skyblockPlayer.padName = "";
+                                            }
                                         }
                                     }
                                 }
@@ -172,7 +168,6 @@ public class Eventlistener implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent e) throws IOException {
-        e.setQuitMessage(null);
         SkyblockPlayer skyblockPlayer = main.getPlayer(e.getPlayer().getName());
         skyblockPlayer.saveStats();
         skyblockPlayer.activePet.remove();
@@ -493,6 +488,13 @@ public class Eventlistener implements Listener {
     }
 
     @EventHandler
+    public void onFaliingBlock(EntityBlockFormEvent e){
+        if (e.getBlock().getType().equals(GOLD_BLOCK)){
+            e.getBlock().setType(AIR);
+        }
+    }
+
+    @EventHandler
     public void onSlime(final PlayerMoveEvent e) {
         Location from = e.getFrom();
         Location to = e.getTo();
@@ -500,11 +502,13 @@ public class Eventlistener implements Listener {
             final int x = to.getBlockX();
             final int z = to.getBlockZ();
             for (String string : LaunchPadConfig.getLaunchPadStrings()) {
-                if (e.getTo().distance(LaunchPadConfig.getLaunchPadLocations(string).get("from")) < 2) {
-                    if (!isJumping.containsKey(e.getPlayer())) {
-                        e.getPlayer().teleport(LaunchPadConfig.getLaunchPadLocations(string).get("infront"));
-                        this.launch(e.getPlayer(), string);
-                        Main.getMain().getPlayer(e.getPlayer().getName()).padName = string;
+                if (e.getTo().getWorld().equals(LaunchPadConfig.getLaunchPadLocations(string).get("from").getWorld())) {
+                    if (e.getTo().distance(LaunchPadConfig.getLaunchPadLocations(string).get("from")) < 2) {
+                        if (!isJumping.containsKey(e.getPlayer())) {
+                            e.getPlayer().teleport(LaunchPadConfig.getLaunchPadLocations(string).get("infront"));
+                            this.launch(e.getPlayer(), string);
+                            Main.getMain().getPlayer(e.getPlayer().getName()).padName = string;
+                        }
                     }
                 }
             }
@@ -592,6 +596,15 @@ public class Eventlistener implements Listener {
                     player.playSound(player.getLocation(), Sound.ORB_PICKUP, 10, 1);
                 }
             }
+        }
+    }
+
+    @EventHandler
+    public void onChat(AsyncPlayerChatEvent e){
+        if (Main.getMain().getPlayer(e.getPlayer().getName()).search){
+            e.setCancelled(true);
+            e.getPlayer().performCommand("ib " + e.getMessage());
+            Main.getMain().getPlayer(e.getPlayer().getName()).search = false;
         }
     }
 }

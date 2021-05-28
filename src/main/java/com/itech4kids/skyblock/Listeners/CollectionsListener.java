@@ -142,6 +142,7 @@ public class CollectionsListener implements Listener {
     public void miningCollectionPickup(Player player, PlayerPickupItemEvent e){
         collectionPickup(player, "mining", "cobblestone", 4, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "","", (short) 0);
         collectionPickup(player, "mining", "coal", 263, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "","", (short) 0);
+        collectionPickup(player, "mining", "iron", 265, e, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "","", (short) 0);
     }
 
     public void collectionPickup(Player player, String collectionType, String collection, int typeID, PlayerPickupItemEvent e, String rewards, String rewards2, String rewards3, String rewards4, String rewards5, String rewards6, String rewards7, String rewards8, String rewards9, String rewards10, String rewards11, String rewards12, String rewards13, String rewards14, String rewards15, String rewards16, Short data){
@@ -165,9 +166,9 @@ public class CollectionsListener implements Listener {
                 }
                 player.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "COLLECTION UNLOCKED " + ChatColor.YELLOW + " " + WordUtils.capitalize(collection.replace('_', ' ')));
                 player.playSound(player.getLocation(), Sound.LEVEL_UP, 100, 1);
-            } else if (collected >= 100 && Config.getCollectionLevel(player, collectionType, collection) <= 0) {
+            } else if (collected == 100) {
                 new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(0), "I", 1, rewards);
-            } else if (collected >= 250 && Config.getCollectionCollected(player, collectionType, collection) <= 1) {
+            } else if (collected == 250) {
                 new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(1), "II", 2, rewards2);
             } else if (collected == 750) {
                 new SkyblockCollectionLevelUpEvent(player, collectionType, collection, Integer.toString(2), "III", 3, rewards3);

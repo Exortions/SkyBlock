@@ -1,5 +1,6 @@
 package com.itech4kids.skyblock.Events;
 
+import com.itech4kids.skyblock.CustomMobs.SEntity;
 import com.itech4kids.skyblock.Main;
 import com.itech4kids.skyblock.Objects.SkyblockPlayer;
 import com.itech4kids.skyblock.Enums.SkyblockStats;
@@ -22,14 +23,14 @@ public class SkyblockMagicDamageEvent extends PlayerEvent implements Cancellable
     private static final HandlerList HANDLERS = new HandlerList();
     private boolean isCancelled;
 
-    public SkyblockMagicDamageEvent(Player damager, LivingEntity entity, double scaling, int nearby, String name, int abilityDamage) {
+    public SkyblockMagicDamageEvent(Player damager, LivingEntity entity, double scaling, int nearbyX, int nearbyY, int nearbyZ, String name, int abilityDamage) {
         super(damager);
 
         DecimalFormat formatter = new DecimalFormat("#,###");
         formatter.setGroupingUsed(true);
         SkyblockPlayer skyblockPlayer = Main.getMain().getPlayer(damager.getName());
 
-        for (Entity entity1 : player.getNearbyEntities(nearby, nearby, nearby)) {
+        for (Entity entity1 : player.getNearbyEntities(nearbyX, nearbyY, nearbyZ)) {
             if (entity1 instanceof LivingEntity) {
                 entity = (LivingEntity) entity1;
                 if (entity1 instanceof Player && !entity1.hasMetadata("NPC")){
@@ -37,13 +38,17 @@ public class SkyblockMagicDamageEvent extends PlayerEvent implements Cancellable
                 }else {
                     if (!entity.hasMetadata("NPC")) {
                         Bukkit.getPluginManager().callEvent(new EntityDamageEvent(entity, EntityDamageEvent.DamageCause.ENTITY_EXPLOSION, (skyblockPlayer.getStat(SkyblockStats.ABILITY_DAMAGE) + abilityDamage) * (1 + (skyblockPlayer.getStat(SkyblockStats.MANA) / 100F) * scaling)));
+                        if (entity.hasMetadata("identifier")){
+                            SEntity sEntity = Main.getMain().handler.getEntity(entity);
+                            sEntity.subtractHealth((int) ((skyblockPlayer.getStat(SkyblockStats.ABILITY_DAMAGE) + abilityDamage) * (1 + (skyblockPlayer.getStat(SkyblockStats.MANA) / 100F) * scaling)));
+                        }
                     } else {
                         Bukkit.getPluginManager().callEvent(new NPCDamageEvent(CitizensAPI.getNPCRegistry().getNPC(entity), new EntityDamageEvent(entity, EntityDamageEvent.DamageCause.CUSTOM, (skyblockPlayer.getStat(SkyblockStats.ABILITY_DAMAGE) + abilityDamage) * (1 + (skyblockPlayer.getStat(SkyblockStats.MANA) / 100F) * scaling))));
                     }
                 }
             }
         }
-        player.sendMessage(ChatColor.GRAY + "Your " + name + " hit " + ChatColor.RED + player.getNearbyEntities(nearby, nearby, nearby).size() + ChatColor.GRAY + " enemies for " + ChatColor.RED + formatter.format(player.getNearbyEntities(nearby, nearby, nearby).size() * Math.round((skyblockPlayer.getStat(SkyblockStats.ABILITY_DAMAGE) + abilityDamage) * (1 + (skyblockPlayer.getStat(SkyblockStats.MANA) / 100F) * scaling))) + ChatColor.GRAY + " damage.");
+        player.sendMessage(ChatColor.GRAY + "Your " + name + " hit " + ChatColor.RED + player.getNearbyEntities(nearbyX, nearbyY, nearbyZ).size() + ChatColor.GRAY + " enemies for " + ChatColor.RED + formatter.format(player.getNearbyEntities(nearbyX, nearbyY, nearbyZ).size() * Math.round((skyblockPlayer.getStat(SkyblockStats.ABILITY_DAMAGE) + abilityDamage) * (1 + (skyblockPlayer.getStat(SkyblockStats.MANA) / 100F) * scaling))) + ChatColor.GRAY + " damage.");
 
     }
 

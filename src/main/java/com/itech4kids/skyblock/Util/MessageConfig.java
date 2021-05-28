@@ -46,25 +46,25 @@ public class MessageConfig {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
         return ChatColor.translateAlternateColorCodes('&', config.getString("errors.specify_reason"));
     }
-    
+
     public static String specifyPlayer(){
         File file = new File(main.getDataFolder()+File.separator+"messages.yml");
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
         return ChatColor.translateAlternateColorCodes('&', config.getString("errors.specify_player"));
     }
-    
+
     public static String cmdError(){
         File file = new File(main.getDataFolder()+File.separator+"messages.yml");
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
         return ChatColor.translateAlternateColorCodes('&', config.getString("errors.cmd_error"));
     }
-    
+
     public static String wipeMsg(){
         File file = new File(main.getDataFolder()+File.separator+"messages.yml");
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
         return ChatColor.translateAlternateColorCodes('&', config.getString("errors.wipe_msg"));
     }
-    
+
     public static String invalidArgs(){
         File file = new File(main.getDataFolder()+File.separator+"messages.yml");
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -76,7 +76,7 @@ public class MessageConfig {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
         return ChatColor.translateAlternateColorCodes('&', config.getString("errors.dm_cmd_specify_msg"));
     }
-    
+
     public static String success(){
         File file = new File(main.getDataFolder()+File.separator+"messages.yml");
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -99,10 +99,10 @@ public class MessageConfig {
             config.set("errors.wipe_msg", "&cCheating has been detected on one or more of your Skyblock Profiles and your profiles have been wiped.");
             config.set("errors.invalid_args", "&cInvalid arguments!");
             config.set("errors.dm_cmd_specify_msg", "&cPlease specify a message to send!");
-            
+
             // Good stuff
             config.set("info.success", "&aSuccess!");
-            
+
             config.save(file);
         }
     }

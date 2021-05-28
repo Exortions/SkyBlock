@@ -5,9 +5,11 @@ import com.itech4kids.skyblock.CustomMobs.Slayer.Bosses.RevenantBoss;
 import com.itech4kids.skyblock.CustomMobs.Slayer.Bosses.SvenBoss;
 import com.itech4kids.skyblock.CustomMobs.Slayer.Bosses.TarantulaBoss;
 import com.itech4kids.skyblock.CustomMobs.Slayer.Miniboss.SvenPups;
+import com.itech4kids.skyblock.Enums.SkyblockStats;
 import com.itech4kids.skyblock.Main;
 import com.itech4kids.skyblock.Objects.Pets.SkyblockPet;
 import com.itech4kids.skyblock.Objects.SkyblockPlayer;
+import com.itech4kids.skyblock.Util.ItemUtil;
 import com.itech4kids.skyblock.Util.LaunchPadConfig;
 import net.minecraft.server.v1_8_R3.AttributeInstance;
 import net.minecraft.server.v1_8_R3.EntityInsentient;
@@ -65,6 +67,10 @@ public class SlayerAI {
                             if (new Random().nextInt(20*6) == 1){
                                 for (Entity entity : spider.getNearbyEntities(3, 3, 3)){
                                     Bukkit.getPluginManager().callEvent(new EntityDamageByEntityEvent(spider, entity, EntityDamageEvent.DamageCause.ENTITY_ATTACK, tarantula.getAttackDamage()));
+                                    if (entity instanceof Player){
+                                        SkyblockPlayer skyblockPlayer = Main.getMain().getPlayer(entity.getName());
+                                        ((Player) entity).setHealth(skyblockPlayer.getBukkitPlayer().getHealth() - (((tarantula.getAttackDamage() - (tarantula.getAttackDamage() * ((skyblockPlayer.getStat(SkyblockStats.DEFENSE)/(skyblockPlayer.getStat(SkyblockStats.DEFENSE) + 100F))))) * (skyblockPlayer.getBukkitPlayer().getMaxHealth() / (skyblockPlayer.getStat(SkyblockStats.MAX_HEALTH))))));
+                                    }
                                 }
                             }
                         }
@@ -96,7 +102,11 @@ public class SlayerAI {
                         }else{
                         }
 
-                        Bukkit.getPluginManager().callEvent(new EntityDamageByEntityEvent(sven.getVanillaEntity(), spawner, EntityDamageEvent.DamageCause.ENTITY_ATTACK, sven.getTrueDPS()*2));
+                        SkyblockPlayer skyblockPlayer = Main.getMain().getPlayer(spawner.getName());
+                        skyblockPlayer.setStat(SkyblockStats.HEALTH, skyblockPlayer.getStat(SkyblockStats.HEALTH) - sven.getTrueDPS());
+                        ItemUtil.setDamageIndicator(spawner.getLocation(), ChatColor.GRAY + "" + sven.getTrueDPS() + "");
+                        ((Player) spawner).setHealth(skyblockPlayer.getBukkitPlayer().getHealth() - (((sven.getTrueDPS() * (skyblockPlayer.getBukkitPlayer().getMaxHealth() / (skyblockPlayer.getStat(SkyblockStats.MAX_HEALTH)))))));
+
 
                         if (bossLevel >= 3) {
                             if (!sven.hasCalledPups()) {
@@ -139,40 +149,64 @@ public class SlayerAI {
                             case 1:
                                 if (rand.nextInt(4*20) == 1){
                                     Bukkit.getPluginManager().callEvent(new EntityDamageEvent(spawner, EntityDamageEvent.DamageCause.ENTITY_EXPLOSION, revenant.getAttackDamage()));
+                                    SkyblockPlayer skyblockPlayer = Main.getMain().getPlayer(spawner.getName());
+                                    ((Player) spawner).setHealth(skyblockPlayer.getBukkitPlayer().getHealth() - (((revenant.getAttackDamage() - (revenant.getAttackDamage() * ((skyblockPlayer.getStat(SkyblockStats.DEFENSE)/(skyblockPlayer.getStat(SkyblockStats.DEFENSE) + 100F))))) * (skyblockPlayer.getBukkitPlayer().getMaxHealth() / (skyblockPlayer.getStat(SkyblockStats.MAX_HEALTH))))));
                                 }
                                 break;
                             case 2:
                                 if (rand.nextInt(4*20) == 1){
                                     Bukkit.getPluginManager().callEvent(new EntityDamageEvent(spawner, EntityDamageEvent.DamageCause.ENTITY_EXPLOSION, revenant.getAttackDamage()));
+                                    SkyblockPlayer skyblockPlayer = Main.getMain().getPlayer(spawner.getName());
+                                    ((Player) spawner).setHealth(skyblockPlayer.getBukkitPlayer().getHealth() - (((revenant.getAttackDamage() - (revenant.getAttackDamage() * ((skyblockPlayer.getStat(SkyblockStats.DEFENSE)/(skyblockPlayer.getStat(SkyblockStats.DEFENSE) + 100F))))) * (skyblockPlayer.getBukkitPlayer().getMaxHealth() / (skyblockPlayer.getStat(SkyblockStats.MAX_HEALTH))))));
                                 }
                                 if (rand.nextInt(6*20) == 1){
                                     for (Entity entity : zombie.getNearbyEntities(3, 3, 3)){
                                         Bukkit.getPluginManager().callEvent(new EntityDamageEvent(entity, EntityDamageEvent.DamageCause.ENTITY_EXPLOSION, revenant.getAttackDamage()));
+                                        if (entity instanceof Player){
+                                            SkyblockPlayer skyblockPlayer = Main.getMain().getPlayer(entity.getName());
+                                            ((Player) entity).setHealth(skyblockPlayer.getBukkitPlayer().getHealth() - (((revenant.getAttackDamage() - (revenant.getAttackDamage() * ((skyblockPlayer.getStat(SkyblockStats.DEFENSE)/(skyblockPlayer.getStat(SkyblockStats.DEFENSE) + 100F))))) * (skyblockPlayer.getBukkitPlayer().getMaxHealth() / (skyblockPlayer.getStat(SkyblockStats.MAX_HEALTH))))));
+                                        }
                                     }
                                 }
                                 break;
                             case 3:
                                 if (rand.nextInt(4*20) == 1){
                                     Bukkit.getPluginManager().callEvent(new EntityDamageEvent(spawner, EntityDamageEvent.DamageCause.ENTITY_EXPLOSION, revenant.getAttackDamage()));
+                                    SkyblockPlayer skyblockPlayer = Main.getMain().getPlayer(spawner.getName());
+                                    ((Player) spawner).setHealth(skyblockPlayer.getBukkitPlayer().getHealth() - (((revenant.getAttackDamage() - (revenant.getAttackDamage() * ((skyblockPlayer.getStat(SkyblockStats.DEFENSE)/(skyblockPlayer.getStat(SkyblockStats.DEFENSE) + 100F))))) * (skyblockPlayer.getBukkitPlayer().getMaxHealth() / (skyblockPlayer.getStat(SkyblockStats.MAX_HEALTH))))));
                                 }
                                 if (rand.nextInt(6*20) == 1){
                                     for (Entity entity : zombie.getNearbyEntities(3, 3, 3)){
                                         Bukkit.getPluginManager().callEvent(new EntityDamageEvent(entity, EntityDamageEvent.DamageCause.ENTITY_EXPLOSION, revenant.getAttackDamage()));
+                                        if (entity instanceof Player){
+                                            SkyblockPlayer skyblockPlayer = Main.getMain().getPlayer(entity.getName());
+                                            ((Player) entity).setHealth(skyblockPlayer.getBukkitPlayer().getHealth() - (((revenant.getAttackDamage() - (revenant.getAttackDamage() * ((skyblockPlayer.getStat(SkyblockStats.DEFENSE)/(skyblockPlayer.getStat(SkyblockStats.DEFENSE) + 100F))))) * (skyblockPlayer.getBukkitPlayer().getMaxHealth() / (skyblockPlayer.getStat(SkyblockStats.MAX_HEALTH))))));
+                                        }
                                     }
                                 }
                                 if (rand.nextInt(6*20) == 1){
                                     for (Entity entity : zombie.getNearbyEntities(3, 3, 3)){
                                         Bukkit.getPluginManager().callEvent(new EntityDamageEvent(entity, EntityDamageEvent.DamageCause.ENTITY_EXPLOSION, revenant.getAttackDamage()));
+                                        if (entity instanceof Player){
+                                            SkyblockPlayer skyblockPlayer = Main.getMain().getPlayer(entity.getName());
+                                            ((Player) entity).setHealth(skyblockPlayer.getBukkitPlayer().getHealth() - (((revenant.getAttackDamage() - (revenant.getAttackDamage() * ((skyblockPlayer.getStat(SkyblockStats.DEFENSE)/(skyblockPlayer.getStat(SkyblockStats.DEFENSE) + 100F))))) * (skyblockPlayer.getBukkitPlayer().getMaxHealth() / (skyblockPlayer.getStat(SkyblockStats.MAX_HEALTH))))));
+                                        }
                                     }
                                 }
                                 break;
                             case 4:
                                 if (rand.nextInt(4*20) == 1){
                                     Bukkit.getPluginManager().callEvent(new EntityDamageEvent(spawner, EntityDamageEvent.DamageCause.ENTITY_EXPLOSION, revenant.getAttackDamage()));
+                                    SkyblockPlayer skyblockPlayer = Main.getMain().getPlayer(spawner.getName());
+                                    ((Player) spawner).setHealth(skyblockPlayer.getBukkitPlayer().getHealth() - (((revenant.getAttackDamage() - (revenant.getAttackDamage() * ((skyblockPlayer.getStat(SkyblockStats.DEFENSE)/(skyblockPlayer.getStat(SkyblockStats.DEFENSE) + 100F))))) * (skyblockPlayer.getBukkitPlayer().getMaxHealth() / (skyblockPlayer.getStat(SkyblockStats.MAX_HEALTH))))));
                                 }
                                 if (rand.nextInt(6*20) == 1){
                                     for (Entity entity : zombie.getNearbyEntities(3, 3, 3)){
                                         Bukkit.getPluginManager().callEvent(new EntityDamageEvent(entity, EntityDamageEvent.DamageCause.ENTITY_EXPLOSION, revenant.getAttackDamage()));
+                                        if (entity instanceof Player){
+                                            SkyblockPlayer skyblockPlayer = Main.getMain().getPlayer(entity.getName());
+                                            ((Player) entity).setHealth(skyblockPlayer.getBukkitPlayer().getHealth() - (((revenant.getAttackDamage() - (revenant.getAttackDamage() * ((skyblockPlayer.getStat(SkyblockStats.DEFENSE)/(skyblockPlayer.getStat(SkyblockStats.DEFENSE) + 100F))))) * (skyblockPlayer.getBukkitPlayer().getMaxHealth() / (skyblockPlayer.getStat(SkyblockStats.MAX_HEALTH))))));
+                                        }
                                     }
                                 }
                                 if (rand.nextInt(40*20) == 1){

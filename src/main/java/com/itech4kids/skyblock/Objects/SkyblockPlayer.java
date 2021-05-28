@@ -47,6 +47,12 @@ public class SkyblockPlayer {
 
     public PlayerScoreboardState state;
 
+    public int lastPickedUpCoins;
+
+    public List<ItemStack> pendingSwords;
+
+    public boolean search;
+
     public SkyblockPlayer(Player player){
         this.player = player;
         tradedPlayers = new ArrayList<>();
@@ -54,15 +60,20 @@ public class SkyblockPlayer {
         tradeAccepted = false;
         activePet = null;
         convertPetToItem = false;
-        this.lastPickedUp = null;
+        lastPickedUp = null;
+        lastPickedUpCoins = 0;
         cooldowns = new HashMap<>();
 
         padName = "";
         brokenBlock = null;
         state = PlayerScoreboardState.DEFAULT;
 
+        search = false;
+
         locations = new ArrayList<>();
         location = null;
+
+        pendingSwords = new ArrayList<>();
 
         ItemStack item = new ItemStack(Material.SKULL_ITEM, 1, (byte) SkullType.PLAYER.ordinal());
         ItemMeta itemMeta = item.getItemMeta();
@@ -88,6 +99,9 @@ public class SkyblockPlayer {
         setCooldown("ember_rod", 0);
         setCooldown("iron_punch", 0);
         setCooldown("grappling_hook", 0);
+        setCooldown("midas_staff", 0);
+        setCooldown("leaping_sword", 0);
+        setCooldown("silk_edge_sword", 0);
     }
 
     private void loadDefaultStats(){
@@ -138,6 +152,20 @@ public class SkyblockPlayer {
         Config.setStat(player, SkyblockStats.DAMAGE, getStat(SkyblockStats.DAMAGE));
         Config.setStat(player, SkyblockStats.ATTACK_SPEED, getStat(SkyblockStats.ATTACK_SPEED));
         Config.setStat(player, SkyblockStats.MINING_SPEED, getStat(SkyblockStats.MINING_SPEED));
+    }
+
+    public void addItem(ItemStack itemStack){
+        List<Integer> freeSlots = new ArrayList<>();
+        for (int i = 0; i < player.getInventory().getSize(); i++){
+            if (player.getInventory().getItem(i) == null){
+                freeSlots.add(i);
+                player.getInventory().addItem(itemStack);
+                break;
+            }
+        }
+        if (freeSlots.size() == 0){
+            player.getWorld().dropItemNaturally(player.getLocation(), itemStack);
+        }
     }
 
     public void setStat(SkyblockStats s, Integer i){

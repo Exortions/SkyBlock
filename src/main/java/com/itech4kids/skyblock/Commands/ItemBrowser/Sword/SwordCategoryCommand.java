@@ -16,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class SwordCategoryCommand implements CommandExecutor {
 
@@ -35,39 +36,38 @@ public class SwordCategoryCommand implements CommandExecutor {
 
         ItemStack emptySpace = itemHandler.createEmptySpace();
 
-        for (int index = 0; index < 54; index++) {
+        for(int index = 0; index < 9; index++){
             menu.setItem(index, emptySpace);
         }
+
+        menu.setItem(9, emptySpace);
+        menu.setItem(17, emptySpace);
+        menu.setItem(18, emptySpace);
+        menu.setItem(26, emptySpace);
+        menu.setItem(27, emptySpace);
+        menu.setItem(36, emptySpace);
+        menu.setItem(35, emptySpace);
+
+        for (int i = 44; i < 54; ++i){
+            menu.setItem(i, emptySpace);
+        }
+
         // Navigation items
         ItemStack go_back = itemHandler.createPageBackArrow("Item Browser");
         ItemStack close = itemHandler.createExitBarrier();
         ItemStack next_page = itemHandler.createNavigationArrow("next", 2);
 
         // Add items to menu
-        menu.setItem(10, ItemHandler.aspect_of_the_jerry);
-        menu.setItem(11, ItemHandler.fancy_sword);
-        menu.setItem(12, ItemHandler.rogue_sword);
-        menu.setItem(13, ItemHandler.spider_sword);
-        menu.setItem(14, ItemHandler.undead_sword);
-        menu.setItem(15, ItemHandler.end_sword);
-        menu.setItem(16, ItemHandler.cleaver);
-        menu.setItem(19, ItemHandler.flaming_sword);
-        menu.setItem(20, ItemHandler.prismarine_blade);
-        menu.setItem(21, ItemHandler.hunter_knife);
-        menu.setItem(22, ItemHandler.tatician_sword);
-        menu.setItem(23, ItemHandler.thick_tatician_sword);
-        menu.setItem(24, ItemHandler.ember_rod);
-        menu.setItem(25, ItemHandler.frozen_scythe);
-        menu.setItem(28, ItemHandler.golem_sword);
-        menu.setItem(29, ItemHandler.raider_axe);
-        menu.setItem(30, ItemHandler.revenant_falchion);
-        menu.setItem(31, ItemHandler.silver_fang);
-        menu.setItem(32, ItemHandler.shaman_sword);
-        menu.setItem(33, ItemHandler.aspect_of_the_end);
-        menu.setItem(34, ItemHandler.scorpion_foil);
-        menu.setItem(37, ItemHandler.thick_scorpion_foil);
-        menu.setItem(38, ItemHandler.zombie_sword);
-        menu.setItem(39, ItemHandler.grappling_hook);
+        int i = 1;
+
+        skyblockPlayer.pendingSwords.clear();
+        for (Map.Entry<String, ItemStack> entry : ItemHandler.swordMap.entrySet()){
+            if (i > 28){
+                skyblockPlayer.pendingSwords.add(entry.getValue());
+            }
+            menu.addItem(entry.getValue());
+            ++i;
+        }
 
         // Add navigation items to the menu
         menu.setItem(48, go_back);

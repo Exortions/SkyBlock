@@ -8,17 +8,20 @@ import com.itech4kids.skyblock.CustomMobs.Slayer.Miniboss.Revenant.RevenantChamp
 import com.itech4kids.skyblock.CustomMobs.Slayer.Miniboss.Revenant.RevenantSycophant;
 import com.itech4kids.skyblock.Enums.PlayerScoreboardState;
 import com.itech4kids.skyblock.Events.SkyblockEntitySkillGainEvent;
+import com.itech4kids.skyblock.Events.SkyblockSkillExpGainEvent;
 import com.itech4kids.skyblock.Events.SlayerEvent.SkyblockSlayerKillEvent;
 import com.itech4kids.skyblock.Main;
 import com.itech4kids.skyblock.Objects.Items.ItemHandler;
 import com.itech4kids.skyblock.Objects.SkyblockPlayer;
 import com.itech4kids.skyblock.Util.Config;
 import com.itech4kids.skyblock.Util.ItemUtil;
+import com.itech4kids.skyblock.Util.LaunchPadConfig;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.minecraft.server.v1_8_R3.EnumParticle;
+import net.minecraft.server.v1_8_R3.ItemSaddle;
 import net.minecraft.server.v1_8_R3.PacketPlayOutWorldParticles;
 import org.bukkit.*;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
@@ -27,6 +30,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
@@ -643,6 +647,151 @@ public class SlayerListener implements Listener {
         }
     }
 
+    public void summonParticles(SkyblockEntitySkillGainEvent e){
+        final PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles(EnumParticle.FIREWORKS_SPARK, true, (float)e.getSEntity().getLocation().getBlockX(), (float)e.getSEntity().getLocation().getBlockY() + 2, (float)e.getSEntity().getLocation().getBlockZ(), 0.3F, 0.3F, 0.3F, 0.0F, 1, 1000);
+        final PacketPlayOutWorldParticles packet2 = new PacketPlayOutWorldParticles(EnumParticle.SPELL_WITCH, true, (float)e.getSEntity().getLocation().getBlockX(), (float)e.getSEntity().getLocation().getBlockY() + 1, (float)e.getSEntity().getLocation().getBlockZ(), 0.3F, 0.3F, 0.3F, 0.0F, 1, 1000);
+        final PacketPlayOutWorldParticles packet3 = new PacketPlayOutWorldParticles(EnumParticle.SPELL, true, (float)e.getSEntity().getLocation().getBlockX(), (float)e.getSEntity().getLocation().getBlockY() + 1, (float)e.getSEntity().getLocation().getBlockZ(), 0.3F, 0.3F, 0.3F, 0.0F, 1, 1000);
+        Player player = e.getPlayer().getBukkitPlayer();
+        Random rand = new Random();
+
+        player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 2);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 4);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 6);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 8);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 10);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 12);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+                for (int i = 0; i < 300; ++i) {
+                    for (Player player1 : Bukkit.getOnlinePlayers()) {
+                        if (rand.nextInt(5) == 1) {
+                            ((CraftPlayer) player1).getHandle().playerConnection.sendPacket(packet);
+                            ((CraftPlayer) player1).getHandle().playerConnection.sendPacket(packet3);
+                        }
+                        ((CraftPlayer) player1).getHandle().playerConnection.sendPacket(packet2);
+                        ((CraftPlayer) player1).getHandle().playerConnection.sendPacket(packet2);
+                    }
+                }
+            }
+        }.runTaskLater(Main.getMain(), 14);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 16);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 18);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 20);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 22);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 24);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 26);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 28);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 30);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 32);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 34);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 36);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.playSound(player.getLocation(), Sound.FIZZ, 10, 2);
+            }
+        }.runTaskLater(Main.getMain(), 38);
+
+        for (int i = 0; i < 300; ++i) {
+            for (Player player1 : Bukkit.getOnlinePlayers()) {
+                if (rand.nextInt(5) == 1) {
+                    ((CraftPlayer) player1).getHandle().playerConnection.sendPacket(packet);
+                    ((CraftPlayer) player1).getHandle().playerConnection.sendPacket(packet3);
+                }
+                ((CraftPlayer) player1).getHandle().playerConnection.sendPacket(packet2);
+                ((CraftPlayer) player1).getHandle().playerConnection.sendPacket(packet2);
+            }
+        }
+    }
+
     @EventHandler
     public void onSlayerKill(SkyblockEntitySkillGainEvent e){
         Player player = e.getPlayer().getBukkitPlayer();
@@ -658,15 +807,9 @@ public class SlayerListener implements Listener {
                                 quest.setState(SlayerState.FIGHTING);
                                 skyblockPlayer.state = PlayerScoreboardState.SLAYER_QUEST_2;
                                 SvenBoss sven = (SvenBoss) quest.getBoss();
-                                final PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles(EnumParticle.FIREWORKS_SPARK, true, (float)e.getSEntity().getLocation().getBlockX(), (float)e.getSEntity().getLocation().getBlockY() + 2, (float)e.getSEntity().getLocation().getBlockZ(), 0.0f, 0.0f, 0.0f, 0.0f, 0, 1000);
-                                final PacketPlayOutWorldParticles packet2 = new PacketPlayOutWorldParticles(EnumParticle.SPELL_WITCH, true, (float)e.getSEntity().getLocation().getBlockX(), (float)e.getSEntity().getLocation().getBlockY(), (float)e.getSEntity().getLocation().getBlockZ(), 0.0f, 0.0f, 0.0f, 0.0f, 0, 1000);
 
-                                for (Player player1 : Bukkit.getOnlinePlayers()){
-                                    ((CraftPlayer) player1).getHandle().playerConnection.sendPacket(packet);
-                                    ((CraftPlayer) player1).getHandle().playerConnection.sendPacket(packet2);
-                                }
+                                summonParticles(e);
 
-                                player.playSound(player.getLocation(), Sound.FIZZ, 10, 1);
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
@@ -674,7 +817,7 @@ public class SlayerListener implements Listener {
                                         player.playEffect(e.getSEntity().getLocation(), Effect.EXPLOSION_HUGE, 20);
                                         player.playSound(player.getLocation(), Sound.WITHER_SPAWN, 10, 2);
                                     }
-                                }.runTaskLater(Main.getMain(), 20);
+                                }.runTaskLater(Main.getMain(), 40);
                             }
                         }
                     }
@@ -707,14 +850,8 @@ public class SlayerListener implements Listener {
                                 skyblockPlayer.state = PlayerScoreboardState.SLAYER_QUEST_2;
                                 RevenantBoss revenant = (RevenantBoss) quest.getBoss();
 
-                                final PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles(EnumParticle.FIREWORKS_SPARK, true, (float)e.getSEntity().getLocation().getBlockX(), (float)e.getSEntity().getLocation().getBlockY() + 2, (float)e.getSEntity().getLocation().getBlockZ(), 0.0f, 0.0f, 0.0f, 0.0f, 0, 1000);
-                                final PacketPlayOutWorldParticles packet2 = new PacketPlayOutWorldParticles(EnumParticle.SPELL_WITCH, true, (float)e.getSEntity().getLocation().getBlockX(), (float)e.getSEntity().getLocation().getBlockY(), (float)e.getSEntity().getLocation().getBlockZ(), 0.0f, 0.0f, 0.0f, 0.0f, 0, 1000);
+                                summonParticles(e);
 
-                                for (Player player1 : Bukkit.getOnlinePlayers()){
-                                    ((CraftPlayer) player1).getHandle().playerConnection.sendPacket(packet);
-                                    ((CraftPlayer) player1).getHandle().playerConnection.sendPacket(packet2);
-                                }
-                                player.playSound(player.getLocation(), Sound.FIZZ, 10, 1);
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
@@ -722,7 +859,7 @@ public class SlayerListener implements Listener {
                                         player.playEffect(e.getSEntity().getLocation(), Effect.EXPLOSION_HUGE, 20);
                                         player.playSound(player.getLocation(), Sound.WITHER_SPAWN, 10, 2);
                                     }
-                                }.runTaskLater(Main.getMain(), 20);
+                                }.runTaskLater(Main.getMain(), 40);
                             }
                         }
                     }
@@ -736,13 +873,8 @@ public class SlayerListener implements Listener {
                                 skyblockPlayer.state = PlayerScoreboardState.SLAYER_QUEST_2;
                                 TarantulaBoss tarantula = (TarantulaBoss) quest.getBoss();
                                 player.playSound(player.getLocation(), Sound.FIZZ, 10, 1);
-                                final PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles(EnumParticle.FIREWORKS_SPARK, true, (float)e.getSEntity().getLocation().getBlockX(), (float)e.getSEntity().getLocation().getBlockY() + 2, (float)e.getSEntity().getLocation().getBlockZ(), 0.0f, 0.0f, 0.0f, 0.0f, 0, 1000);
-                                final PacketPlayOutWorldParticles packet2 = new PacketPlayOutWorldParticles(EnumParticle.SPELL_WITCH, true, (float)e.getSEntity().getLocation().getBlockX(), (float)e.getSEntity().getLocation().getBlockY(), (float)e.getSEntity().getLocation().getBlockZ(), 0.0f, 0.0f, 0.0f, 0.0f, 0, 1000);
 
-                                for (Player player1 : Bukkit.getOnlinePlayers()){
-                                    ((CraftPlayer) player1).getHandle().playerConnection.sendPacket(packet);
-                                    ((CraftPlayer) player1).getHandle().playerConnection.sendPacket(packet2);
-                                }
+                                summonParticles(e);
 
                                 new BukkitRunnable() {
                                     @Override
@@ -751,7 +883,7 @@ public class SlayerListener implements Listener {
                                         player.playEffect(e.getSEntity().getLocation(), Effect.EXPLOSION_HUGE, 20);
                                         player.playSound(player.getLocation(), Sound.WITHER_SPAWN, 10, 2);
                                     }
-                                }.runTaskLater(Main.getMain(), 20);
+                                }.runTaskLater(Main.getMain(), 40);
                             }
                         }
                     }

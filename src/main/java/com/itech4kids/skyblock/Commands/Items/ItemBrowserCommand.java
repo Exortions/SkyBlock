@@ -14,14 +14,12 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ItemBrowserCommand implements CommandExecutor {
 
-    private ItemHandler itemHandler;
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-        this.itemHandler = itemHandler;
         if(!(sender instanceof Player)){
             sender.sendMessage(ChatColor.RED + "[Skyblock] Only players can use this command!");
             return true;
@@ -29,12 +27,12 @@ public class ItemBrowserCommand implements CommandExecutor {
         Player player = (Player) sender;
         if(args.length == 0) {
             SkyblockPlayer skyblockPlayer = Main.getMain().getPlayer(player.getName());
-            skyblockPlayer.setInventory("Item Browser", Bukkit.createInventory(null, 27, "Item Browser"));
+            skyblockPlayer.setInventory("Item Browser", Bukkit.createInventory(null, 36, "Item Browser"));
             Inventory menu = skyblockPlayer.getInventory("Item Browser");
 
-            ItemStack emptySpace = itemHandler.createEmptySpace();
+            ItemStack emptySpace = ItemHandler.createEmptySpace();
 
-            for (int index = 0; index < 27; index++) {
+            for (int index = 0; index < menu.getSize(); index++) {
                 menu.setItem(index, emptySpace);
             }
             // Sword category
@@ -43,7 +41,7 @@ public class ItemBrowserCommand implements CommandExecutor {
             swordCategoryLore.add(ChatColor.GRAY + "Sword Category!");
             swordCategoryLore.add("");
             swordCategoryLore.add(ChatColor.YELLOW + "Click to view!");
-            ItemStack swordCategoryItem = itemHandler.createBasicItem(Material.DIAMOND_SWORD, ChatColor.GREEN + "Swords", swordCategoryLore, (short) 0,false, 1);
+            ItemStack swordCategoryItem = ItemHandler.createBasicItem(Material.DIAMOND_SWORD, ChatColor.GREEN + "Swords", swordCategoryLore, (short) 0,false, 1);
 
             // Helmet category
             List<String> helmetCategoryLore = new ArrayList<>();
@@ -83,7 +81,7 @@ public class ItemBrowserCommand implements CommandExecutor {
             materialCategoryLore.add(ChatColor.GRAY + "Materials Category!");
             materialCategoryLore.add("");
             materialCategoryLore.add(ChatColor.YELLOW + "Click to view!");
-            ItemStack materialCategoryItem = itemHandler.createBasicItem(Material.DIAMOND_BLOCK, ChatColor.GREEN + "Material", materialCategoryLore, (short) 0,true, 1);
+            ItemStack materialCategoryItem = ItemHandler.createBasicItem(Material.DIAMOND_BLOCK, ChatColor.GREEN + "Material", materialCategoryLore, (short) 0,true, 1);
 
             // Tools category
             List<String> toolsCategoryLore = new ArrayList<>();
@@ -91,8 +89,28 @@ public class ItemBrowserCommand implements CommandExecutor {
             toolsCategoryLore.add(ChatColor.GRAY + "Tools Category!");
             toolsCategoryLore.add("");
             toolsCategoryLore.add(ChatColor.YELLOW + "Click to view!");
-            ItemStack toolsCategoryItem = itemHandler.createBasicItem(Material.DIAMOND_PICKAXE, ChatColor.GREEN + "Tools", materialCategoryLore, (short) 0,false, 1);
+            ItemStack toolsCategoryItem = ItemHandler.createBasicItem(Material.DIAMOND_PICKAXE, ChatColor.GREEN + "Tools", toolsCategoryLore, (short) 0,false, 1);
 
+            // Tools category
+            List<String> bowsCategoryLore = new ArrayList<>();
+            bowsCategoryLore.add(ChatColor.GRAY + "Click to view the");
+            bowsCategoryLore.add(ChatColor.GRAY + "Bows Category!");
+            bowsCategoryLore.add("");
+            bowsCategoryLore.add(ChatColor.YELLOW + "Click to view!");
+            ItemStack bowsCategoryItem = ItemHandler.createBasicItem(Material.BOW, ChatColor.GREEN + "Bows", bowsCategoryLore, (short) 0,false, 1);
+
+            List<String> petsCategoryLore = new ArrayList<>();
+            petsCategoryLore.add(ChatColor.GRAY + "Click to view the");
+            petsCategoryLore.add(ChatColor.GRAY + "Pets Category!");
+            petsCategoryLore.add("");
+            petsCategoryLore.add(ChatColor.YELLOW + "Click to view!");
+            ItemStack petsCategoryItem = ItemHandler.createBasicHead(ChatColor.GREEN + "Pets", petsCategoryLore, 1, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmM0MjYzODc0NDkyMmI1ZmNmNjJjZDliZjI3ZWVhYjkxYjJlNzJkNmM3MGU4NmNjNWFhMzg4Mzk5M2U5ZDg0In19fQ==", 1);
+
+
+
+            ItemStack search = new ItemStack(Material.SIGN);
+            ItemHandler.setDisplayName(search, "&aSearch &7(Click)");
+            ItemHandler.addAbililtyLore(search, "&7Click to search!");
 
             // Add categories to the item browser
             menu.setItem(10, swordCategoryItem);
@@ -102,9 +120,58 @@ public class ItemBrowserCommand implements CommandExecutor {
             menu.setItem(14,bootsCategoryItem);
             menu.setItem(15,materialCategoryItem);
             menu.setItem(16,toolsCategoryItem);
+            menu.setItem(19,bowsCategoryItem);
+            menu.setItem(20,petsCategoryItem);
+
+            menu.setItem(31, search);
 
             player.openInventory(skyblockPlayer.getInventory("Item Browser"));
             return false;
+        }else{
+            SkyblockPlayer skyblockPlayer = Main.getMain().getPlayer(player.getName());
+            skyblockPlayer.setInventory("Item Browser - Search", Bukkit.createInventory(null, 54, "Item Browser - Search"));
+            Inventory menu = skyblockPlayer.getInventory("Item Browser - Search");
+
+            ItemStack emptySpace = ItemHandler.createEmptySpace();
+
+            for(int index = 0; index < 9; index++){
+                menu.setItem(index, emptySpace);
+            }
+
+            menu.setItem(9, emptySpace);
+            menu.setItem(17, emptySpace);
+            menu.setItem(18, emptySpace);
+            menu.setItem(26, emptySpace);
+            menu.setItem(27, emptySpace);
+            menu.setItem(36, emptySpace);
+            menu.setItem(35, emptySpace);
+
+            for (int i = 44; i < 54; ++i){
+                menu.setItem(i, emptySpace);
+            }
+
+            String desc = "";
+            for(int i = 0; i < args.length; i++){
+                String arg;
+                if (i == args.length - 1){
+                    arg= args[i];
+                }else{
+                    arg= args[i] + " ";
+                }
+                desc = desc + arg;
+            }
+
+            for (Map<String, ItemStack> map : ItemHandler.maps){
+                for (Map.Entry<String, ItemStack> entry : map.entrySet()){
+                    if (entry.getKey().toLowerCase().replaceAll("_", " ").contains(desc)){
+                        if (entry.getValue() != null){
+                            menu.addItem(entry.getValue());
+                        }
+                    }
+                }
+            }
+
+            player.openInventory(menu);
         }
         return false;
     }

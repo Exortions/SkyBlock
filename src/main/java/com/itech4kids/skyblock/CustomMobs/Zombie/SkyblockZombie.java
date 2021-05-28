@@ -32,6 +32,7 @@ public class SkyblockZombie extends SEntity {
                 loadStats(100, 20, true, equipment, "Zombie", 1);
                 setSkillExpDropped(7);
                 setSkillType(SkillType.COMBAT);
+                setCoins(1);
                 break;
             case SEA_WALKER:
                 helmet = new ItemStack(Material.SKULL_ITEM, 1, (short) SkullType.PLAYER.ordinal());
@@ -57,6 +58,7 @@ public class SkyblockZombie extends SEntity {
                 equipment.put("boots", boots);
 
                 loadStats(1500, 60, true, equipment, "Sea Walker", 4);
+                setCoins(0);
                 break;
             case CRYPT_GHOUL:
                 helmet = new ItemStack(Material.AIR);
@@ -77,6 +79,7 @@ public class SkyblockZombie extends SEntity {
                 SEntityAI.runGhoulAI(this);
                 setSkillExpDropped(30);
                 setSkillType(SkillType.COMBAT);
+                setCoins(13);
                 break;
             case GOLDEN_GHOUL:
                 chestplate = new ItemStack(Material.GOLD_CHESTPLATE);
@@ -95,6 +98,7 @@ public class SkyblockZombie extends SEntity {
                 SEntityAI.runGhoulAI(this);
                 setSkillExpDropped(45);
                 setSkillType(SkillType.COMBAT);
+                setCoins(100);
                 break;
             case LAPIS_ZOMBIE:
                 helmet = new ItemStack(Material.SEA_LANTERN);
@@ -119,6 +123,7 @@ public class SkyblockZombie extends SEntity {
                 equipment.put("boots", boots);
 
                 loadStats(200, 50, true, equipment, "Lapis Zombie", 7);
+                setCoins(5);
                 break;
             case DIAMOND_RESERVE:
                 helmet = new ItemStack(Material.DIAMOND_HELMET);
@@ -134,6 +139,7 @@ public class SkyblockZombie extends SEntity {
                 equipment.put("boots", boots);
 
                 loadStats(250, 200, true, equipment, "Zombie", 15);
+                setCoins(8);
                 break;
             case ZOMBIE_VILLAGER:
                 helmet = new ItemStack(Material.LEATHER_HELMET);
@@ -151,6 +157,7 @@ public class SkyblockZombie extends SEntity {
                 loadStats(120, 24, true, equipment, "Zombie Villager", 1);
                 Zombie zombie = (Zombie) getVanillaEntity();
                 zombie.setVillager(true);
+                setCoins(1);
                 break;
             case OBSIDIAN_SANCTUARY:
                 helmet = new ItemStack(Material.DIAMOND_BLOCK);
@@ -171,6 +178,7 @@ public class SkyblockZombie extends SEntity {
                 equipment.put("boots", boots);
 
                 loadStats(300, 275, true, equipment, "Zombie", 20);
+                setCoins(8);
                 break;
         }
         spawn(spawnLocation);

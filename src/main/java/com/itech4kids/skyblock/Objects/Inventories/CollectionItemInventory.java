@@ -1,6 +1,7 @@
 package com.itech4kids.skyblock.Objects.Inventories;
 
 import com.itech4kids.skyblock.Commands.PlayerCommands.CollectionsCommand;
+import com.itech4kids.skyblock.Commands.PlayerCommands.CollectionsCommand;
 import com.itech4kids.skyblock.Enums.CollectionItemTypes;
 import com.itech4kids.skyblock.Enums.CollectionTypes;
 import com.itech4kids.skyblock.Main;

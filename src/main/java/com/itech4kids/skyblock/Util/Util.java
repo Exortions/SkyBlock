@@ -1,8 +1,23 @@
 package com.itech4kids.skyblock.Util;
 
+import com.connorlinfoot.actionbarapi.ActionBarAPI;
+import com.itech4kids.skyblock.Enums.SkyblockStats;
+import com.itech4kids.skyblock.Events.SkyblockMagicDamageEvent;
+import com.itech4kids.skyblock.Main;
+import com.itech4kids.skyblock.Objects.SkyblockPlayer;
+import net.minecraft.server.v1_8_R3.IChatBaseComponent;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
 import java.util.List;
+import java.util.Random;
 
 public class Util {
 
@@ -46,46 +61,6 @@ public class Util {
         return str;
     }
 
-    public static int numeralToInt(String str){
-        int i = 0;
-        if(str.equals("I")){
-            i = 1;
-        } else if(str.equals("II")){
-            i = 2;
-        } else if(str.equals("III")){
-            i = 3;
-        } else if(str.equals("IV")){
-            i = 4;
-        } else if(str.equals("V")){
-            i = 5;
-        } else if(str.equals("VI")){
-            i = 6;
-        } else if(str.equals("VII")){
-            i = 7;
-        } else if(str.equals("VIII")){
-            i = 8;
-        } else if(str.equals("IX")){
-            i = 9;
-        } else if(str.equals("X")){
-            i = 10;
-        } else if(str.equals("XI")){
-            i = 11;
-        } else if(str.equals("XII")){
-            i = 12;
-        } else if(str.equals("XIII")){
-            i = 13;
-        } else if(str.equals("XIV")){
-            i = 14;
-        } else if(str.equals("XV")){
-            i = 15;
-        } else if(str.equals("XVI")){
-            i = 16;
-        } else{
-            i = Integer.parseInt(str);
-        }
-        return i;
-    }
-
     public static int percentage(int c, int m){
         int i = c*100/m;
         return i;
@@ -102,7 +77,17 @@ public class Util {
 
     public static void addLore(ItemMeta meta, List<String> lore){
         List<String> itemLore = meta.getLore();
-        itemLore.addAll(lore);
+        for(String str : lore){
+            itemLore.add(str);
+        }
+    }
+
+    public static ArmorStand throwItem(Player owner, ItemStack head, Location loc, Vector vec){
+        ArmorStand armorStand = loc.getWorld().spawn(loc, ArmorStand.class);
+        armorStand.setItemInHand(head);
+        armorStand.setVelocity(vec);
+        armorStand.setVisible(false);
+        return armorStand;
     }
 
 }
