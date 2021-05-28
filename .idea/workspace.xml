@@ -5,25 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c19df67f-9a66-48e8-923f-a4c77a62bce5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/AdminCommands/DebugCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/ItemBrowser/Sword/SwordCategoryCommandPage3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Moderation/UnbanCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Listeners/DebugListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/ItemBrowser/Sword/SwordCategoryCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/ItemBrowser/Sword/SwordCategoryCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/ItemBrowser/Sword/SwordCategoryCommandPage2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/ItemBrowser/Sword/SwordCategoryCommandPage2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Items/ItemBrowserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Items/ItemBrowserCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Moderation/BanCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/Moderation/BanCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/PlayerCommands/CollectionsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/PlayerCommands/CollectionsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Listeners/CollectionsListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Listeners/CollectionsListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Listeners/InventoryListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Listeners/InventoryListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/PlayerCommands/VisitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Commands/PlayerCommands/VisitCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/CustomMobs/PlayerEntities/CustomAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/CustomMobs/PlayerEntities/CustomAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Objects/Items/ItemHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Objects/Items/ItemHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Objects/SkyblockPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Objects/SkyblockPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Util/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Util/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Util/MessageConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/itech4kids/skyblock/Util/MessageConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -302,7 +287,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622000791176</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Merge from OptimusChen/HypixelSkyblock">
+      <created>1622235297893</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1622235297893</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -319,8 +311,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Commit stuff" />
-    <MESSAGE value="Fixed wiping issue, can now have multiple words in ban reason. Also added auto-generation for CollectionsListener.java, allowing us to really easily generate collections, without having to hardcode everything" />
     <MESSAGE value="Added API &amp; Plugin jars for the future" />
     <MESSAGE value="Worked on Collection level ups (Auto-generation)" />
     <MESSAGE value="Fixed a bug in the ban command." />
@@ -344,6 +334,8 @@
     <MESSAGE value="Added /gms,gmc,gma,gmsp" />
     <MESSAGE value="DM Cmd and MsgConfig" />
     <MESSAGE value="Collections" />
-    <option name="LAST_COMMIT_MESSAGE" value="Collections" />
+    <MESSAGE value="Mege from OptimusChen/HypixelSkyblock" />
+    <MESSAGE value="Merge from OptimusChen/HypixelSkyblock" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge from OptimusChen/HypixelSkyblock" />
   </component>
 </project>
