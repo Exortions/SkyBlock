@@ -158,7 +158,7 @@ Distributed under the MIT License. See the click the link below for more informa
 <!-- CONTACT -->
 ## Contact
 
-Discord - [Exo#6969](https://github.com/Exortions) or [OptimusChen#0001](https://github.com/OptimusChen)
+Discord - [Exortions#0001](https://github.com/Exortions) or [OptimusChen#0001](https://github.com/OptimusChen)
 
 Project Link: [https://github.com/Exortions/SkyBlock](https://github.com/Exortions/SkyBlock)
 
