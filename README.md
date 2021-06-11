@@ -179,7 +179,7 @@ Project Link: [https://github.com/Exortions/SkyBlock](https://github.com/Exortio
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/OptimusChen/RemakeSkyblock?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/Exortions/SkyBlock?style=for-the-badge
 [contributors-url]: https://github.com/Exortions/SkyBlock/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/Exortions/SkyBlock?style=for-the-badge
 [forks-url]: https://github.com/Exortions/SkyBlock/members
