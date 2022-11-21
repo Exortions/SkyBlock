@@ -7,7 +7,7 @@
 [![Size][size-shield]][size-url]
 
 # [IMPORTANT] Project is discontinued
-Some people have been starring this repository lately, and I would not like to get your hopes up by saying I will update it. It's been almost two years since I have even touched this codebase and quite frankly, I don't care about Minecraft anymore. Feel free to fork and submit pull requests, as I will gladly merge them.
+We are currently making a new repository, as this codebase is old and mostly hardcoded. We will release it when we can, so stay tuned!
 
 <!-- PROJECT LOGO -->
 <br />
