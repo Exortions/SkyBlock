@@ -6,8 +6,11 @@
 [![MIT License][license-shield]][license-url]
 [![Size][size-shield]][size-url]
 
+# NEW PROJECT
+<a href="https://github.com/Exortions/skyblock-2.0">Here is our latest remake of Hypixel Skyblock (before Dungeons)</a>
+
 # [IMPORTANT] Project is discontinued
-We are currently making a new repository, as this codebase is old and mostly hardcoded. We will release it when we can, so stay tuned!
+We are currently making a new repository, as this codebase is old and mostly hardcoded.
 
 <!-- PROJECT LOGO -->
 <br />
